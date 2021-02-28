@@ -1,0 +1,15 @@
+** Using your own GNU Pascal compiler system with Dev-Pascal **
+
+If you already have a GNU Pascal compiler system and have installed the executable version of Dev-Pascal, you can configure Dev-Pascal to work with it. Please follow the instructions below :
+
+1. Open Dev-Pascal, and go to the Options menu, then Compiler options
+
+2. In the Directories sheet page, type in the Bin field the directory that contains the GNU Pascal compiler: "gpc.exe" (example : c:\mingw\bin\)
+
+3. Type in the Units field a list of directories to your personal GNU Pascal unit files. Separate paths by semicolon (;). Example : c:\mingw\units\;c:\mingw\winapi\
+
+4. Type in the Lib field the directory to your Mingw (or Cygwin) library files (example : c:\mingw\lib\)
+
+5. Select "GNU Pascal" in the "Pascal compiler" tab.
+
+6. Click OK in the Compiler Options dialog. Your GNU Pascal compiler system should be now configured to work with Dev-Pascal.

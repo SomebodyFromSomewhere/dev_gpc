@@ -1,0 +1,2137 @@
+This is ../../gcc/p/doc/info/gpcs-es.info, produced by makeinfo version
+4.6 from gpcs.texi.
+
+START-INFO-DIR-ENTRY
+* Estándares de Codificación Pascal: (gpcs).   Estándares de codificación GNU Pascal.
+END-INFO-DIR-ENTRY
+
+   GNU Pascal Coding Standards
+
+   Copyright (C) 2001-2006 Free Software Foundation. Inc
+
+   Se concede permiso para copiar, distribuir y/o modificar este
+documento bajo los términos de la Licencia de Documentación Libre GNU,
+Versión 1.1 o cualquier otra versión  posterior publicada por la Free
+Software Foundation; sin ninguna Sección Invariante, sin Texto de
+Cubierta Frontal, sin Texto de Cubierta Trasera.
+
+   Se incluye una copia de esta licencia en la sección titulada "Copia
+de la Documentación" en el Manual de GNU Pascal.
+
+
+File: gpcs-es.info,  Node: Top,  Next: Prefacio,  Up: (dir)
+
+Versión
+*******
+
+Última actualización 2006-02-02.
+
+* Menu:
+
+* Prefacio::                            Acerca de los Estándares de Codificación de GNU Pascal
+* Cuestiones Legales::                  Mantener el ``Software Libre''  Libre
+* Advertencias de Diseño::              Diseño General del Programa
+* Comportamiento del Programa::         Comportamiento del Programa con Todos los Programas
+* Escritura en Pascal::                 Haciendo el Mejor uso de  Pascal
+* Documentación::                       Documentación de Programas
+* Gestión de Liberaciones::             El Proceso de Liberación
+* Glosario::                            Glosario de palabras usadas a través de este texto
+* Índice::
+
+
+File: gpcs-es.info,  Node: Prefacio,  Next: Cuestiones Legales,  Prev: Top,  Up: Top
+
+Acerca de los Estándares de Codificación de GNU Pascal
+******************************************************
+
+Los Estándares de Codificación de GNU Pascal fueron diseñados por un
+grupo de voluntarios del proyecto GNU Pascal. El objetivo de este
+documento es extender los Estandares de Codificación GNU con
+información específica relativa a la programación en Pascal. De hecho,
+la información contenida en el Estándar de Codificación de GNU en su
+mayor parte pertenece a programas escritos en lenguaje C. Por otra
+parte, también explican muchas de las reglas y principios que son
+útiles para escribir programas portables, confiables y robustos. La
+mayoría de esos temas generales podrían compartirse con este documento
+con sólo unas notas específicas, así que se dan referencias cruzadas
+las cuáles le dirigirán a información más extensa contenida en el
+Estándar de Codificación GNU.
+
+   Esta liberación de los Estándares de Codificación de  GNU Pascal se
+actualizó por última vez el 2006-02-02.
+
+   Los Estándares de Codificación de GNU Pascal están disponibles como
+parte de las distribución de GPC - en las distribuciones binarias como
+ficheros info, en las distribuciones fuente también como ficheros
+Texinfo desde los que se pueden generar más formatos como HTML,
+PostScript y PDF. Una versión HTML está disponible también en la página
+inicial de GPC, `http://www.gnu-pascal.de'.
+
+   Correcciones o sugerencias para este documento deberían enviarse a
+la lista de correo de Documentación de Compilador de Pascal de GNU,
+<gpc-doc@gnu.de>. Si hace una sugerencia, por favor, incluya la palabra
+sugerida para ella; nuestro tiempo es limitado. Un diff contextual al
+fichero Texinfo  "fuente" Texinfo se agradecerá mucho, si es posible.
+Si no puede proporcionar un diff contextual, por favor siéntase libre
+para enviar por correo su sugerencia igualmente.
+
+   Esa gente son los tiranos que están imponiendo si estilo de
+codificación a la comunidad: Peter Gerwinski `peter(at)gerwinski.de',
+Frank Heckenbach `frank(at)pascal.gnu.de', Markus Gerwinski
+`markus(at)gerwinski.de', Dominik Freche `dominik.freche(at)gmx.net',
+Nicola Girardi `nicola(at)g-n-u.de'.
+
+
+File: gpcs-es.info,  Node: Cuestiones Legales,  Next: Advertencias de Diseño,  Prev: Prefacio,  Up: Top
+
+manteniendo el "Software Libre" Libre
+*************************************
+
+Este capítulo de los Estándares de Codificación GNU discuten cómo puede
+asegurarse de que el software GNU evita dificultades legales, y otras
+cuestiones relacionadas.  *Note Propiedad Intelectual:
+(estándares)Propiedad Intelectual.
+
+
+File: gpcs-es.info,  Node: Advertencias de Diseño,  Next: Comportamiento del Programa,  Prev: Cuestiones Legales,  Up: Top
+
+Diseño General de un Programa
+*****************************
+
+Este capítulo trata sobre las cuestiones que debería tener en cuenta
+cuando diseñe su programa.
+
+* Menu:
+
+* Lenguaje del Fuente::         Qué lenguaje usar
+* Pascal y C::                  Enlazando a bibliotecas C
+* Uso de Extensiones::          Uso de características no estándar
+
+
+File: gpcs-es.info,  Node: Lenguaje del Fuente,  Next: Pascal y C,  Up: Advertencias de Diseño
+
+Qué lenguaje usar
+=================
+
+Apoyamos la idea de que una variedad de lengajes de programación es una
+cosa buena y que lenguajes diferentes son apropiados para diferentes
+clases de tareas. Al contrario que los Estándares de Codificación GNU
+(*note Lenguaje del Fuente: (estándares)Lenguaje del Fuente.), no le
+intentamos persuadir para que utilice C, Pascal o cualquier otro
+lenguaje para todo.
+
+   Si está leyendo esto, ya ha decidido probablemente usar Pascal para
+algún proyecto o está considerando usarlo. Esta documentación le
+sugerirá  _cómo_ dar formato a su código pascal cuando lo haga.
+
+
+File: gpcs-es.info,  Node: Pascal y C,  Next: Uso de Extensiones,  Prev: Lenguaje del Fuente,  Up: Advertencias de Diseño
+
+Enlazando con bibliotecas C
+===========================
+
+Puede enlazar una biblioteca C o un código objeto C a su programa
+Pascal o unidad. Por favor vea la descripción en el manual de GPC sobre
+cómo hacer esto (*note Otros Lenguajes: (gpc)Otros Lenguajes.).
+
+   En particular, para acceder a bibliotecas C, recomendamos
+encarecidamente usar encapsulados C. Esto es una custión de
+portabilidad. Quizá haya cambios en versiones diferentes de la
+biblioteca que puedan afectar directamente a declaraciones `external'
+en el código Pascal. Debería actualizar la encapsulación para que los
+programas Pascal o unidades funcionen con cualquier versión de la
+biblioteca que tenga.
+
+   Hay veces cuando se tratan paquetes grandes que no se puede mantener
+la compatibilidad fácilmente entre versiones diferentes de los mismos
+paquetes. En este caso, puede enlazar directamente a la biblioteca con
+la que va trabajar, y enlazar un fichero C suplementario que no contine
+nada excepto una verificación de la versión. Este es un ejemplo:
+
+     #include <foo.h>
+     #if FOO_MAJOR != 1 || FOO_MINOR != 2
+     #error The GPC interface for libfoo was only written for libfoo-1.2.
+     #error Please get libfoo-1.2 or check for a version of the GPC interface
+     #error matching your version of libfoo.
+     #endif
+
+   Nótese el uso de `!=' en vez de  `<' o `>', para efectuar una
+verificación de versión muy estricta. Por favor tenga en mente que esto
+es correcto si hay sólo una implementación de una biblioteca, p.e.,
+puede hacer esto con GTK, pero no puede hacer esto con libc, libm,
+curses etc.
+
+   Está planeado un traductor automático de cabeceras que hará el
+encapsulamiento en C superfluo. Este es un trabajo no trivial y no se
+está seguro de cuándo será esto posible, así que tomará al menos algo
+de tiempo el que esté disponible.
+
+   Puede asumir que el Compilador de C de GNU se usa para compilar los
+encapsulados y, en general, cualquier código C que enlace a su código
+Pascal. La razón para esta suposición es que sólo el Compilador C de
+GNU está garantizado que tenga todas las convenciones compatibles con
+el Compilador Pascal GNU en cada plataforma en la que funciona, coo
+comparten ambos el mismo backend. También, el Compilador Pascal de GNU
+se contruye siempre junto con el Compilador C de GNU, así que `gcc'
+puede asumirse que está disponible donde lo esté `gpc'.
+
+
+File: gpcs-es.info,  Node: Uso de Extensiones,  Prev: Pascal y C,  Up: Advertencias de Diseño
+
+Uso de Extensiones
+==================
+
+Se proporcionan multitud de facilidades en GNU Pascal que extienden el
+lenguage Pascal estándar. El decidir si usar estas extensiones al
+implementar su programa es una discusión tediosa.
+
+   Por un lado, el uso de estas extensiones puede hacer un programa más
+limpio. Por el otro lado, la gente no será capaz de construir el
+programa a no ser que tenga disponible el Compilador de Pascal de GNU.
+Esto quizá haga que el programa no compile al usar otros compiladores.
+
+   En general, es mejor mantener compatibilidad con otros compiladores o
+a los estándares del lenguaje, _si esta compatibilidad es fácil de
+lograr_.  En general, tristemente, para lograr compatibilidad se tienen
+considerables desventajas. For ejemplo, quizá tenga que añadir cantidad
+de `{$ifdef}'s para tener compatibilidad con algunos compiladores no
+estándar, los cuales hacen el código más difícil de leer, escribir,
+verificar y mantener. Además los`{$ifdef}'s en sí mismos son
+estensiones no estándar, así que no se gana mucho de esta manera.
+
+   Al final, sugerimis no tomarse excesivas molestias  en la
+compatibilidadd.  Todos los interfaces del Compilador de Pascal de GNU
+(compilador y Run Time System) son abiertos. Esto significa que pueden
+ser implementados para otros compiladores cuando se necesiten o incluso
+los mismos fuentes pueden ser usados gracias a que la licencia los
+preserva (lea más acerca de la Licencia Pública General GNU en
+`http://www.gnu.org/copyleft/gpl.html'), en vez de enrrarecer el código
+no  usando las características extendidas.  Un elemplo (limitado) de
+esta estrategia está en la unidad  `gpc-bp' para  Borland Pascal,
+distribuída con el Compilador Pascal de GNU. Quizá quiera echarle un
+vistazo a su interfaz para ver exactamente qué contiene, Es fácil
+extenderlo para más características de compatibilidad cuando se
+necesiten, aunque hay características que no pueden ser fácilmente
+emuladas (en particular aquellas que tienen una sintaxis especial).
+
+   Por favor, no use las siguientes características, especialmente
+aquellas que fuerom implementadas tan sólo para compatibilidad hacia
+atrás.
+
+   * Los comentarios  `(* *)' para los terminales antiguos donde los
+     caracteres `{' y `}' no estaban disponibles.
+
+   * las directivas  `#' y los comentarios  `//' comments, como en
+     C/Delphi. Si un fichero debe se usado en C, puede usar las
+     directivas `#', los condicionales de sintexsis de C, y los
+     comentarios `//'.  Un ejemplo (en este escrito, quizá cambien en
+     el futuro) es `p/rts/constants.h' en los fuentes del Compilador
+     Pascal GNU.
+
+   * the misuse of typed constants as variables, which is a misfeature
+     of Borland Pascal.
+
+   * constantes carácter `^A'. Use `#1' o `Chr (1)', en su lugar.
+
+   * `CString's (excepto para interfaces C, desde luego)
+
+   * código compilado Borland Pascal como el siguiente en vez de usar
+     `WriteStr':
+
+          Str (Foo, s);
+          s := 'Hola ' + s;
+
+   * la mayoría de los casos de `FillChar' y `Move', excepto para código
+     de bajo nivel y cuando se aplique a caracteres dentro de una
+     cadena. El uso de
+
+          FillChar (s, SizeOf (s), 0);
+
+     para borrar una cadena, es incorrecto en  GNU Pascal e ineficiente
+     incluso en Borland Pascal, debido a que lo siguiente podría ser
+     usado:
+
+          s := '';
+
+     Esto tan sólo borraría el campo de longitud de la cadena `s'.
+
+   * en la mayoría de los casos de  `GetMem' y `FreeMem' - usualmente
+     son un arreglo para tipos schema no encontrados en otros
+     compiladores.
+
+   * muchos casos de parámetros no tipados
+
+   * muchas rutinas hechas a mano relacionadas con nombres de ficheros.
+     (Cuando se escriben en  Borland Pascal, son aplicables normalmente
+     en DOS, mientras que las rutinas en la unidad `GPC' proporcionan
+     alternativas portables para la mayor parte de este material).
+
+   * código ensamblador, excepto en áreas muy pequeñas para
+     optimizaciones especiales rodeadas por un `{$ifdef}' específico
+     (por ejemplo, para el tipo de procesador). Pero entonces,
+     proporcionar una versión  equivalente en Pascal plano en la parte
+     `{$else}' - ¡y verificarla!
+
+   * cualquier cosa que requiera la unidad  `System'.
+
+   * presuponer tamaños de los tipos
+
+   * presuponer la endianidad (algunos sistemas tienen los bytes de
+     mayor y menor valor en un orden diferente que otros sistemas, ;
+     por favor lea el glosario  *Note Glosario::, para una explicación)
+
+   * identificadores comenzando o finalizando con guiones bajos o
+     teniendo varios guiones bajos adyacentes
+
+   * unidades escritas sólo por compatibilidad con Borland Pascal.
+     (*note Unidades GPC: (GPC)Unidades GPC.) Nota, `CRT' y `Printer'
+     son no sólo para compatibilidad con Borland Pascal, sino también
+     para uso general.
+
+
+   Los Estándares de Codificación GNU tienen buenas sentencias en este
+tema.  *Note Uo de Extensiones: (estándares)Uo de Extensiones.
+
+
+File: gpcs-es.info,  Node: Comportamiento del Programa,  Next: Escritura en Pascal,  Prev: Advertencias de Diseño,  Up: Top
+
+Comportamiento del Programa para Todos los Programas
+****************************************************
+
+Este capítulo de los Estándares de Codificación GNU describen
+convenciones para escribir software robusto. También describe
+estándares generales para mensajes de error, el interfaz de línea de
+órdenesm y cómo deberían comportarse las bibliotecas. Le animamos a
+leer esa parte de los Estándares de Codificacion GNU.  *Note
+Comportamiento del Programa: (estándares)Comportamiento del Programa.
+
+   Aquí están las notas especiales para la programación en Pascal, en
+cualquier caso.
+
+   La elección entre funciones de señales, discutidad en los Estándares
+de Codificación GNU, se hacen en el Run Time System así que no tiene
+que preocuparse por ellas.
+
+   Otra discrepancia con los Estándares de Codificación GNU es el
+comportamiento predeterminado para verificación de errores que detecten
+condiciones "imposibles".  No sugerimos tan sólo abortar. Esto implica
+que cada usuario puede ser un programador, pero no creemos que esto sea
+realista. Nuestra opción es imprimir un mensaje de error razonable para
+que los usuarios puedan informar del descripciones del fallo a los
+programadores que no se dieron cuenta del fallo por sí mismos o que no
+podrían reproducirlo.
+
+   Además, los Estándares de Codificación de GNU sugieren verificar
+cada llamada de systema para un error devuelto. Eso se aplica a C. En
+Pascal, la verificación de error a menudo es automática, así que no
+necesita preocuparse de verificar errores. Muchas rutinas de  E/S no
+devuelven un valor (por ejemplo, `Reset'), pero aquellas que lo
+devuelben deberían normalmente ser verificadas.
+
+   Desde luego, puede desactivar la verificación automática de errores
+y buscarlos usted mismo. De hecho, algunos errores quizá causen que el
+programa se aborte sin un mensaje de error. En su lugar, especialmente
+en unidades o módulos, quizá quiera informar de errores y darle al
+usuario una oportunidad de interenir y corregir las cosas. Para hacer
+esto, debe usar la directiva del compilador `{$I-}' , y verificar el
+valor de `IOResult' (*note IOResult: (gpc)IOResult.) o las variables de
+error globales como `InOutRes' (*note InOutRes: (gpc)InOutRes.). Note
+que las rutinas de E/S retornan inmediatamente si  `InOutRes' está
+puesto, así que no es necesario verificarlas después de cada operación,
+así que lo siguiente es posible:
+
+     {$local I-}
+     Rewrite (f, 'bla');
+     WriteLn (f, 'foo');
+     WriteLn (f, 'bar');
+     WriteLn (f, 'baz');
+     Close (f);
+     {$endlocal}
+     if InOutRes <> 0 then
+       begin
+         WriteLn (StdErr, GetIOErrorMessage);
+         ...
+       end;
+
+   Sin embargo en su código quizá quiera también verificar  `Rewrite' y
+otras llamadas de apertura, las cuáles son las que tienden a fallar, y
+evitará más llamadas innecesarias.
+
+   Hay un conjunto de rutinas en la unidad GPC para nombrar ficheros
+temporales, ficheros de configuración y muchos otro material
+relacionado con nombres de fichero. Las ventajas de usar éstos son que
+funcionan para distintas clases de sistemas (por ejemplo Unix y DOS), y
+que los problemas futuros pueden ser corregidos en un sólo lugar en el
+Run Time System en vez de en varios programas o unidades diferentes.
+
+   En tanto en cuanto a las bibliotecas se refiere, sugerimos que no
+ponga cada rutina en un fichero separado. Afortunadamente algún día el
+Compilador Pascal de GNU hará esto automáticamente a nivel del
+enlazador. En este momento, creemos que lo conveniente para el
+programador es mucho más importante que el tamaño del binario. También
+recomendamos no usar un frefijo en el nombre, debido a que los
+conflictos con los nombres pueden resueltos por identificadores
+cualificados (`UnitName.RoutineName').  Hasta entonces, por favor
+utilice arreglos temporales cuando surjan conflictos.
+
+
+File: gpcs-es.info,  Node: Escritura en Pascal,  Next: Documentación,  Prev: Comportamiento del Programa,  Up: Top
+
+Haciendo el Mejor Uso de Pascal
+*******************************
+
+Este capítulo proporciona consejos acerca de cómo usar mejor el
+lenguaje Pascal cuando escriba software. Por supuesto, las reglas se
+aplican al código publicado únicamente - si usted por ejemplo quiere
+comentar cosas fuera con comentarios al estilo antiguo como  `(* este
+*)', debería hacerlo temporalmente y quitarlos antes de distribuir su
+código. Sin embargo, si nunca sabe cuando se va a publicar el código,
+es buena idea ceñirse a las reglas desde el principio.
+
+* Menu:
+
+* Clasificación de Indicaciones::     Clasificación de Indicaciones en Programación Pascal
+* Verificación de Consistencia::      Uso de `Assert' para aborta si ocurre
+                                      algo ``imposible''.
+* Formato::                           Dar formato a su Código Fuente
+* Comentarios::                       Comentar su Trabajo
+* Orden::                             Orden de los Bloques de Código
+* Mayúsculas::                        Capitalización
+* Directivas del Compilador::         Uso de Directivas del Compilador
+* Espaciado::                         Cómo usar espacios en su código
+* Rupturas de Línea::                 Dónde romper su líneas de código
+* Cadenas::                           Cadenas
+* Internationalización::              Técnicas para internacionalización
+* MemoryMap::                         Cómo usar con seguridad  `MemoryMap'
+
+
+File: gpcs-es.info,  Node: Clasificación de Indicaciones,  Next: Verificación de Consistencia,  Up: Escritura en Pascal
+
+Clasificación Indicaciones sobre Programación en Pascal
+=======================================================
+
+Los nombres de los ficheros de código Pascal deberían tener el sufijo
+`.pas'. El nombre del fichero sin el sufijo debería usualmente
+corresponderse con el nombre del programa/unidad/módulo, todo en
+minúsculas. Debería haber únicamente un sólo programa/unidad/módulo en
+un fichero.
+
+   El código debe compilarse con el flag `-Wall', con y sin el flag
+`-O3' sin advertencias. (*Note Directivas del Compilador::, para saber
+cómo deshabilitar intencinalmente ciertas advertencias si es realmente
+necesario.)
+
+   No utilice la variable automática `Result' en las funciones. Si
+quiere una, declárela:
+
+     function Foo (...) = Bar: Integer;
+
+   Utilice la declaración con  `=', no sin él, a no ser que quiera ser
+estrictamente compatible con  PXSC.
+
+   Si una función devuelve un  `Boolean' para indicar éxito, `True'
+debería significar éxito y  `False' fracaso, a diferencia de algunas
+rutinas de C donde  `0' significa éxito.
+
+   Evite `goto' y sentencias similares, como `Exit', `Return', `Break',
+`Continue'. Evite `goto' a cualquier precio (excepto _posiblemente_ un
+`goto' no local para retornar desde funciones _profundamente_ anidadas,
+recursivas en caso de error). Evite los otros si es posible con un
+esfuerzo razonable. Si ello requiere una variable `Boolean' adicional,
+esto cuenta como una excusa para usar estas sentencias si realmente
+quiere. Nótese que a menudo, el código se hace significativamente _más
+simple_ no usando `Break' etc. y usando en su lugar una condición de
+bucle mejor o una clase de bucle diferente.
+
+   Nunca modifique los contadores de un bucle `for', o confíe en su
+valor después del bucle. (Bien, esto no es meramente un estilo de
+codificación, es la deficnición de Pascal. Hacer estas cosas producirán
+resultados indefinidos.)
+
+   Nunca confíe en comportamientos no definidos. Por ejemplo, que las
+variables globales aparenten estar inicializadas a  `0' al comienzo de
+un programa, o quizás que algunas veces la memoria reservada nueva
+aparente estar inicializada, o que los contadores de bucle `for'
+aparenten tener cierto valor después del bucle - nada de esto está
+garantizado, y puede cambiar con cada compilador, plataforma o versión.
+Indefinido significa indefinido, de hecho estas cosas quizá parezcan
+funcionar en todos los sistemas que ha verificado y con otros 42
+compiladores signifique exactamente nada.
+
+   En comparación, ponga la expresión "más variables" en el lado
+izquierdo:
+
+     for i := 1 to 10 do
+       if a[i] = Foo then
+         for j := 1 to 10 do
+           if b[j] = a[i] then ...
+
+   Considerando la segunda línea  del ejemplo de arriba, la expresión a
+la izquierda  (`a[i]') varía en cada vuelta, pero el lado derecho
+(`Foo') no. (En este caso asumimos que  `Foo' es una constante o una
+función que no depende de  `i' u algún otro dato global.  De otra forma
+quizá tendría más sentido poner `Foo' a la izquierda, y quizá usar un
+comentario extra para hacer notar esto.)
+
+   la última línea del ejemplo de arriba quizá parezca extraña, porque
+`b[j]' y `a[i]' quizá parezcan como si tuviesen el mismo nivel de
+"variablidad". Pero de hecho, `j' varía más a menudo que `i', ya que
+cada vez que  `i' cambia, `j' ha cambiado ya 10 veces.
+
+   Evite la duplicación de código. Es sencilo copiar el código, pero
+convierte el mantenimiento en una pesadilla al tener que cambiar varios
+lugares similares. Use rutinas o subrutinas, unidades o módulos, lo que
+sea. Planifique cada parte del código para que pueda ser extendido. No
+ponga demasiados trucos en lugares que serán probablemente modificados
+más tarde.
+
+   No rodee sentencias simples con `begin' y `end', a no ser que tenga
+que evitar el problema del else colgante o que la única línea forme el
+cuerpo de una rutina completa. Vea los ejemplos siguientes:
+
+     if foo then
+       begin
+         if bar then
+           baz
+       end  { Avoid the dangling else problem. }
+     else
+       qux  { Single line statement. }
+
+   No escriba inicializadores de unidad  vacíos. Esto es lo que _no_ se
+debe hacer:
+
+     ...
+     
+     procedure Foo;
+     begin
+       ...
+     end;
+     
+     begin
+     end.
+
+   En su lugar, simplemente:
+
+     ...
+     
+     procedure Foo;
+     begin
+       ...
+     end;
+     
+     end.
+
+   No escriba declaraciones que no se usen, excepto en los interfaces
+que están destinados a ser usados por el importador.
+
+   Recuerde que los  `Boolean'os son `Boolean'os. Por favor use `if Foo
+then' en lugar de `if Foo = True then', y `if not Foo then' en vez de
+`if Foo = False then'. Además, emplee `until False' en lugar de `until
+1 = 0' - esto parece más inteligente. Otra situación común es `Foo :=
+Expression' en vez de `if Expression then Foo := True else Foo :=
+False'.
+
+   Evite duplicar identificadores globales, por ejemplo no sobrecargue
+un identificador integrado, aunque el Compilador de GNU Pascal permite
+esto, y no utilice el mismo identificador global en varias unidades o
+módulos. (Esta característica es presente en el Compilador Pascal de GNU
+llamándose "identificadores cualificados" pero todavía no la use.)
+
+   Desalentamos el uso de variables globales para propósitos no globales
+(e.g., el uso de una variable `Contador' usada como un contador en
+varias rutinas locales). Declare una variable contador para cada rutina
+que lo necesite, es su lugar. En general, esto también permite una mejor
+optimización del código generado.
+
+   Cuando necesite un bucle infinito (que pueda ser abandonado con
+`Break'), le sugerimos que utilice un `repeat' mejor que un bucle
+`while' porque desplaza el código menos a la derecha (al menos si hay
+más de una sentencia dentro del bucle). Esto es:
+
+     repeat
+       ...
+     until False
+
+   En vez de:
+
+     while True do
+       begin
+         ...
+       end
+
+
+File: gpcs-es.info,  Node: Verificación de Consistencia,  Next: Formato,  Prev: Clasificación de Indicaciones,  Up: Escritura en Pascal
+
+Verificación Explícita de la Consistencia Interna
+=================================================
+
+Al igual que se establece en la documentación de la biblioteca de C
+(*note Verificación de Consistencia: (libc)Verificación de
+Consistencia.),  cuando se escribe un programa, a menudo es una buena
+idea poner verificaciones para las violaciones de asunciones básicas.
+Considere el siguiente código en Pascal:
+
+     procedure HacerAlgoEnAPString (StrPtr:PString);
+
+   Puede asumir implícitamente que el procedimiento anterior nunca será
+llamado con `nil' como argumento, pero es más seguro verificar la
+"condición imposible", por ejemplo, verificando que `StrPtr' es
+distinto de `nil', de este modo:
+
+     procedure HacerAlgoEnAPString(StrPtr:PString);
+     begin
+       Assert (Str<>nil);
+       ...
+     end;
+   Cuando esta verificación falla, el programa produce un error en
+tiempo de ejecución. Entonces puede deducir que el código que llama a
+este procedimiento es defectuoso (o que necesita extender esta rutina
+en particular), así que esto puede ser muy útil para localizar el
+problema. En otras palabras, verificar asunciones básicas al principio
+del cuerpo de una rutina u otro lugar estratégico es la manera correcta
+de asegurarse de que una función no será usada de fora equivocada.
+
+   La biblioteca de C de GNU proporciona la macro `assert' para esta
+clase de verificaciones. GNU Pascal proporciona su contraparte Pascal
+que se llama `Assert', la cuál se comporta de manera un poco diferente.
+`Assert' no abortará su programa, sino que causará un error en tiempo
+de ejecución (*note Assert: (gpc)Assert.) el cuál, podrá por ejemplo,
+atraparlo usando la unidad `Trap' (*note Trap: (gpc)Trap.).
+
+   Una vez que piense que su programa está depurado, puede desactivar
+las verificaciones de errores efectuadas por la rutina `Assert'
+mediante la recompilación con el indicador `--no-assertions'.  No se
+necesita ningún cambio en el códigopara desactivar estas
+verificaciones. Los efectos laterales en el argumento a `Assert'
+todavía son evaluados (a diferencia de C), así que es correcto escribir:
+     Assert (MiFuncion (Foo,Bar) > 0)
+
+   Esto siempre llamará a `MiFuncion', pero sólo se asegurará que el
+resultado es positivo cuando no se de `--no-assertions'.
+
+   Sin embargo, se recomienda que no desactive la verificación de
+consistencia a no ser que no pueda consentir que el programa se ejecute
+un poco más lentamente.
+
+
+File: gpcs-es.info,  Node: Formato,  Next: Comentarios,  Prev: Verificación de Consistencia,  Up: Escritura en Pascal
+
+Dar Formato a su Código Fuente
+==============================
+
+Lo primero de todo, evite espacios innecesarios al final de las líneas.
+También recuerde no salvar el fichero con caracteres TAB, debido a que
+diferentes editores o diferentes configuraciones los interpretarán con
+una cantidad diferente de espacios, rompiendo entonces la indentación.
+(Si usa GNU Emacs, la función `untabify' es útil; si usa VIM, la opción
+`expandtab' (`:set et'); en PENG, puede usar la opción `Expand tabs'.)
+
+   Por favor evite el uso de cualquier carácter de control, excepto el
+de lína nueva, por supuesto. Esto significa nada de caracteres de
+alimentaciónd e formularios (`#12'), o caracteres de página nueva.
+Estos se recomiendan en los Estándares de Codificación de GNU para
+separar las partes lógicas de un fichero,pero no los use al menos en
+código Pascal. No use el carácter  `SUB' ni el (`#26'), utilizado
+incorrectamente en DOS como indicador de finde fichero. Los editores
+antiguos de DOS ponían este carácter al final de cada fichero sin
+ninguna buena razón, aunque el sistema de ficheros FAT sabe acerca del
+fin de un fichero por sí mismo.
+
+   Recomendamos una longitud de línea máxima de 68 caracteres, de esta
+manera puede ser impreso en TeX con el tipo predeterminado en A4, o 78
+caracteres, para las pantallas de 80 columnas de ancho. Esta no es una
+regla fija porque las líneas rotas a menudo decrementan la legibilidad
+del código fuente.
+
+   Utilice líneas vacías entre bloques. Los bloques sin comentarios
+largos, secciones `type', `const', `var', `label', cuerpos de rutinas,
+inicializadores/finalizadores de unidades/módulos,  líneas `program',
+`unit', `interface', `implementation', `module', `export', `uses',
+`import', directivas globales del compilación. Junto a los comentarios
+largos que se refieran a la siguiete declaración, ponga sólo una línea
+vacía antes del comentario, no entre el comentario y la declaración
+misma. Una excepción especial es entre bloques dentro de la misma
+rutina - no use líneas vacías allí.  Por ejemplo:
+
+     procedure Short;
+     var
+       Foo: Integer;
+       Bar: Char;
+     begin
+       ...
+     end;
+
+   Pero recuerde usar líneas vacías para separar subrutinas, como lo
+siguiente:
+
+     procedure Long;
+     const
+       ...
+     var
+       variables usadas por Sub ...
+     
+       procedure Sub;
+       var
+         ...
+       begin
+         ...
+       end;
+     
+     var
+       variables no usadas por Sub ...
+     begin
+       ...
+     end;
+
+   Nótese que no debería ponerse una línea vacía después de la
+declaración de la rutina principal, a no ser que le siga inmediatamente
+una declaración de subrutina. Si se hiciera al contrario, la
+declaración de la rutina principal podría semejarse a una declaración
+"forward".
+
+   Dése cuenta que en el fragmento de código de arriba separamos las
+variables locales (o constantes) antes y después de la subrutina - esto
+no es obligatorio.
+
+   Desde luego, lo que dijimos para las subrutinas es válido también
+para sub-subrutinas de cualquier profundidad.
+
+   Debería ponerse una línea vacía entre declaraciones del mismo tipo,
+donde sea apropiado, para separarlas lógicamente. En caso de que haya
+un comentario antes de la declaración, la línea vacía debe estar antes
+del comentario. En caso contrario, la línea vacía va antes de la
+declaración.
+
+   Las líneas vacías pueden ser usadas en comentarios largos para
+separar parágrafos.
+
+   No se ponen líneas vacías al principio o al final de un fichero,
+sólo una línea nueva al final. No múltiples líneas nuevas.
+
+
+File: gpcs-es.info,  Node: Comentarios,  Next: Orden,  Prev: Formato,  Up: Escritura en Pascal
+
+Comentar Su Trabajo
+===================
+
+los comentarios deberían ser colocados entre llaves como esto:
+
+     { Este es un comentario bonito. }
+
+   No utilice los comentarios del estilo antiguo entre paréntesis y
+asteriscos, como esto:
+
+     (* Este es un comentario feo. Uno de los que no debe escribir. *)
+
+   También, no use comentarios introducidos por una barra oblicua doble:
+
+     // Otra clase de comentario que no debe escribir.
+
+   Aunque Pascal ISO explícitamente permite comentarios mezclados, el
+Compilador de Pascal de GNU no los acepta a no ser que active la opción
+con la directiva de compilador apropiada `{$mixed-comments}' - pero
+debe quere hacerlo. Aquí se muestran un par de ejemplos de comentarios
+mezclados que no debería seguir:
+
+     (* Este ... }
+
+     { ... y ese. *)
+
+   También, intente evitar comentarios anidados como `{ { Este otro }
+}'.  Estos son correctos si quiere poner algún TeX en un comentario o
+algo más exótico. Si por cualquier razón tuviera que usar comentarios
+anidados, necesitará activar la opción con el interruptor del
+compilador apropiado, que es  `{$nested-comments}'. No utilice la
+opcion de línea de órdenes `--nested-comments'. Ponga esta clase de
+opciones en el fuente para que cualquiera intentando compilarlo no
+tenga que adivinar qué  opciones de línea de órdenes se necesitan, y
+porque las opciones de línea de órdenes afectarían a  _todos_ los
+ficheros fuente, por ejem. cuando compile un proyecto con varios
+módulos/unidades.
+
+   Por favor, escriba los comentarios en sus programas en inglés, porque
+el inglés es el único idioma que casi todos los programadores en todos
+los países pueden leer. Si no escribe bien en inglés, por favor escriba
+los comentarios tan bien como pueda y entonces pida a otras personas que
+le ayuden a reescribirlos. Si no puede escribir comentarios en inglés,
+por favor, encuentre a alguien que trabaje con usted y le traduzca los
+comentarios al inglés.
+
+   Debería adoptar "Espaciado francés", por ejem. sólo un espacio al
+final de la frase. De esta manera, no puede usar el `M-a' de GNU Emacs
+y la combinación de teclas `M-e' para moverse a través de la frase.
+Esperamos que pueda vivir sin ello. Además, por favor ponga únicamente
+un espacio después de la llave de apertura del comentario y antes de la
+llave de cierre.
+
+   Si un comentario se refiere únicamente a una línea de código,
+posiblemente escríbalo después de la línea de código, en la misma
+línea, separado del código por dos espacios. Esto está también
+permitido para la sección de interfaz de una unidad y para las
+variables globales. Más a menudo querrá escribir esta clase de
+comentarios detrás de los campos de registro/objeto.  En otros casos,
+los comentarios van en una o más líneas propias, como esto:
+
+     { foo bar baz }
+
+   O:
+
+     { foo bar
+        baz }
+
+   O Con parágrafos:
+
+     { foo bar
+        baz
+     
+        qux }
+
+   Los comentarios necesitan ser colocados antes del código que
+describenm y necesitan tener el mismo nivel de indentación. Este
+ejemplo debería hacer esto claro:
+
+     { Mis tipos. }
+     type
+       ...
+     
+     type
+       { Mis primeros tipos. }
+       ...
+     
+     begin
+       { Mi primera sentencia. }
+       Bla;
+       { Inicio del bucle. }
+       repeat
+         { Cuerpo del bucle. }
+         ...
+       { Finaliza cuando Algo ocurre. }
+       until Algo
+     end;
+
+   Nótese la posición para el comentario  `until'.
+
+   Los comentarios describiendo una declaración global deberían estar en
+una o más líneas propias, inmediantamente antes de la declaración. Por
+ejemplo:
+
+     { Esto es  Foo. Hace esto y lo otro. }
+     procedure Foo;
+
+   No escriba comentarios "triviales" como los que se listan en los
+ejemplos anteriores.  Debería evitar los comentarios escribiendo código
+claro. Linus Torvalds apunta esto remarcadamente en el Estilo de
+Codificación del Núcleo:
+
+     Los comentarios son buenos, pero también está el peligro de la
+     sobrecomentación.  *Nunca* intente explicar *cómo* funciona el
+     código en un comentario: es mucho mejor escribir código en que el
+     _funcionamiento_ sea obvio, y es un desperdicio de tiempo explicar
+     código malamente escrito.  Gereralmente, se quiere que los
+     comentarios digan *qué* hace el código no *cómo*.
+
+   (Note que nosotros nos desviamos un poquito del estilo de
+codificación de Linus.)
+
+   El código "peculiar", "Tricky" es equivalente a ser comentado.
+Definimos como "peculiar" el código que hace cosas que no som obvias,
+basándose en asunciones no obvias, tiene implicaciones no obvias, hay
+algo que notar cuando se cambie, no es lo que parace a primera vista,
+tiene un efecto lateral, o requiere que otra parte del código fuente
+sea cambiada simultáneamente con él.  El codigo peculiar debería seer
+usado muy de vez en cuando.
+
+   En el caso de que el comentario se refiera a algun otro lugar en el
+código, sea en el mismo fichero o en uno diferente, por favor refiérase
+a él no por el número de línea (esto cambiará muy a menudo) sino por el
+nombre de la rutina o el contexto. Además, piense si es útil poner un
+comentario en el otro lugar refiriéndose a éste. (No siempre, pero a
+veces esto nos ha sido útil).
+
+   Para comentar partes del código que no deban compilarse, necesita
+rodearlas con `{$if False} ... {$endif}' en vez de usar un comentario.
+
+   Para separar partes lógicas dentro de módulos grandes o unidades,
+puede usar un comentario especial - sugerimos un patrón fijo que sea
+fácilmente encontrable:
+
+     {@sección Nombre de la sección}
+     {@subsección Nombre dela subsección}
+
+   Nótese que ningún espacio sigue a la llave de apertura o precede a
+la llave de cierre en este caso.
+
+   Un módulo o unidad o biblioteca debería tener un comentario para
+cada una de las declaraciones del interfaz, de manera que la parte del
+interfaz del fichero fuente sea una fuente de documentación confiable.
+Esto es opcional para cualesquiera declaraciones introducidas
+únicamente en la sección de implementación o en `program'as. Por
+supuesto, varias declaraciones relacionadas (ej: grupos de constantes)
+pueden compartir un comentario.
+
+   Una utilidad llamada `pas2texi' será escrita para construir ficheros
+Texinfo desde los comentarios Pascal. Esto permitirá ciertas clases de
+marcado dentro de los comentarios. Serán escritos en la documentación de
+`pas2texi' y/o en versiones futuras de este documento.
+
+   Puede usar comentarios "fixme", ("arréglame") para apuntar cosas que
+deben ser arragladas en el código, o en una biblioteca (o módulo, o
+unidad, o compilador usado) que afecte directamente al código,
+requiriendo un arreglo. Estos comentarios son frefijados por al menos
+dos `@' - añada tantos `@' como la urgencia de la publicación se
+incremente.
+
+   Estos comentarios pueden contener más o menos detalles oscuros
+acerca del problema, especialmente si la raíz del problema está por
+cualquier parte. Por ejemplo, el comentario  `{ @@fjf226 }' declara el
+siguiente código como un arreglo para un problema del Compilador de
+Pascal de GNU que es demostrado por el programa de prueba del
+Compilador de Pascal de GNU `fjf226.pas'. (Es un fichero que puede
+encontrar en el paquete de fuentes del Compilador de Pascal de GNU.)
+
+   Los comentario "Fixme"no deberían mezclarse con comentarios
+ordinarios. Si necesita ambas clases, aúselos separadamente, incluso si
+directamente después de cada uno. Pueden usarse en cualquier lugar,
+incluso dentro de sentencias, debido a que tienen naturaleza temporal.
+Más a menudom suelen caer en el cuerpo, a no ser que inluencien a
+interfaces. En particular los interfaces deberían cambiar debido a un
+comentario `@@' inmediatamente antes de su comentario de descripción.
+
+
+File: gpcs-es.info,  Node: Orden,  Next: Mayúsculas,  Prev: Comentarios,  Up: Escritura en Pascal
+
+Orden de los Bloques de Código
+==============================
+
+Por favor, comience cada fichero con un comentario conteniendo, en este
+orden:
+
+   * una breve descripción diciendo qué hace el código en el fuente
+
+   * una descripción larga yendo al detalle sobre el código y
+     especificando fuentes de informacion o código
+
+   * una notificación del copyright sostenido por los autores del código
+
+   * la licencia - desde luego quiere usar la Licencia Pública General
+     GNU o la Licencia Pública General Menor para sus programas y
+     unidades, no?
+
+   En general, debería seguir este orden para los bloques de
+declaraciones:
+
+   * `const' declaraciones
+
+   * `type' declaraciones
+
+   * `var' declaraciones
+
+   * `label' declaraciones
+
+   * rutinas
+
+   Puede desviarse de este orden cuando sea necesario o haga el código
+más legible. Esto es un ejemplo donde el orden no puede ser respetado:
+
+     type
+       TSomething = record
+         This, That: Integer
+       end;
+     
+     const
+       SomeConst = SizeOf (TSomething);
+
+   Las reglas de arriba se aplican a los bloques de declaración dentro
+de rutinas también.
+
+   Cuando hay varias partes, más o menos independientes, especialmente
+en una unidad grande o un módulo, puede aplicar este orden dentro de
+cada parte. No ponga, por ejemplo, constantes de todas las partes
+juntas. Debe mantener el código legible.
+
+   Las variables que son usadas solamente en el programa principal deben
+ser declaradas globalmente en Pascal. sin embargo, GNU Pascal ofrece
+unaextensión para declarar variables en lugares arbitrarios del código
+(*note var: (gpc)var.). En este caso, en contraste con la regla general
+anterior, a menudo es mejor poner su declaración justo antes del
+`begin' del programa principal, despue todas las rutinas, etc.,
+especialmente cuando hay más que unas pocas variables y el tamaño del
+fichero fuente no es pequeño. Así, el bloque de declaración de variables
+es más fácil de ver y cambiar para el programador cuando edita el
+programa principal, y puede asegurarse de que las rutinas no  lo usan
+accidentalmente.
+
+   Cuando declara un tipo junto con su tipo de puntero, declare el
+puntero primero. Es más fácil de reconocer, especialmente si el tipo es
+un registro largo o un objeto. además, hace posible el uso de
+estructuras recursivas /por ejemplo, usando punteros a un tipo dentro
+de su tipo). Debería anteponer un  `T' al nombre del tipo y una `P' al
+tipo de puntero asociado. Vea el ejemplo:
+
+     type
+       PMyInt = ^TMyInt;
+       TMyInt = Integer;
+     
+       PStrList = ^TStrList;
+       TStrList = record
+         Next: PStrList;
+         s: TString
+       end;
+
+   Nótese  que el campo  `Next' se especifica primero. Sugerimos siempre
+ponerlo como el primer campo en tipos recursivos, así permite algunas
+rutinas genéricas de listas y quizá sea un poco más eficiente recorrer
+por ejemplo, sin offsets.
+
+   Sugerimos poner todos los tipos punteros dentro de cada declaración
+`type' en primer lugar, aunque no consideramos esto imperativo. Este es
+un ejemplo:
+
+     type
+       { Pointer types }
+       PFoo = ^TFoo;
+       PBar = ^TBar;
+       PBaz = ^TBaz;
+     
+       { Some custom integer types }
+       TFoo = Integer (16);
+       TBar = Cardinal (16);
+       TBaz = Cardinal (32);
+
+   Dentro de tipos objeto puede haber tres areas de declaración. Hay
+tres palabras reservadas para introducir estas áreas: `public',
+`protected', `private'. Dentro de En el interior de cada una de estas
+áreas se sigue este orden:
+
+   * campos
+
+   * constructores
+
+   * destructor (debería haber sólo uno)
+
+   * métodos
+
+   En la parte de implementación del objeto, ponga los cuerpos de rutina
+en el mismo orden en que aparecen en la declaración del interfaz. Esto
+también se aplica a unidades y módulos, en los cuáles la implementación
+debería reflejar las declaraciones del interfaz.
+
+   No use el `;' de cola al final de un bloque, por ejem. antes de
+`end', `until', etc. excepto en  `case' - la última rama antes de la
+rama `else'  (o la última rama si no hay rama `else') _debería_ tener
+un `;', para evitar problemas como:
+
+     case ...
+       Foo:
+         if Bar then  { later inserted }
+           begin
+             ...
+           end  { si no hay punto y coma aquí ... }
+       else  { ... esto será confundido como el `else' del `then' }
+         ...
+
+   (Lo mismo si el `if' estaba aquí para antes y la rama `else' del
+`case' se inserta después.)
+
+   En un oibjeto, puede parecer extraño omitir el  `;' después del
+último elemento que es a menudo un método. Sin embargo lo permitimos, y
+por consistencia, también en los registros.
+
+
+File: gpcs-es.info,  Node: Mayúsculas,  Next: Directivas del Compilador,  Prev: Orden,  Up: Escritura en Pascal
+
+Mayúsculas
+==========
+
+Las palabras reservadas deberían estar todas en minúscula, incluyendo
+directivas, por ejem. palabras que están reservadas sólo en algunos
+contextos, como `protected'. Si usa directivas como identificadores (lo
+que es como causerte un dolor) fuera de sus contextos, escríbalas como
+identificadores.
+
+   Como excepción especial, puede usar `File' empezando por mayúscula
+cuando sea usado como un tipo propio, por ejem, como en  `file of Char'.
+Lo mismo no puede decirse para  `procedure' como un tipo (estilo
+Borland Pascal) debido a que `File' puede ser un tipo propio, mientras
+que `procedure' es un tipo constructor, por ejemplo:
+
+     procedure Foo (var a: File);  { Esto Funciona. }
+     procedure Foo (var a: procedure);  { Esto no. }
+
+   La siguiente cuestión es la escritura de identificadores. No hay
+diferencia entre los identificadores integrados y los definidos por el
+usuario. Sólo la primera letra debería ser mayúscula, o, si hay
+palabras concatenadas o acrónimos , la primera letra de cada palabra
+debería ponerse en mayúsculas - no emplee guiones bajos. Los acronimos
+que se han convertido en parte del lenguaje natural pueden escribirse
+de la misma forma. Por ejemplo, `Dos' o `DOS'; pero siempre `GPC', not
+`Gpc'. Here are some examples of identifiers: `Copy', `Reset',
+`SubStr', `BlockRead', `IOResult', `WriteLn', `Sqr', `SqRt', `EOF',
+`EOLn'.
+
+   Estas reglas se aplican a los identificadores de constantes también,
+como las macros de C
+
+   También dése cuenta que los identificadores muy pequeños pueden
+escribirse en minúsculas, como `i' o `s1' o `xx'. Dichos
+identificadores cortos deberían ser usados sólo localmente. Pueden ser
+usados para parámetros de rutinas globales, porque el ámbito de dichos
+parámetros es local también, y sus nombres de hecho no importan para
+nada a quien los llame. El uso de estos identificadores en un contexto
+global debería ser evitado, especialmente en unidades o módulos o
+bibliotecas (porque el autor no sabe en qué contextos serán usadas).
+
+   Por favor, sea consistente en el uso de las mayúculas. Sabe que
+Pascal no se quejará si cambia la capitalización de un identificador a
+través del código, pero por favor, cíñase a la misma capitalización.
+
+   Para los identificadores de los valores de los tipos enumerados y
+para bloques de constantes, por ejemplo, lugares donde se introducen
+muchos identificadores, puede ser útil usar un prefijo de dos letras
+minúsculas y  `_', en contraste con las reglas anteriores:
+
+     type
+       TFooBar = (fb_Foo, fb_Bar, fb_Baz, fb_Qux);
+
+     { My Foos }
+     const
+       mf_Foo = 1;
+       mf_Bar = 3;
+       mf_Baz = 42;
+
+   En código orientado a objetos (especialmente en constructores), a
+menudo existe la necesidad de tener un parámetro correspondiente a un
+campo de un objeto (ej. para pasar un valor con el cual inicializar el
+campo).  Como ambos no pueden llamarse de la misma manera, el campo
+debería tener el nombre "natural" debido a que es normalmente empleado
+en más rutinas, y el nombre del parámetro debería ser "cambiado".
+FIXME: Todavía no hemos encontrado una regla realmente satisfactoria
+para este cambio (algunos usan `a' como un prefijo), y si usted tiene
+alguna idea, déjenos conocerla.
+
+   En tanto a lo que concierne a las macros, recomendamos
+encarecidamente que no las use. Por favor, no use macros en sus
+programas. Intente evitar el uso de macros en sus programas, porque son
+el mal. Creemos que no debe usar macros en su código. Dicho esto, si
+todavía osa a usar una macro, escríbala en mayúsculas completamente y
+separe las palabras con guiones bajos (_). Debido a que las macros no
+siguen las reglas de visibilidad de Pascal, tiene sentido escribirlas
+de forma diferente. Esto se aplica a los condicionales también.
+
+
+File: gpcs-es.info,  Node: Directivas del Compilador,  Next: Espaciado,  Prev: Mayúsculas,  Up: Escritura en Pascal
+
+Uso de Directivas del Compilador
+================================
+
+Gereralmente sugerimos que use tan pocas directivas del compilador como
+sea razonablemente posible, porque hacen el código más difícil de
+entender (ej. cuando verifica efectos laterales) y de modificar (ej.
+cuando se mueven partes del código dentro o fuera del ámbito de las
+directivas del compilador). Las directivas deberían ser invocadas como
+en el siguiente ejemplo:
+
+     {$su_directiva_de_compilacion}
+
+   Definitivamente no de esta manera (*note Comentarios::):
+
+     (*$no-use-asi-una-directiva-de-compilacion*)
+
+   Además, definitivamente no de esta manera que es dependiente de los
+saltos de línea, en Pascal normalmente es:
+
+     #su-directiva-de-compilacion
+
+   Lo mismo sirve para definiciones de macros:
+
+     {$define ...}
+
+   Esto ahorra la barra invertida antes de los saltos de línea, en
+contraste con `#define'. Pero no va a usar macros, ¿verdad?  (*note
+Mayúsculas::)
+
+   Es lo que concierne al espaciado no escriba un espacio antes del
+cierre de llave, así como no ponga uno después de la llave de apertura.
+Si concatena varias directivas juntas, no ponga un espacio entre cada
+una de ellas, una sola coma es suficiente.
+
+   No introduzca comentarios dentro de las directivas. Escríbalos
+separados, como esto:
+
+     {$X+}  { Necesitamos sintaxis extendida. }
+
+   Borland Pascal permite mezclar comentarios con directivas, pero
+realmente es un mal uso.
+
+   Formas cortas para llamar directivas están bien, pero las formas
+largas son por lo menos tan buenas como las otras, así que siga su
+preferida.  Las formas cortas deben ser escritas en mayúsculas mientras
+que las formas cortas lo son en minúsculas (excepto para argumentos
+sensibles a la capitalización como mensajes y nombres de fichero - por
+supuesto, los nombres de fichero deben tratarse siempre como
+dependientes de la capitalización, incluso en DOS, para preservar la
+portabilidad del código).
+
+   Puede combinar varias directivas, además mezclar las cortas con las
+largas, en una sola llamada, por ejemplo como las siguientes:
+
+     {$gnu-pascal,I-,X+}
+
+   Cualquier unidad o module debería tener `{$gnu-pascal,I-}' o
+`{$gnu-pascal,I+}' cerca del principio (tras el comentario de la
+cabecera con la desripción y licencia). `{$gnu-pascal}' permite que la
+unidad sea compilada sin opciones de dialecto incluso si el programa
+principal está compilado con alguno. `{$I-}' o `{$I+}' indica al
+usuario (incluso aunque uno de ellos está predeterminado) si la unidad
+maneja/devuelve errores de esntrada/salida o permite que éstos causen
+errores en tiempo de ejecución. La forma es preferible para la mayoría
+de las unidades (rutinas que devuelven errores de entrada/salida
+deberían declararse como  `iocritical' cuando esto sea soportado).
+Para programas, este item es opcional.
+
+   `{$W-}' (sin advertencias) debe usarse localmente y debe tener un
+comentario "fixme"  (*note Comentarios::) porque ello indica un problema
+con el código o el compilador. Si está disponible, use directivas para
+desactivar ciertas advertencias acerca de problemas del compilador. Por
+ejemplo,  `{$W no-object-directives}' o `{$W no-field-name-problem}'.
+Estas directivas particulares pueden usarse globalmente.
+
+   Por favor, no deshabilite las advertencias cuando sea tan vago de no
+escribir código que no produzca advertencias.
+
+   Cualquier flag del compilador que no se haya puesto globalmente (por
+ejemplo con `{$gnu-pascal}', vea arriba) sebería ponerse como `{$local
+...}'. En otras palabras, no de esta manera:
+
+     {$I-} Reset (f); {$I+}
+
+   Pero sí de esta otra:
+
+     {$local I-} Reset (f); {$endlocal}
+
+   La forma esa equivocada si  `{$I-}' ya fue puesto. Incluso si un
+programador pudirera darse cuanta y tener en cuenta de  cual es la
+configuraci global, esto quizá camiará alguna vez, o parte del código
+puede ser copiado o movido.  La última forma es más segura en estos
+casos.
+
+   Para hacerlo incluso más claro, de las dos últimas reglas que sigen:
+
+     {$local W-} Foo; {$endlocal}  { @ GPC produces a superfluous warning }
+
+   Otra vez, intente evitar directivas locales. `{$I-}' se necesita
+algunas veces. `{$X+}' puede usarse si _realmente_, _realmente_ es
+necesario (tan localmente como sea posible): evite aritmética de
+punteros.
+
+   No use  `{$X+}' para ignorar resultados de funciones, no use
+`{$ignore-function-results}', en cualquier caso. Es muy fácil ignorar
+un resultado que no debería ignorar. Algunas veces, especialmente
+cuando enlaza a una biblioteca externa de C, quizá tenga que tratar con
+funciones que tienen un resultado superfluo, que probablemente no
+quiera verificar. Puede declarar dichas funciones con el atributo
+especial `ignorable', cuando esté disponible, así que sus resultados son
+silenciosamente ignorados. Por el momento, use una variable desechable.
+
+   También use variables desechables si no quiere ignorar el resultado
+de una llamada particular a una función cuyo resultado en general
+debería no ser ignorado. En esos caso sverifique cuidadosamente que el
+resultado puede ser en efecto ignorado de forma segura. Si por ejemplo,
+un resultado no esperado podría indicar una situación "imposible", es
+normalmente mejor verificar el resultado e imprimir una advertencia a
+abortar en el caso inesperado, al menos si `DEBUG' está definido (*note
+Directivas del Compilador::).
+
+   Las directivas del enlazador, ej. `{$L}' para bibliotecas y código
+fuente C (u otro lenguaje) deberían ser puestas cerca del principio en
+programas y cerca de la línea  `implementation' en unidades o módulos.
+Varias bibliotecas, ficheros fuente C en una directiva son posibles
+cuando pertenecen a un mismo conjunto lógico (por ejemplo, una
+biblioteca y sus wrapers de C), pero no para cosas distintas. Esta
+directiva no debería mezclarse con otras directivas (que incluso no
+funcionarían si `L' viene primero - la otra manera quizá funcione, pero
+no debería usarse). La declaración externa de la biblioteca o rutina C
+debería seguir inmediatamente la directiva (excepto en una unidad o
+módulo para aquellos que van en el interfaz). El uso de `{$L}' en
+programas no es una buena idea a menudo, hacer una unidad es a menudo
+mejor por abstracción y reutilización.
+
+   La compilación condicional quizá sea útil algunas veces, pero
+debería usar tan pocos `{$ifdef}'s como sea posible, debido a que
+disminuyen la legibilidad. Cuando se usan condicionales para
+diferencias entre sistemas, verifique características (por ejemplo,
+`__BYTES_LITTLE_ENDIAN__') o grupos de sistemas (por ejemplo, `OS_DOS')
+en vez de sistemas individuales, para incluir mejor a los sistemas que
+no conoce o que no existan ahora.
+
+   Si es posible (esto quizá no esté disponible), utilice las constantes
+predefinidas (por ejemplo, `BytesBigEndian', `OSDosFlag') en lugar de
+definiciones - para el código en que sea posible (la rama "siempre
+falsa" será optimizada, pero todavía tendrá su sintaxis verificada como
+beneficio aunque no use el preprocesador); para declaraciones de tipos
+no es usualmente posible y se tienen que usar definiciones. Un buen
+ejemplo es la declaración de `TWindowXY' en la unidad CRT. Vea:
+
+     TWindowXY = packed record
+       {$ifdef __BYTES_BIG_ENDIAN__}
+       Fill: Integer (BitSizeOf (Word) - 16);
+       Y, X: Word (8)
+       {$else}
+       X, Y: Word (8);
+       Fill: Integer (BitSizeOf (Word) - 16)
+       {$endif}
+     end;
+
+   El flag `DEBUG' sebería ser usado para (y sólo para) ayudar en el
+debugueo, ej. código que no cambia la funcionalidad real. Los programas
+deben compilar con y sin poner `DEBUG'. Lo último puede ejecutarse más
+lentamente y puede producir mensajes adicionales útiles de una forma
+determinada, ej. claramente marcados como mensajes de debugueo, por
+ejemplo prefijados con `DEBUG: ', y _pueden_ abortar la ejecución
+cuando detectan condiciones erróneas o dudosas.
+
+   Los condicionales pueden ser usados para hacer versiones diferentes
+de algún código, por ejemplo, usando números GMP si una condición se
+satisface y usando enteros normales o reales en otro caso (GMP es una
+biblioteca para trabajar con números muy grandes). En este caso, el
+nombre y significado de todas esas definiciones usadas en un fichero
+deben ser explicados en un comentario cerca de la parte superior. (Para
+eemplos, vea `__BP_TYPE_SIZES__', `__BP_RANDOM__' y `__BP_PARAMSTR_0__'
+en la unidad System.) El código debe compilar con cualquier combinación
+de ese conjunto de condicionales, lo cual significa que debe comprobar
+exponencialente muchos casos - aquí está una buena razón para mantener
+su número tan pequeño como sea posible.
+
+   Otro uso similar de los condicionales es para seleccionar entre
+diferentes implementaciones No debería adoptar esta estrategia
+_únicamente_ si todas las implementaciones están realmente soportadas o
+planeadas para ser soportadas.  De otra forma, sería mejor mover las
+implementaciones antiguas a su "museo" y mantener el código limpio. Las
+notas acerca de la compilación de código de la regla anterior se aplica
+aquí también.
+
+   Cuando necesite tratar con condicionales complicados, utilice
+sintaxis Pascal, i.e. formatee los condicionales de acuerdocon las
+reglas para código Pascal, en vez de sintaxis C. Este es un ejemplo
+tonto:
+
+     {$if defined (Foo) or False}
+
+   En su lugar, este es un ejemplo que no debe seguir:
+
+     {$if defined (Foo) || 0}
+
+   O incluso peor:
+
+     #if defined (Foo) || 0
+
+   Un condicional especial puede usarse para comentar código
+temporalmente.  Aquí está la sintaxis apropiada:
+
+     {$if False} ... {$endif}
+
+   Una sentencia condicional estándar debería usarse en programas o
+unidades o módulos que distribuya para asegurarse que la versión
+apropiada del Compilador Pascal GNU se usa. Puede segui esta plantilla:
+
+     {$if __GPC_RELEASE__ < 20020510}
+     {$error This unit requires GPC release 20020510 or newer.}
+     {$endif}
+
+
+File: gpcs-es.info,  Node: Espaciado,  Next: Rupturas de Línea,  Prev: Directivas del Compilador,  Up: Escritura en Pascal
+
+Cómo se usa el espaciado en el código
+=====================================
+
+En general, no deberían usarse espacios múltiples excepto para el
+sangrado y como se indica abajo
+
+   Un solo espacio va antes y despues de operadores, y  `:=' y `..' así
+como `:' en  `Write', `WriteLn' y `WriteStr'; destués de la coma y
+otros `:'. Este ejemplo debería dejarlo claro:
+
+     var
+       Foo: Integer;
+       ...
+     begin
+       Foo := 42;
+       WriteLn (Foo + 3 : 5, ' bar')
+     end;
+
+   Ningún espacio debería ir antes del `-' unario. De hecho, estas son
+las formas correctas: `x - 1', `-x', `-1'.
+
+   un espacio debe ir antes del paréntesis de apertura (`(') y después
+del paréntesis de cierre (`)'), excepto que sea adjacente a más
+paréntesis, corchetes, `^', `;', `,'. En otras palabras, un espacio va
+entre identificadores o palabras reservadas y el paréntesis de apertura
+(`(').  (Todos los otros espacios en este ejempo son implicados ya por
+la regla previa.)  Vea:
+
+     Foo (Bar^(Baz[Qux * (i + 2)]), Fred (i) + 3);
+
+   Para indexar arrays no use un espacio antes del corchete de
+apertura, ej: `Foo [42]' en vez de  `Foo[42]'. Sin embargo, inserte un
+espacio antes del corchete de apertura en las declaraciones de arrays,
+como:
+
+     Foo: array [1 .. 42] of Integer;
+
+   Un espacio va antes del corchete de apertura de un constructor de
+conjuntos en algunas situaciones - esos corchetes deberían tratarse
+como paréntesis, a diferencia de los corchetes usados en la indexación
+de un array.  Por ejemplo:
+
+     x := [0, 2 .. n];
+
+   Pero:
+
+     Foo ([1, 2, 3]);
+
+   Sin espacios para  `.' and `^':
+
+     Rec.List^.Next^.Field := Foo
+
+   Como ya apuntamos, un único espacio va después del brazo de apertura
+y antes del brazo de cierre en los comentarios, pero no en las
+directivas del compilador. Además, y ya dijimos esto en algún otro
+lugar del manual, dos espacios van antes de los comentarios después de
+una línea de código. Por ejemplo:
+
+     Inc (x);  { Incrementa x. }
+
+   Opcionalmente use espacios adicionales para  "tabular" código. En
+nuestra opinión, esto incrementa la legibilidad un montón, porque el
+ojo humano y el cerebro están entrenados para reconocer estas
+estructuras, y similaridades y diferencias entre las líneas pueden ser
+vistas más fácilmente, y cuando cambia el código, es más fácil
+encontrar lugares relacionados. una aplicación de este principio puede
+verse en las declaraciones "interface" (no tan aplicables cuando están
+separadas por comentarios, pero, por ejemplo, cuando se se describen
+por un comentario compartido sobre todas ellas):
+
+     function Pos             (const SubString, s: String): Integer;
+     function LastPos         (const SubString, s: String): Integer;
+     function PosCase         (const SubString, s: String): Integer;
+     function LastPosCase     (const SubString, s: String): Integer;
+     function CharPos         (const Chars: CharSet; const s: String): Integer;
+     function LastCharPos     (const Chars: CharSet; const s: String): Integer;
+     function PosFrom         (const SubString, s: String; From: Integer): Integer;
+     function LastPosTill     (const SubString, s: String; Till: Integer): Integer;
+     function PosFromCase     (const SubString, s: String; From: Integer): Integer;
+     function LastPosTillCase (const SubString, s: String; Till: Integer): Integer;
+
+   También posible:
+
+     procedure Foo;
+     function  Bar ...;
+     procedure Baz;
+
+   Y desde luego:
+
+     const
+       FooBar = 1;
+       Baz    = 2;
+       Quux   = 3;
+
+   La misma estrategia "tabular" usada en los interfaces y
+declaraciones const puede usarse con los inicializadores:
+
+     const
+       Foo: TBarArray =
+         (('Foo'    ,  3),
+          ('Bar baz', 42),
+          (''       , -1));
+
+   Y en sentencias `case':
+
+     case ReadKeyWord of
+       kbLeft    : if s[n] > l    then Dec (s[n]) else s[n] := m[n];
+       kbRight   : if s[n] < m[n] then Inc (s[n]) else s[n] := l;
+       kbUp      : if n > 1 then Dec (n) else n := 5;
+       kbDown    : if n < 5 then Inc (n) else n := 1;
+       kbHome    : s[n] := l;
+       kbEnd     : s[n] := m[n];
+       kbPgUp,
+       kbCtrlPgUp: n := 1;
+       kbPgDn,
+       kbCtrlPgDn: n := 5;
+       kbCR      : Done := True;
+     end
+
+   Y opcionalmente en otro código:
+
+     WriteCharAt (1, 1, 1,     Frame[1], TextAttr);
+     WriteCharAt (2, 1, w - 2, Frame[2], TextAttr);
+     WriteCharAt (w, 1, 1,     Frame[3], TextAttr);
+
+
+File: gpcs-es.info,  Node: Rupturas de Línea,  Next: Cadenas,  Prev: Espaciado,  Up: Escritura en Pascal
+
+Dónde romper las líneas de código
+=================================
+
+Una ruptura de línea es opcional después de declaraciones _locales_
+`const', `type', `var' si contienen únicamente una sola declaración
+(pero es posible tener múltiples identificadores en una única línea).
+
+     procedure Baz;
+     var Foo, Bar: Integer;
+     begin
+       ...
+     end;
+
+   Desde luego, esto también se acepta:
+
+     procedure Baz;
+     var
+       Foo, Bar: Integer;
+     begin
+       ...
+     end;
+
+   Pero no siga este ejemplo:
+
+     procedure Baz;
+     var Foo, Bar: Integer;
+         Qux: Real;
+     begin
+       ...
+     end;
+
+   Si tiene muchas declaraciones puede romper las líneas de varias
+maneras. Lo siguiete es la forma preferida para declaraciones `var':
+
+     var
+       Foo, Bar, Baz, Qux, Quux, Corge, Grault, Garply, Waldo, Fred,
+         Plugh, Xyzzy, Thud: Integer;
+
+   o:
+
+     var
+       Foo, Bar, Baz, Qux, Quux, Corge, Grault, Garply, Waldo: Integer;
+       Fred, Plugh, Xyzzy, Thud: Integer;
+
+   Esta última, sin embargo, es ma apropiada para campos de registros
+(`record') y para la parte pública de objetos (`object'), especialmente
+si hay un comentario para cada uno de ellos:
+
+     var
+       Foo,
+       Bar,
+       Baz,
+       Qux: Integer;
+
+   No hay ruptura de línea después de declaraciones `var' dentro de
+bloques de sentencias, porque permiten sólo una declaración, y hacer
+una ruptura de línea podría pareces como si se permitiera más de una.
+
+     Foo := Bar;
+     var Baz: array [1 .. Foo] of Integer;
+
+   Como esto es una extensión de  GNU Pascal, use estas declaraciones
+muy de vez en cuando, pero ejemplo para variables cuyo tamaño depende
+de valores computados dentro de la rutina, o para variables dentro de
+los inicializadores o finalizadores del módulo o unidad para evitar
+variables globales, aunque quizá piense usar una subrutina.
+
+   No inserte una ruptura de línea después de `label'. Esto es como se
+deben declarar etiquetas:
+
+     label Foo, Bar, Baz;
+
+   y como complemento, aquí está como no hacerlo:
+
+     label
+       Foo,
+       Bar,
+       Baz;
+
+   Algunas declaraciones en distintan líneas incluso no funcionan:
+
+     label
+       Foo;
+       Bar;
+       Baz;
+
+   Aquí está un ejemplo de cómo usar rupturas de línea dentro de una
+sentencia case.
+
+     case
+       foo:
+         begin
+           ...
+         end;
+       bar,
+       baz .. qux:
+         ...
+       else
+         ...
+     end;
+
+   O ("tabular"):
+
+     case
+       foo:        begin
+                     ...
+                   end;
+       bar,
+       baz .. qux: ...
+       else        ...
+     end;
+
+   Las sentencias largas o declaraciones deberían ser rotas en
+cualquier caso antes de operadores o después de ellos (donde lo que se
+entiende por siempre es al menos una subrutina) o después de una coma,
+con sangrado suficiente para hacer el significado claro:
+
+     if (x = y)
+        and (foo
+             or (bar
+                 and (baz or qux))
+             or fred) then
+
+   or:
+
+     if (x = y) and
+        (foo or
+         (bar and
+          (baz or qux)) or
+         fred) then
+
+   Aquí está como usar rupturas de línea dentro de sentencias. Otro uso
+para ello es dónde debería usar una sentencia `case' si fuera posible,
+pero no es posible (por ejempo los typos no son ordinales, o los valores
+a ser comparados no son constantes, o la comparación implica a una
+función  (`StrEqualCase', o hay condiciones adicionales).
+
+     if ... then
+       a
+     else if ... then
+       b
+     else
+       c
+
+   Si  `a' y no `a' son casos principales, y `b' y `c' son sub casos de
+no `a', utilice lo siguiente (la distinción quizá ser cuastión de
+gustos a veces):
+
+     if ... then
+       a
+     else
+       if ... then
+         b
+       else
+         c
+
+   El ejemplo siguiente (biologicamente muy incompleto) contiene una
+mezcla de ambas formas que consideramos razonable:
+
+     if Habitat = 'Water' then
+       { Animals living in water }
+       WriteLn ('Is it a fish?')
+     else if Habitat = 'Air' then
+       { Animals living in air }
+       WriteLn ('Is it a bird?')
+     else
+       { Animals living on land }
+       if Legs = 8 then
+         WriteLn ('Is it a spider?')
+       else
+         WriteLn ('Is it a gnu?')
+
+   Los casos principales son determinados por el habitat, y el número
+de patas determina algunos sub-casos.
+
+   Para bucles de control hay un breve resumen de posibilidades aquí:
+
+     for ... do
+       ...
+
+     while ... do
+       ...
+
+     repeat
+       ...
+     until ...
+
+   Si hay sóo una sentencia después de la cláusula `if', o en un `for'
+o bucle `while', o entre `repeat' y `until', y si esa orden es
+suficientemente corta, puede poner la sntencia en una línea sola, coo
+esto:
+
+     if ... then ...
+
+     for ... do ...
+
+     while ... do ...
+
+     repeat ... until ...
+
+   Aquí está cómo comportarse cuando `begin' yd `end' están implicados.
+
+     if ... then
+       begin
+         ...
+       end
+
+     for ... do
+       begin
+         ...
+       end
+
+     while ... do
+       begin
+         ...
+       end
+
+   El sangrado es de 2 caracteres de ancho, para cada `begin', `then',
+`else', `case', `do' (`for', `while', `with', `to begin', `to end'),
+`repeat', `record', `object', `type', `const', `var', `label'.
+
+   Los cuerpos y variables locales etc. de rutinas globalesno deben ser
+sangrados, de la misma forma que las variables globales etc. Cada
+subrutina (cabecera y cuerpo) y sus declaraciones, al contrario, deben
+ser sangradas.
+
+     program Prog;
+     
+     var
+       GlobalVar: Integer;
+     
+     procedure GlobalProc;
+     var LocalVar: Integer;
+     
+       procedure LocalProc;
+       var LocalLocalVar: Integer;
+       begin
+         WriteLn ('This is a local procedure.')
+       end;
+     
+     begin
+       WriteLn ('This is a global procedure.')
+     end;
+     
+     begin
+       WriteLn ('This is the main program.')
+     end.
+
+   Los registros variantes deberían ser sangrados como los siguientes:
+
+     type
+       Foo = record
+         NonVariant: Foo;
+       case Discriminant: Bar of
+         Val1: (Variant1: Baz;
+                Variant2: Qux);
+         Val2: (Variant3: Fred)
+       end;
+     
+     var
+       Foo: record
+         [ as above ]
+       end = [ initializer ]
+
+   Sangrados más grandes, ej. más de 2 caracteres de ancho, pueden
+usarse para romper sentencias o declaraciones o para obtener código
+"tabulado".
+
+   Los condicionales  (`{$ifdef}') deberían estar al mismo nivel de
+sangrado que el código al que afectan:
+
+     begin
+       {$ifdef DEBUG}
+       WriteLn ('Debugging version');
+       {$endif}
+       ...
+     end;
+
+   Los condicionales cortos que afectan sólo a una expresión pueden
+escribirse dentro de una sola línea:
+
+     Foo := {$ifdef DEBUG} 'debug' {$else} 'release' {$endif};
+
+   Si son usados intencionalmente en una forma contraria a las reglas
+sintácticas usuales, póngalos donde parezcan quedar mejo y escriba un
+comentario:
+
+     begin
+       { Do the code unconditionally if debugging }
+       {$ifndef DEBUG}
+       if SomeCondition then
+       {$endif}
+         begin
+           ...
+         end
+     end;
+
+   La mayoría de las veces encontrará una forma más bonita y no menos
+eficiente de escribir las mismas sentencias. En este caso, puede
+hacerse de esta forma:
+
+     begin
+       if {$ifdef DEBUG} True {$else} SomeCondition {$endif} then
+         begin
+           ...
+         end
+     end;
+
+   O mucho mejor:
+
+     { globally }
+     const
+       DebugFlag = {$ifdef DEBUG} True {$else} False {$endif};
+     
+     begin
+       if DebugFlag or SomeCondition then
+         begin
+           ...
+         end
+     end;
+
+
+File: gpcs-es.info,  Node: Cadenas,  Next: Internationalización,  Prev: Rupturas de Línea,  Up: Escritura en Pascal
+
+Cadenas
+=======
+
+La mayoría de las  reglas que hemos cubierto no se aplican alas
+cadenas. En general, los mensajes contenidos en cadenas deberían seguir
+los Estándares de Codificación GNU, por ejemplo, ponga los nombres
+entrecomillados dentro de  ``' y `'', aunque esto significa que debe
+doblar el `'' en una cadena Pascal.  *Note Errores:
+(estándares)Errores, para más información.
+
+   Normalmente debería usar cadenas encerradas en comillas simples, como
+`'esta cadena que está leyendo''. Utilice cadenas en dobles comillas
+cuando necesite secuencias de escape tipo C como  `"\t"'. Note que
+`NewLine' (`"\n"') está predefinido, así que usar `NewLine' es
+preferible a no ser que tenga que usar una cadena del estilo de C por
+otros propositos.
+
+   Puede usar cadenas multilinea como la siguiente:
+
+     WriteLn ('Hello
+     world')
+
+   o (quizá preferible, especialmente si el texto en la cadena contiene
+parágrafos y/o sangrado dentro de ella misma):
+
+     WriteLn (
+     'Hello
+     world')
+
+   Sin embargo, es posible también usar:
+
+     WriteLn ('Hello' + NewLine + 'world')
+
+   (Note que el ejemplo anterior no compilará sin usar la unidad `GPC'.)
+
+   O, por supuesto:
+
+     WriteLn ('Hello');
+     WriteLn ('world')
+
+   Cuando quiera verificar si una cadena está vacía, use esta sintaxis:
+
+     if s = '' then
+       ...
+
+   El Compilador Pascal de GNU eventualmente lo optimizará
+eventualmente a la siguiente prueba más eficiente, así que puede usar
+la anterior, más corta sin perjuicio:
+
+     if Length (s) = 0 then
+       ...
+
+   Lo mismo se aplica para `<>', desde luego, e incluso para
+asignaciones donde `s := ''' es la forma recomendada y será optimizada
+por GPC a `SetLength (s, 0)'.
+
+
+File: gpcs-es.info,  Node: Internationalización,  Next: MemoryMap,  Prev: Cadenas,  Up: Escritura en Pascal
+
+Técnicas de internacionalización
+================================
+
+Vea el manual de `gettext' para información acerca de
+internacionalización y localización.
+
+   Hay un proyecto en marcha por Eike Lange (`eike(at)g-n-u.de') que
+pretende proporcionar rutinas de internationalización para GNU Pascal
+Puede obtener el fuente en tarball desde
+`http://www.gnu-pascal.de/contrib/eike/'.
+
+   Además de la unidad de internacionalización, puede encontrar otro
+paquete que contiena una herramienta llamada  `pas2po', usada para
+extraer cadenas desde los fuentes de GNU Pascal  ej.. similarmente a lo
+que  `xgettext' hace para los fuentes C y C++. `pas2po' no es tan
+cómodo como `xgettext', pero el programa está todavía en desarrollo.
+Por favor lea la documentación incluida con el tarball y manténgase al
+tanto.
+
+
+File: gpcs-es.info,  Node: MemoryMap,  Prev: Internationalización,  Up: Escritura en Pascal
+
+MemoryMap
+=========
+
+Esta sección de los Estándares de Codificación GNU  también se aplica a
+GNU Pascal.  Recuerde que `mmap' actualmente significa `MemoryMap' e
+este contexto. *Note Mmap: (estándares)Mmap.
+
+
+File: gpcs-es.info,  Node: Documentación,  Next: Gestión de Liberaciones,  Prev: Escritura en Pascal,  Up: Top
+
+Documentaci de Programas
+************************
+
+Recomendamos leer la sección respectiva en los Estándares de
+Codificación GNU, todo ello es aplicable a este contexto, también.
+*Note Documentación: (estándares)Documentación. Éstas son algunas notas
+acerca de la escritura.
+
+   En lo que concierne a las páginas man, sería bueno tener una página
+man refiriéndose a la documentación Info. Hay un programa GNU, llamado
+`help2man', que genera una página man basada en la salida  `--help' de
+un programa. Funciona bien, excepto que siempre escribe `FSF' que no es
+correcto para todos los programas compilados con el Compilador Pascal
+de GNU, pero la salida puede cambiarse fácilmente (por ejemplo,
+automáticamente usando `sed').
+
+   Sin embargo, no ponga mucho esfuerzo en las páginas man. Puede ser
+posible en un principio, pero mantenerlas actualizadas junto con los
+fichero Texinfo significa mucho trabajo. Encima de ésto, si no las
+mantiene actualizadas le van a causar más confusión que ayuda.
+
+   Por un lado, si las páginas man se acortan mucho, van a perder
+información importante.  Por el otro, si no se acortan, son difíciles
+de navegar.
+
+   En otras palabras, sea devoto de la documentación Info (i.e.,
+Texinfo).
+
+
+File: gpcs-es.info,  Node: Gestión de Liberaciones,  Next: Glosario,  Prev: Documentación,  Up: Top
+
+El Proceso de Liberación
+************************
+
+Por favor, lea el capítulo respectivo en los estándares de Codificación
+GNU. Note que el esfuerzod e herramientas automatizadas de C no es
+necesario para los programas Pascal normales. Además los Makefiles son
+a menudo innecesarios en GNU Pascal. *Note Gestión de Liberaciones:
+(estándares)Gestión de Liberaciones.
+
+* Menu:
+
+* Convenios en los Makefiles::           Convenios en los Makefiles
+
+
+File: gpcs-es.info,  Node: Convenios en los Makefiles,  Up: Gestión de Liberaciones
+
+Convenios en los Makefiles
+==========================
+
+Para sus proyectos Pascal no necesita probablemente grandes `Makefile's
+y no necesita usar `autoconf' o `automake'. Puede darle  `--automake'
+al Compilador Pascal de GNU así que él se hace cargo de las dependencias
+por usted. (Cuando esto se estaba escribiendo la característica
+`automake' del Compilador de Pascal de GNU tiene algunos fallos
+pequeños, pero serán corregidos.  También, hay planeada una utilidad
+llamada `gp', que está en desarrollo ahora, que simplificará el proceso
+de compilación mucho más. En cualquier caso no necesita escribir
+complejos `Makefile's usted mismo.)
+
+   Un Makefile _sencillo_ podría ser como:
+
+     GPC_FLAGS=-O2
+     
+     all: foo
+     
+     foo: foo.pas unit1.pas
+          gpc --automake $(GPC_FLAGS) foo.pas
+     
+     mostlyclean:
+          -rm -f *.o *.gpi *.gpm core
+     
+     clean: mostlyclean
+           -rm -f foo
+     
+     distclean: clean
+     
+     extraclean: distclean
+           -rm -f *~*
+     
+     maintainer-clean: extraclean
+
+   Quizá, sin embargo, quiera poner otras reglas en un `Makefile' para
+construir documentación, ficheros de datos, hacer distribuciones o lo
+que sea.  Este tipo de cosas están fuera del ámbito de este texto.
+Puede normalmente hacer las compilaciones Pascal con una sola llamada
+`gpc --automake' por programa.
+
+
+File: gpcs-es.info,  Node: Glosario,  Next: Índice,  Prev: Gestión de Liberaciones,  Up: Top
+
+Glosario de palabras usadas a través de este texto
+**************************************************
+
+Rutinas son  `procedure's, `function's, `constructor's, `destructor's u
+operadores (definidos por el usuario).
+
+   Declaraciones son aquellas partes de un programa que "anuncian" la
+existencia de propiedades de ciertos objetos como constantes , tipos,
+variables, rutinas, unidades, módulos y el programa.
+
+   Sentencias son aquellas partes de un programa que "hacen" algo. Una
+sentencia simple es una asignación, una llamada a procedimiento, una
+sentencia de salto  (`goto', `Exit', `Return', `Break', `Continue'),
+una sentencia en ensamblador, o una sentencia compuesta  (`begin' ...
+`end', `if', `case', `repeat', `while', `for', `with') que en cambio
+puede contener una o varias sentencias.
+
+   Identificadore son aquellos elementos del lenguaje que dan nombres a
+objetos como rutinas, constantes, tipos, variables, unidades, módulos.
+Pueden ser redefinidos localmente, excepto las palabras clave que son
+parte de las construcciones sintácticas fijas (por ejemplo `if' ...
+`then' ... `else') y no pueden ser redefinidas. Las macros no son
+elementos del lenguaje debido a que son expandidas por el preprocesador
+y nunca son vistas por el compilador.
+
+   Endianidad significa el orden en que los bytes de un valor más
+grande que un byte se almacenan en memoria.  Esto afecta, por ejemplo,
+a los valores enteros, y punteros mientras que los arrays de caracteres
+de un sólo byte no están afectados.  (*note Endianidad:
+(gpc)Endianidad.)
+
+   _Nota:_ Otros items serán incluidos aquí cuando parezca útil.  Si
+quiere una definición de algún otro término, díganoslo.
+
+
+File: gpcs-es.info,  Node: Índice,  Prev: Glosario,  Up: Top
+
+Indice
+******
+
+* Menu:
+
+* aspectos legales:                      Cuestiones Legales.
+* assert:                                Verificación de Consistencia.
+* blancos:                               Formato.
+* bloques de declaración:                Orden.
+* booleanos:                             Clasificación de Indicaciones.
+* bucles de control:                     Rupturas de Línea.
+* bucles infinitos:                      Clasificación de Indicaciones.
+* cabecera traductora:                   Pascal y C.
+* cadenas:                               Cadenas.
+* capitalización de las constantes:      Mayúsculas.
+* capitalización de macros:              Mayúsculas.
+* caracteres de control:                 Formato.
+* case y ruptura de líneas:              Rupturas de Línea.
+* comentando código:                     Directivas del Compilador.
+* comentar código:                       Comentarios.
+* comentarios:                           Comentarios.
+* comentarios a fuentes externas:        Comentarios.
+* comentarios acerca de código no obvio: Comentarios.
+* comentarios anidados:                  Comentarios.
+* comentarios con marcas:                Comentarios.
+* comentarios de las peculiaridades:     Comentarios.
+* comentarios descriptivos:              Comentarios.
+* comentarios estúpidos:                 Comentarios.
+* comentarios fixme:                     Comentarios.
+* comentarios para separar partes lógicas: Comentarios.
+* comentarios triviales:                 Comentarios.
+* comentarios y directivas:              Directivas del Compilador.
+* compilación condicional:               Directivas del Compilador.
+* compilación de código C:               Pascal y C.
+* condicionales complicados:             Directivas del Compilador.
+* condicionales e implementaciones diferentes: Directivas del Compilador.
+* condicionales y la versión de GPC:     Directivas del Compilador.
+* condicionales y versiones diferentes:  Directivas del Compilador.
+* constantes:                            Mayúsculas.
+* contribuciones a este manual:          Prefacio.
+* convenios en los makefiles:            Convenios en los Makefiles.
+* debug flag:                            Directivas del Compilador.
+* declaraciones dentro de declaraciones de tipo: Orden.
+* declaraciones dentro de tipos objeto:  Orden.
+* declaración de variables:              Orden.
+* descarga de los estándares de codificación: Prefacio.
+* directiva no-warning:                  Directivas del Compilador.
+* directivas del compilador:             Directivas del Compilador.
+* directivas del enlazador:              Directivas del Compilador.
+* directivas estándar:                   Directivas del Compilador.
+* directivas locales:                    Directivas del Compilador.
+* diseño de programas:                   Advertencias de Diseño.
+* documentación:                         Documentación.
+* dónde obtener GPCS:                    Prefacio.
+* emplazamiento de los comentarios:      Comentarios.
+* encapsulados:                          Pascal y C.
+* enlazando con bibliotecas C:           Pascal y C.
+* espaciado de las directivas:           Directivas del Compilador.
+* espaciado de los comentarios:          Comentarios.
+* espaciado, tabulación del código:      Espaciado.
+* espacios:                              Formato.
+* especiado de etiquetas:                Rupturas de Línea.
+* extensiones no estándar:               Uso de Extensiones.
+* formateado del código fuente:          Formato.
+* funciones de señales:                  Comportamiento del Programa.
+* glosario:                              Glosario.
+* idioma de los comentarios:             Comentarios.
+* indicaciones clasificadas:             Clasificación de Indicaciones.
+* información:                           Prefacio.
+* internationalización:                  Internationalización.
+* lenguajes de programación:             Lenguaje del Fuente.
+* liberar:                               Gestión de Liberaciones.
+* longitud de línea:                     Formato.
+* líneas vacías:                         Formato.
+* Mayúsculas:                            Mayúsculas.
+* mayúsculas en los identificadores:     Mayúsculas.
+* MemoryMap:                             MemoryMap.
+* orden:                                 Orden.
+* orden en la implemantación:            Orden.
+* Pascal y C:                            Pascal y C.
+* POO:                                   Mayúsculas.
+* romper líneas largas:                  Rupturas de Línea.
+* rupturas de línea:                     Rupturas de Línea.
+* sangrado:                              Rupturas de Línea.
+* sentencias if then else y rupturas de línea: Rupturas de Línea.
+* tabulación del código, espaciado:      Espaciado.
+* tipos enumerados:                      Mayúsculas.
+* variables globales:                    Clasificación de Indicaciones.
+* verificaciones de error:               Comportamiento del Programa.
+* verificaciones de retorno:             Directivas del Compilador.
+* verificación de consistencia:          Verificación de Consistencia.
+
+
+
+Tag Table:
+Node: Top753
+Node: Prefacio1517
+Node: Cuestiones Legales3762
+Node: Advertencias de Diseño4179
+Node: Lenguaje del Fuente4648
+Node: Pascal y C5350
+Node: Uso de Extensiones7843
+Node: Comportamiento del Programa12924
+Node: Escritura en Pascal16883
+Node: Clasificación de Indicaciones18424
+Node: Verificación de Consistencia24407
+Node: Formato26979
+Node: Comentarios30654
+Node: Orden38446
+Node: Mayúsculas43167
+Node: Directivas del Compilador47054
+Node: Espaciado57046
+Node: Rupturas de Línea61608
+Node: Cadenas69353
+Node: Internationalización71172
+Node: MemoryMap72087
+Node: Documentación72390
+Node: Gestión de Liberaciones73726
+Node: Convenios en los Makefiles74274
+Node: Glosario75713
+Node: Índice77475
+
+End Tag Table

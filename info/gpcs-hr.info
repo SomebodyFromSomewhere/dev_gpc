@@ -1,0 +1,2137 @@
+This is ../../gcc/p/doc/info/gpcs-hr.info, produced by makeinfo version
+4.6 from gpcs.texi.
+
+START-INFO-DIR-ENTRY
+* Pascal Coding Standards: (gpcs-hr).   GNU Pascal Coding Standards (Croatian).
+END-INFO-DIR-ENTRY
+
+   GNU Pascal Coding Standards
+
+   Copyright (C) 2001-2006 Free Software Foundation, Inc.
+
+   Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+   Permission is granted to copy and distribute modified versions of
+this manual under the conditions for verbatim copying, provided that
+the entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+
+   Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for modified
+versions, except that this permission notice may be stated in a
+translation approved by the copyright holders.
+
+
+File: gpcs-hr.info,  Node: Top,  Next: Uvod,  Up: (dir)
+
+Version
+*******
+
+Prijevod dopunjen: 2003-04-27.  Odgovara originalu od: 2006-02-02.
+
+* Menu:
+
+* Uvod::                      O GNU Pascal Coding Standards
+* Pravne zaèkoljice::         ... Ili kako zadr¾ati software slobodnim ...
+* Savjeti glede dizajna::     Opæenito o dizajnu programa
+* Pona¹anje programa::        Kako bi se programi trebali pona¹ati
+* Programiranje u Pascalu::   Kako najbolje upotrijebiti Pascal
+* Dokumentacija::             Dokumentiranje programa
+* Izdanja programa::          Proces izdanja verzija softwarea
+* Rjeènik pojmova::           Rjeènik pojmova kori¹tenih kroz tekst
+* Indeks::
+
+
+File: gpcs-hr.info,  Node: Uvod,  Next: Pravne zaèkoljice,  Prev: Top,  Up: Top
+
+O GNU Pascal Coding Standards
+*****************************
+
+Napomena prevodioca:
+
+   Ovaj dokument sadr¾i prijevod teksta "GNU Pascal Coding Standards".
+Za neke originalne engleske termine i izraze nisu naðeni zadovoljavajuæi
+prijevodi, pa se koriste ili engleski originalni izrazi, ili pak izrazi
+kori¹teni u ¾argonu struke. Za sva pitanja i povratne informacije glede
+prijevoda molimo kontaktirajte M. Todorovac <mtodorov@alu.hr>.
+Zahvaljujemo se svima koji su pomogli ovaj rad savjetima ili na drugi
+naèin. Kako se GPC intenzivno razvija, gdje god se pojavila razlika u
+ovom prijevodu u odnosu na engleski izvornik, treba uzeti izvornik kao
+toèniji. Iznimke od ovoga æe biti samo sluèaj i samo iznimke.
+
+   GNU Pascal Coding Standards ("Standarde kodiranja u GNU Pascalu") je
+dizajnirala grupa volontera s GNU Pascal projekta. Cilj ovog dokumenta
+je pro¹irivanje "GNU standarda kodiranja" (GNU Coding Standards)
+specifiènim informacijama o Pascal programiranju.  Istini za volju,
+informacije sadr¾ane u "GNU standardima kodiranja" uglavnom su
+relevantne za programe pisane u C jeziku.  S druge strane, ta pravila
+takoðer obja¹njavaju mnoga pravila i principe koji su korisni za
+pisanje prenosivih, robustnih i pouzdanih programa. Mnoge od tih
+opæenitih tema bi mogle biti dijeljene s ovim dokumentom uz samo
+nekoliko specifiènih primjedbi, tako da su pru¾ene unakrsne reference
+koje æe èitatelja povesti do opæenitije informacije sadr¾ane u "GNU
+standardima kodiranja".
+
+   Ovo izdanje GNU Pascal Coding Standards (GPCS) je nadopunjeno na dan
+2006-02-02.
+
+   Dokument GNU Pascal Coding Standards je raspolo¾iv kao dio GPC
+distribucije - u binarnim distribucijama kao info datoteke, u
+distribucijama izvornog koda (source) takoðer i kao Texinfo datoteke iz
+kojih se dodatni formati kao ¹to su HTML, PostScript i PDF mogu
+generirati. HTML verzija je takoðer raspolo¾iva na GPC matiènoj
+stranici, `http://www.gnu-pascal.de'.
+
+   Ispravke ili sugestije u vezi ovog dokumenta bi trebalo slati na GNU
+Pascal Compiler Documentation mailing listu, <gpc-doc@gnu.de>.  Ako
+imate sugestiju, molimo ukljuèite ¾eljenu verziju reèenica kako ih
+zami¹ljate u dokumentu; na¹e vrijeme je ogranièeno. Context 'diff'
+izvorne Texinfo datoteke bi bio vrlo dobrodo¹ao, ako je ikako moguæe.
+Ako pak ne mo¾ete poslati 'context diff', molimo osjeæajte se pozvanim
+da ipak svakako po¹aljete svoju sugestiju.
+
+   Slijedeæi ljudi su tirani, koji nameæu svoj stil kodiranja zajednici
+programera: Peter Gerwinski `peter(at)gerwinski.de', Frank Heckenbach
+`frank(at)pascal.gnu.de', Markus Gerwinski `markus(at)gerwinski.de',
+Dominik Freche `dominik.freche(at)gmx.net', Nicola Girardi
+`nicola(at)g-n-u.de'.
+
+
+File: gpcs-hr.info,  Node: Pravne zaèkoljice,  Next: Savjeti glede dizajna,  Prev: Uvod,  Up: Top
+
+... Ili kako zadr¾ati software slobodnim ...
+********************************************
+
+Ovo poglavlje iz 'GNU Coding Standards' raspravlja o tome kako uèiniti
+sigurnim da GNU software ne zapadne u pravne pote¹koæe, i ostala srodna
+pitanja. *Note Intellectual Property: (standards)Intellectual Property.
+
+
+File: gpcs-hr.info,  Node: Savjeti glede dizajna,  Next: Pona¹anje programa,  Prev: Pravne zaèkoljice,  Up: Top
+
+Opæenito o dizajnu programa
+***************************
+
+Ovo poglavlje raspravlja o nekim pitanjima koja biste trebali uzeti u
+obzir kod dizajna vlastitog programa.
+
+* Menu:
+
+* Programski jezik::            Koji jezik koristiti?
+* Pascal i C::                  Povezivanje s bibliotekama C funkcija
+* Kori¹tenje ekstenzija::       Kori¹tenje nestandardnih znaèajki
+
+
+File: gpcs-hr.info,  Node: Programski jezik,  Next: Pascal i C,  Up: Savjeti glede dizajna
+
+Koji jezik koristiti?
+=====================
+
+Osobno podr¾avamo ideju da je raznovrsnost programskih jezika dobra
+stvar i da su razlièiti jezici pogodniji za razlièite tipove zadataka.
+Za razliku od 'GNU Coding Standards', neæemo èitatelja poku¹ati
+uvjeravati da koristi C, Pascal niti bilo koji drugi jezik za *sve*
+zadatke.
+
+   Ako èitate ovaj tekst, veæ ste vjerojatno odluèili koristiti Pascal
+za neki projekt ili razmatrate njegovo kori¹tenje. Ovaj dokument æe
+sugerirati _kako_ oblikovati vlastiti Pascal kod kad ste veæ odluèili
+da koristite GNU Pascal.
+
+
+File: gpcs-hr.info,  Node: Pascal i C,  Next: Kori¹tenje ekstenzija,  Prev: Programski jezik,  Up: Savjeti glede dizajna
+
+Povezivanje s bibliotekama C funkcija
+=====================================
+
+Mo¾ete povezivati s C bibliotekama ili s C objektnim kodom va¹e Pascal
+programe ili jedinice (`unit'). Molimo nadjite u GPC priruèniku upute o
+tome kako se to izvodi.  (*note Other Languages: (gpc)Other Languages.)
+
+   Napose, za pristup C bibliotekama sna¾no preporuèamo kori¹tenje C
+wrappera. Ovo je pitanje prenosivosti. Mogu se pojaviti promjene izmeðu
+razlièitih verzija biblioteka koje bi utjecale na direktne `external'
+deklaracije u Pascal kodu. Trebali biste uskladiti wrappere tako da
+Pascal programi ili jedinice (`unit') rade s bilo kojom verzijom
+biblioteke koja vam je na raspolaganju.
+
+   U nekim situacijama kad rukujete s velikim paketima ne mo¾ete lako
+zadr¾ati kompatibilnost izmeðu razlièitih verzija samih paketa.  U
+ovakovom sluèaju, mo¾ete povezivati (engl. linking) izravno s
+bibliotekom s kojom planirate raditi, te pove¾ite u paket dodatnu C
+datoteku koja ne radi ni¹ta osim provjere verzije. Evo primjera (na
+engleskom jeziku):
+
+     #include <foo.h>
+     #if FOO_MAJOR != 1 || FOO_MINOR != 2
+     #error The GPC interface for libfoo was only written for libfoo-1.2.
+     #error Please get libfoo-1.2 or check for a version of the GPC interface
+     #error matching your version of libfoo.
+     #endif
+
+   Primijeti kori¹tenje `!=' umjesto `<' ili `>', kako bi se izvr¹ila
+vrlo striktna provjera verzije. Molimo dr¾ite na umu da je ovo u redu
+ako postoji samo jedna implementacija biblioteke, npr. ovo mo¾ete s
+bibliotekom GTK, ali ne mo¾ete s libc, libm, curses itd.
+
+   Automatski prevodilac header datoteka je u planu koji bi uèinio C
+wrappere suvi¹nima. Ovo je, meðutim, nimalo trivijalan zadatak i nije
+sigurno da je u potpunosti moguæ, tako da æe potrajati neko vrijeme
+prije nego ¹to bude na raspolaganju.
+
+   Mo¾ete uzeti kao pretpostavku da se GNU C prevodilac (engl. compiler)
+koristi da se prevedu wrapperi, kao i opæenito bilo koji isjeèak C koda
+koji povezujete sa svojim Pascal kodom. Razlog za ovakvu pretpostavku
+je da jedino GNU C prevodilac garantirano ima sve konvencije
+kompatibilne s GNU Pascal prevodiocem na svakoj platformi na kojoj se
+oni vrte, s obzirom da dijele isti 'backend'. Takoðer, GNU Pascal
+prevodilac je uvijek izgraðen zajedno s GNU C prevodiocem, tako da se
+mo¾e oèekivati da je `gcc' raspolo¾iv uvijek kad je to sluèaj i s
+`gpc'-om
+
+
+File: gpcs-hr.info,  Node: Kori¹tenje ekstenzija,  Prev: Pascal i C,  Up: Savjeti glede dizajna
+
+Kori¹tenje nestandardnih znaèajki
+=================================
+
+Pru¾ene su mnoge GNU Pascal olak¹ice koje pro¹iruju standardni Pascal
+jezik. Da li koristiti te ekstenzije u svojim programima je zamorno
+pitanje.
+
+   S jedne strane, kori¹tenje ekstenzija mo¾e proizvesti èi¹æi program.
+S druge strane - ljudi neæe moæi prevesti program ako GNU Pascal
+prevodilac nije na raspolaganju. One mogu prouzroèiti da se program
+neæe uspje¹no prevesti s drugim prevodiocima.
+
+   Opæenito, najbolje je zadr¾ati kompatibilnost prema drugim
+prevodiocima ili jeziènim standardima, _ako je tu kompatibilnost lako
+postiæi_.  Meðutim, na na¹u ¾alost, uz postizanje kompatibilnosti
+dobivate znatne pote¹koæe, pa i unazaðenja. Na primjer, mogli biste
+morati dodati gomile `{$ifdef}'-ova da biste providjeli za neke
+nestandardne prevodioce, a oni pak èine kod te¾im sa èitanje, pisanje i
+odr¾avanje. Jo¹ gore, `{$ifdef}'-ovi su sami po sebi nestandardna
+ekstenzija, tako da ne dobivate jako mnogo na ovaj naèin.
+
+   Na kraju, sugeriramo da se ne brinete previ¹e za kompatibilnost. Sva
+suèelja (engl. interface) GNU Pascal prevodioca (sam prevodilac i tzv.
+Run Time System) su otvorena. To znaèi da ih se mo¾e implementirati za
+druge prevodioce kad je potrebno, ili se èak i sam izvorni kod mo¾e
+koristiti uz uvjet da je licenca po¹tovana (èitajte vi¹e o GNU General
+Public License - GNU opæoj javnoj licenci na adresi
+`http://www.gnu.org/copyleft/gpl.html'), radije nego da se osakaæuje
+kod nekori¹tenjem pro¹irenih znaèajki. Jedan (ogranièen) primjer ove
+strategije je `gpc-bp' jedinica za Borland Pascal, distribuirana s GNU
+Pascal prevodiocem. Mogli biste po¾eljeti pogledati njeno suèelje da
+vidite ¹to toèno sadr¾i. Lako ju je pro¹iriti s dodatnim moguænostima
+za kompatibilnost prema potrebi, iako postoje znaèajke koje nije lako
+emulirati (posebno one koje imaju specijalnu sintaksu).
+
+   Molimo da ne koristite slijedeæe moguænosti, osobito one koje su
+implementirane samo zbog kompatibilnosti prema unatrag:
+
+   * Ovakvi `(* *)' komentari za stare terminale gdje `{' i `}' znakovi
+     nisu bili na raspolaganju
+
+   * `#' direktive i `//' komentari, kao u C-u/Delphi-ju. Ako datoteka
+     takoðer mora biti kori¹tena u C-u, mo¾e koristiti `#' direktive, C
+     sintaksu u uvjetnim izrazima (engl. conditionals), te `//'
+     komentare. Primjeri (u trenutku pisanja ovog teksta - mo¾e se
+     promijeniti u buduænosti) su `p/rts/constants.h' u izvornom kodu
+     GNU Pascal prevodioca.
+
+   * pogre¹no kori¹tenje tipiziranih konstanti kao varijabli, ¹to je
+     lo¹a znaèajka Borland Pascala.
+
+   * Znakovne konstante tipa `^A'. Koristite `#1' ili `Chr (1)'
+     namjesto njih.
+
+   * `CString'-ove (osim za C suèelja, naravno)
+
+   * komplicirani Borland Pascal kod poput slijedeæeg umjesto kori¹tenja
+     `WriteStr':
+
+          Str (Foo, s);
+          s := 'Hello ' + s;
+
+   * veæinu sluèajeva `FillChar' i `Move', osim za low-level kod i osim
+     kad se odnosi na znakove unutar znakovnog niza. Kori¹tenje:
+
+          FillChar (s, SizeOf (s), 0);
+
+     za pra¾njenje niza znakova - pogre¹no je u GNU Pascalu i neefikasno
+     èak i u Borland Pascalu, jer bi se mogla koristiti slijedeæa
+     naredba:
+
+          s := '';
+
+     Ovo bi resetiralo samo polje duljine znakovnog niza `s'.
+
+   * veæina sluèajeva kori¹tenja `GetMem' i `FreeMem' - oni su obièno
+     'work-around' za nedostajuæe sheme deklariranja tipa (orig.
+     `schemata') u drugim prevodiocima.
+
+   * mnoge sluèajeve parametara bez tipa
+
+   * veæinu priruène rutine povezane s imenima datoteka. (One pisane u
+     Borland Pascalu su obièno primjenljive jedino na DOS-u, dok rutine
+     u `GPC' jedinici pru¾aju prenosivu alternativu za veæinu stvari.)
+
+   * asemblerski kod, osim u vrlo malim podruèjima za specijalne
+     optimizacije, omeðene uz pomoæ specifiènih `{$ifdef}' (na primjer,
+     za tip procesora). Meðutim, tada prilo¾ite ekvivalentnu Pascal
+     verziju u `{$else}' dijelu - i testirajte je!
+
+   * sve ¹to zahtjeva `System' jedinicu
+
+   * sve uvrije¾ene pretpostavke o velièini tipova
+
+   * pretpostavke o poretku bajtova (orig. 'endianness') (neki sistemi
+     imaju bajt veæe te¾ine i bajt manje te¾ine u drugaèijem poretku
+     nego drugi sistemi; molimo pogledajte rjeènik *Note Rjeènik
+     pojmova::, za obja¹njenje)
+
+   * imena koja poèinju ili zavr¹avaju s podvlakom (engl. underscore, _)
+     ili imaju nekoliko uzastopnih znakova za podvlaèenje
+
+   * jedinice samo pisane za Borland Pascal kompatibilnost (*note GPC
+     Units: (GPC)GPC Units.). Primijetimo meðutim, `CRT' i `Printer'
+     nisu samo za Borland Pascal kompatibilnost, veæ takoðer i za
+     generalnu uporabu.
+
+
+   Tekst GNU Coding Standards ima lijepih primjedbi na ovu temu.  *Note
+Using Extensions: (standards)Using Extensions.
+
+
+File: gpcs-hr.info,  Node: Pona¹anje programa,  Next: Programiranje u Pascalu,  Prev: Savjeti glede dizajna,  Up: Top
+
+Kako bi se programi trebali pona¹ati
+************************************
+
+Ovo poglavlje iz teksta GNU Coding Standards opisuje konvencije za
+pisanje robustnog softwarea. Takoðer opisuje opæe standarde za poruke o
+gre¹kama, suèelje naredbene linije (engl. command line interface), te
+kako bi se biblioteke trebale pona¹ati. Ohrabrujemo vas da slobodno
+proèitate taj dio teksta GNU Coding Standards.  *Note Program Behavior:
+(standards)Program Behavior.
+
+   Ovdje su, meðutim, posebne dodatne upute za programiranje u Pascalu.
+
+   Izbor izmeðu signalnih funkcija, o kojem se govori u GNU Coding
+Standards, se obavlja u Run Time System-u tako da ne trebate brinuti o
+tome.
+
+   Slijedeæe odstupanje od GNU Coding Standards je podrazumno pona¹anje
+za provjere gre¹aka koje detektiraju "nemoguæa" stanja. Mi sugeriramo
+da ne napravite samo abort programa. Ovo bi pretpostavljalo da svaki
+korisnik mo¾e biti programer, ali mi ne vjerujemo da je to realistièno.
+Na¹ je savjet da ispi¹ete razumnu poruku o gre¹ci tako da korisnici
+mogu prijaviti opis buga programerima koji nisu sami primijetili bug
+ili ga ne mogu reproducirati.
+
+   Takoðer, tekst GNU standardi kodiranja preporuèuju provjeru povratne
+vrijednosti svakog sistemskog poziva da li je mo¾da zavr¹io s
+pogre¹kom. To se odnosi na C. U Pascalu, provjera gre¹aka je èesto
+automatska, tako da se ne trebate muèiti s tim provjerama.  Mnoge
+ulazno/izlazne (I/O) rutine ne vraæaju status (npr. `Reset'), ali one
+koje vraæaju bi obièno trebalo provjeriti.
+
+   Naravno mo¾ete onemoguæiti automatske provjere pogre¹aka i obaviti
+provjeru sami. Istini za volju, neke gre¹ke mogu prouzroèiti da program
+automatski prekine (abort) izvoðenje s porukom o gre¹ci. Umjesto toga,
+naroèito u jedinicama (`unit') i modulima, mogli biste ¾eljeti
+prijaviti pogre¹ku i dati korisniku priliku da intervenira i popravi
+stvari. Da biste to uèinili, morate koristiti `{$I-}' direktivu
+prevodioca, i provjeriti vrijednost `IOResult' (*note IOResult:
+(gpc)IOResult.) ili globalnih varijabli za pogre¹ke kao ¹to je
+`InOutRes' (*note InOutRes: (gpc)InOutRes.).  Primijetite da se pozivi
+I/O rutina trenutno vraæaju ako je `InOutRes' postavljen, tako da ga
+nije neophodno provjeravati nakon svake operacije, pa je moguæe
+slijedeæe:
+
+     {$local I-}
+     Rewrite (f, 'bla');
+     WriteLn (f, 'foo');
+     WriteLn (f, 'bar');
+     WriteLn (f, 'baz');
+     Close (f);
+     {$endlocal}
+     if InOutRes <> 0 then
+       begin
+         WriteLn (StdErr, GetIOErrorMessage);
+         ...
+       end;
+
+   Bilo kako bilo, u va¹em kodu biste mogli po¾eljeti provjeriti
+`Rewrite' i druge sistemske pozive sa zadatkom otvaranja, za koje je
+najveæa vjerojatnost da bi mogli zavr¹iti neuspje¹no; tako da
+izbjegnete daljnje nepotrebne pozive.
+
+   Postoji skup rutina u GPC jedinici za imenovanje privremenih
+(temporary) datoteka, konfiguracijskih datoteka, i mnogo drugih stvari
+povezanih s imenima datoteka. Prednosti kori¹tenja ovih je da rade na
+razlièitim vrstama sistema (na primjer Unix i DOS), pa se eventualni
+buduæi problemi mogu rije¹iti na jednom mjestu u Run Time System-u
+radije nego u nekoliko razlièitih programa ili jedinica (unit).
+
+   ©to se tièe biblioteka, sugeriramo da ne stavljate svaku rutinu u
+posebnu datoteku. Nadamo se da æe jednog dana GNU Pascal prevodilac
+znati to napraviti automatski na nivou linkera (povezivaèa). Trenutno,
+vjerujemo da je ugodnost programera znatno va¾nija nego velièina
+proizvedene binarne datoteke. Takoðer ne preporuèamo kori¹tenje
+prefiksa u imenima, buduæi da æe konflikti biti razrije¹eni upotrebom
+kvalificiranih identifikatora (`UnitName.RoutineName') u buduænosti.
+Dotada, molimo, koristite privremena zaobilazna rje¹enja (engl.
+work-around) kad se pojave konflikti.
+
+
+File: gpcs-hr.info,  Node: Programiranje u Pascalu,  Next: Dokumentacija,  Prev: Pona¹anje programa,  Up: Top
+
+Kako najbolje upotrijebiti Pascal
+*********************************
+
+Ovo poglavlje daje savjete o tome kako najbolje iskoristi jezik Pascal
+kod pisanja softwarea. Naravno, pravila se odnose samo na kod koji se
+objavljuje - ako na primjer ¾elite zakomentirati stvari sa staromodnim
+komentarima poput `(* ovoga *)', to biste trebali uèiniti privremeno i
+ukloniti to prije distribuiranja koda. Ali s obzirom da nikad ne znate
+da li æete i kada objaviti svoj kod, dobra je ideja prionuti uz pravila
+od poèetka.
+
+* Menu:
+
+* Izabrane natuknice::          Natuknice za programiranje u Pascalu
+* Provjera konzistentnosti::    Kori¹tenje `Assert' za prekid
+                                programa ako se dogodi ne¹to ``nemoguæe''
+* Formatiranje::                Formatiranje izvornog koda
+* Komentari::                   Komentiranje va¹eg rada
+* Redoslijed::                  Redoslijed blokova koda
+* Velika i mala slova::         Velika i mala slova u imenima
+* Direktive prevodiocu::        Kori¹tenje naredbi prevodiocu
+* Razmaci::                     Kako koristiti razmake u kodu
+* Lomljenje redaka::            Gdje prelamati retke koda
+* Znakovni nizovi::             Znakovni nizovi (stringovi)
+* Internacionalizacija::        Tehnike za internacionalizaciju
+* MemoryMap::                   Kako mo¾ete sigurno koristiti `MemoryMap'
+
+
+File: gpcs-hr.info,  Node: Izabrane natuknice,  Next: Provjera konzistentnosti,  Up: Programiranje u Pascalu
+
+Natuknice za programiranje u Pascalu
+====================================
+
+Pascal izvorne datoteke trebaju imati `.pas' sufiks. Ime datoteke bez
+sufiksa treba obièno odgovarati imenu programa/jedinice/modula, ali sve
+malim slovima. U jednoj datoteci bi trebao biti samo jedan
+program/jedinica/modul.
+
+   Kod se mora prevesti s `-Wall' opcijom, sa i bez `-O3' opcije i to
+bez upozorenja. (*Note Direktive prevodiocu::, o tome kako namjerno
+zabraniti neka upozorenja ako je stvarno neophodno.)
+
+   Ne koristite automatske `Result' varijable u funkcijama. Ako ¾elite
+jednu, deklarirajte ju:
+
+     function Foo (...) = Bar: Integer;
+
+   Koristite deklaraciju sa `=', ne bez, osim ako ne ¾elite striktnu
+PXSC kompatibilnost.
+
+   Ako funkcija vraæa `Boolean' da indicira uspje¹nu operaciju, `True'
+treba znaèiti uspjeh, a `False' gre¹ku, za razliku od nekih C funkcija
+gdje `0' znaèi uspjeh.
+
+   Izbjegavajte `goto' i sliène naredbe, kao ¹to su `Exit', `Return',
+`Break', `Continue'. Izbjegavajte `goto' pod svaku cijenu (osim _mo¾da_
+ne-lokalni `goto' za povratak iz _duboko_ ugnije¾ðenih funkcija u
+sluèaju pogre¹ke).  Izbjegavajte ostale ako je moguæe uz razuman
+ulo¾eni napor. Ako bi to zahtijevalo dodatnu `Boolean' varijablu, ovo
+se broji kao izgovor za kori¹tenje ovih naredbi ako to stvarno ¾elite.
+Primijetite da èesto kod postaje znatno _jednostavniji_ izbjegavanjem
+kori¹tenja `Break' itd. i kori¹tenjem umjesto toga boljih uvjeta za
+petlje i drugaèijih vrsta petlje.
+
+   Nikad ne modificirajte brojaèe `for' petlji, niti se oslanjajte na
+njihovu vrijednost nakon izlaska iz petlje (Ovo nije samo pitanje
+stila, to je definicija Pascala. Ti postupci proizvode nedefinirane
+rezultate.)
+
+   Nikad se ne oslanjajte na nedefinirano pona¹anje. Na primjer, na to
+da su globalne varijable inicijalizirane na `0' na poèetku programa,
+ili mo¾da na novo alociranu memoriju koja se èini kao inicijalizirana,
+ili na memoriju koja nakon dealociranja naizgled zadr¾ava neke
+vrijednosti, ili na to da brojaèi `for' for petlji izgledaju kao da
+imaju neku vrijednost nakon petlje - ni¹ta od ovoga nije garantirano, i
+pona¹anje se mo¾e promijeniti kad promijenite prevodilac ili njegovu
+verziju, ili ako promijenite platformu.
+
+   Nedefinirano znaèi NEDEFINIRANO, i èinjenica da takve stvari
+izgledaju kao da rade na svim sistemima koje ste provjerili, kao i sa
+42 druga prevodioca, ne znaèi toèno ni¹ta.
+
+   U komparacijama stavite "jaèe promjenljiv" izraz na lijevu stranu:
+
+     for i := 1 to 10 do
+       if a[i] = Foo then
+         for j := 1 to 10 do
+           if b[j] = a[i] then ...
+
+   Ako promatramo drugi redak iz gornjeg primjera, izraz na lijevoj
+strani (`a[i]') se mijenja svakom iteracijom petlje, dok s desnom
+stranom (`Foo') to nije sluèaj. (U ovom sluèaju pretpostavljamo da je
+`Foo' konstanta ili funkcija koja ne ovisi o `i' ili nekim drugim
+globalnim podacima. Inaèe bi moglo imati smisla da se `Foo' stavi na
+lijevu stranu, i mo¾da stavi jo¹ jedan komentar da se to istakne.)
+
+   Zadnji redak gornjeg primjera mo¾e izgledati èudno, jer `b[j]' i
+`a[i]' mogu izgledati kao da imaju isti stupanj "promjenljivosti".
+Meðutim, u stvari se `j' mijenja èe¹æe nego `i', tj. svaki put kad se
+`i' promijeni, `j' se veæ promijenio 10 puta.
+
+   Izbjegavajte dupliciranje koda. Lako je podleæi isku¹enju kopiranja
+koda, ali postaje noæna mora odr¾avanja da se kasnije promjene izvode
+na nekoliko sliènih mjesta. Koristite rutine ili potprograme, jedinice
+ili module, bilo ¹to. Planirajte svaki dio koda tako da taj dio mo¾e
+biti pro¹iren. Nemojte posezati za previ¹e dosjetljivim trikovima na
+mjestima koja æe vjerojatno kasnije biti mijenjana.
+
+   Ne okru¾ujte pojedinaène naredbe s `begin' i `end', osim ako nemate
+problem s viseæim `else' ili pojedinaèna naredba èini èitavo tijelo
+funkcije! Vidi slijedeæe primjere:
+
+     if foo then
+       begin
+         if bar then
+           baz
+       end  { Izbjegni problem s viseæim else. }
+     else
+       qux  { Jedno-linijska naredba. }
+
+   Ne pi¹ite prazne inicijalizatore jedinica. Ovo je primjer ¹to _ne_
+raditi:
+
+     ...
+     
+     procedure Foo;
+     begin
+       ...
+     end;
+     
+     begin
+     end.
+
+   Umjesto toga, jednostavno:
+
+     ...
+     
+     procedure Foo;
+     begin
+       ...
+     end;
+     
+     end.
+
+   Ne pi¹ite neiskori¹tene deklaracije, osim u suèeljima (`interface')
+koja su namijenjena za kori¹tenje od strane programa koji ih importira.
+
+   Sjetite se da su `Boolean'i `Boolean'i. Molimo koristite `if Foo
+then' umjesto `if Foo = True then', te `if not Foo then' umjesto `if
+Foo = False then'. Takoðer, koristite `until False' na mjesto `until 1
+= 0' - ovo izgleda pametnije. Druga uobièajena situacija je `Foo :=
+Expression' umjesto `if Expression then Foo := True else Foo := False'.
+
+   Izbjegavajte dupliciranje globalnih identifikatora, tj. nemojte
+preoptereæivati (engl. overload) ugraðene identifikatore, (èak iako GNU
+Pascal prevodilac to dozvoljava) te ne koristite isti globalni
+identifikator u nekoliko jedinica (`unit') ili modula. (Ovo svojstvo æe
+biti prisutno u GNU Pascal prevodiocu u buduænosti pod imenom
+"kvalificirani identifikatori" (engl. "qualified identifiers" ali ga
+svejedno nemojte koristiti.
+
+   Obeshrabrujemo kori¹tenje globalnih varijabli za ne-globalne svrhe
+(npr. kori¹tenje varijable `Counter' kori¹tene kao brojaè u raznim
+lokalnim potprogramima). Umjesto toga, deklarirajte brojaèke varijable
+za svaki potprogram koji ih treba. Ovo generalno takoðer omoguæava
+bolju optimizaciju generiranog koda.
+
+   Kada trebate beskonaènu petlju (iz koje se mo¾e iskoèiti sa
+`Break'), sugeriramo da koristite `repeat' petlju radije nego `while'
+petlju jer ona pomièe kod manje udesno (barem tamo gdje je vi¹e od
+jedne naredbe u petlji). Preciznije:
+
+     repeat
+       ...
+     until False
+
+   Umjesto:
+
+     while True do
+       begin
+         ...
+       end
+
+
+File: gpcs-hr.info,  Node: Provjera konzistentnosti,  Next: Formatiranje,  Prev: Izabrane natuknice,  Up: Programiranje u Pascalu
+
+Eksplicitna provjera interne konzistentnosti
+============================================
+
+Kao ¹to je navedeno u dokumentaciji GNU C biblioteke (*note Consistency
+Checking: (libc)Consistency Checking.) - dok pi¹ete program, èesto je
+dobra ideja ubaciti u njega provjere da li su prekr¹ene neke osnovne
+pretpostavke.
+
+   Razmotrite slijedeæu proceduru u Pascalu:
+
+     procedure DoSomethingOnAPString (StrPtr: PString);
+
+   Mo¾ete implicitno pretpostaviti da gornja procedura nikad neæe biti
+pozvana sa `nil' kao argumentom, ali je sigurnije provjeravati da li je
+do¹lo do "nemoguæeg stanja", tj. provjeriti da li je `StrPtr' razlièito
+od `nil', kao ovdje:
+
+     procedure DoSomethingOnAPString (StrPtr: PString);
+     begin
+       Assert (StrPtr <> nil);
+       ...
+     end;
+
+   Ako ova provjera ne uspije, program proizvodi `runtime' pogre¹ku -
+pogre¹ku za vrijeme izvoðenja. Mogli biste zakljuèiti da je kod koji
+zove ovu proceduru pogre¹an (ili da trebate pro¹iriti nevedenu rutinu),
+dakle bi ovo mogla biti pomoæ u lociranju problema. Drugim rijeèima,
+provjera baziènih pretpostavki na poèetku tijela potprograma je pravi
+naèin da se uèini sigurnim da funkcija nije kori¹tena na krivi naèin.
+
+   GNU C biblioteka daje `assert' makro naredbu za ove vrste provjera.
+GNU Pascal proviða Pascal ekvivalent koji se zove `Assert', ali se
+pona¹a malo drugaèije. `Assert' neæe prekinuti va¹ program, nego æe
+radije prouzroèiti pogre¹ku u vremenu izvoðenja, `runtime error',
+(*note Assert: (gpc)Assert.) koju mo¾ete "uhvatiti" npr. `Trap'
+jedinicom (*note Trap: (gpc)Trap.).
+
+   Jednom kad mislite da je va¹ program debugiran, mo¾ete zabraniti
+provjere gre¹aka izvoðene `Assert' rutinom jednostavnim ponovnim
+prevoðenjem s `--no-assertions' opcijom. Nikakve promjene source koda
+nisu potrebne da bi se zabranile ove provjere. Izrazi sa side-efektima
+u argumentima za `Assert' se i dalje izraèunavaju (za razliku od C-a),
+tako da je u redu napisati:
+
+     Assert (MyFunction (Foo, Bar) > 0)
+
+   Ovim æe se uvijek pozvati `MyFunction', ali samo da se uèini sigurnim
+da je njen rezultat pozitivan ako `--no-assertions' nije dan.
+
+   Svejedno, preporuèa se da ne zabranjujete provjere konzistentnosti,
+osim ako nikako ne mo¾ete podnijeti da se va¹ program izvodi ne¹to
+sporije.
+
+
+File: gpcs-hr.info,  Node: Formatiranje,  Next: Komentari,  Prev: Provjera konzistentnosti,  Up: Programiranje u Pascalu
+
+Formatiranje izvornog koda
+==========================
+
+Najprije, izbjegavajte nepotrebne razmake na krajevima redaka. Takoðer
+zapamtite da ne snimate datoteke s TAB karakterima, s obzirom na
+èinjenicu da æe ih razni editori ili razlièite konfiguracije
+interpretirati kao razlièite kolièine razmaka, time lomeæi uvuèenost
+(engl. indentation) programa. (Ako koristite GNU Emacs, funkcija
+`untabify' dobro doðe pri ruci; ako koristite VIM, opcija `expandtab'
+(`:set et'); u PENG-u se mo¾e koristiti opcija `Expand tabs').
+
+   Molimo izbjegavajte kori¹tenje bilo kakvih kontrolnih znakova, osim
+newline (znak za novi redak), naravno. Ovo znaèi nema form feed
+(`#12'), znakova za novu stranicu. Oni su preporuèeni u GNU Coding
+Standards da razdvajaju logièno odvojene dijelove, ali ih nemojte
+koristiti barem u Pascal kodu. Takoðer nemojte koristiti ni znak `SUB',
+(`#26'), koji se pogre¹no koristi kao end-of-file (kraj datoteke)
+indikator u DOS-u. Stariji DOS editori stavljaju taj znak na kraj svake
+datoteke bez dobrog razloga, jer èak i FAT file system zna pronaæi kraj
+datoteke sam po sebi.
+
+   Preporuèujemo maksimalnu duljinu retka od 68 znakova, tako da se mo¾e
+otisnuti u TeX-u sa default fontom na A4 papiru, ili 78 znakova, za
+ekrane sa 80 stupaca. Ovo nije fiksno pravilo, jer lomljenje redaka
+èesto smanjuje èitljivost koda.
+
+   Koristite prazne retke izmeðu blokova. Blokovi su dugi komentari,
+`type', `const', `var', `label' odsjeèci, tijela potprograma,
+inicijalizatori i finalizatori jedinica (`unit') i modula, `program',
+`unit', `interface', `implementation',  `module', `export', `uses',
+`import' retci, globalne direktive prevodioca. Ako se dugi komentar
+odnosi na prateæu deklaraciju, stavite samo prazni redak prije
+komentara, ne izmeðu komentara i same deklaracije. Posebna iznimka su
+blokovi unutar istog potprograma - ne koristite prazne retke na tim
+mjestima. Na primjer:
+
+     procedure Short;
+     var
+       Foo: Integer;
+       Bar: Char;
+     begin
+       ...
+     end;
+
+   Ali se sjetite staviti prazne retke da razdvojite potprograme, kao u
+slijedeæem primjeru:
+
+     procedure Long;
+     const
+       ...
+     var
+       varijable kori¹tene od Sub ...
+     
+       procedure Sub;
+       var
+         ...
+       begin
+         ...
+       end;
+     
+     var
+       varijable koje nisu kori¹tene od Sub ...
+     begin
+       ...
+     end;
+
+   Primijetite da ne biste trebali koristiti prazan redak nakon
+deklaracije glavnog potprograma, osim ako deklaracija ugnije¾ðenog
+potprograma slijedi odmah. Inaèe bi deklaracija glavnog potprograma
+izgledala kao forward deklaracija.
+
+   Primijetite da smo u odsjeèku koda odvojili lokalne varijable (ili
+konstante) prije i poslije potprograma - ovo nije obavezno.
+
+   Naravno, ono ¹to smo rekli za potprograme je takoðer ispravno za
+pod-potprograme na bilo kojoj dubini.
+
+   Prazni redak bi trebao biti meðu varijablama istog tipa, gdje je to
+prikladno, da ih se logièki razdvoji. U sluèaju da se komentar
+pojavljuje prije deklaracije, prazna linija mora biti prije komentara.
+Inaèe prazna linija dolazi prije deklaracije.
+
+   Prazni retci se mogu koristiti u dugim komentarima da razdvoje
+paragrafe.
+
+   Bez praznih redaka na poèetku ili kraju datoteke, samo znak za novi
+red na kraju. Bez vi¹estrukih praznih redaka.
+
+
+File: gpcs-hr.info,  Node: Komentari,  Next: Redoslijed,  Prev: Formatiranje,  Up: Programiranje u Pascalu
+
+Komentiranje va¹eg rada
+=======================
+
+Komentare treba staviti u vitièaste zagrade kao ovdje:
+
+     { Ovo je lijepi komentar. :-) }
+
+   Ne koristite komentare starog stila izmeðu okruglih zagrada i
+zvjezdica, kao npr. ove:
+
+     (* Ovo je ru¾an komentar :-(, kakav ne biste smjeli koristiti. *)
+
+   Takoðer, ne koristite komentare zapoèete s dvostrukom kosom crtom:
+
+     // Jo¹ jedan primjer komentara koji ne koristiti.
+
+   Iako ISO Pascal eksplicitno dozvoljava mije¹ane komentare, GNU Pascal
+prevodilac ih uopæe ni ne prihvaæa, ako ih ne ukljuèite opcijom ili
+odgovarajuæom direktivom prevodiocu `{$mixed-comments}' - ali to ne
+¾elite uèiniti. Ovdje je nekoliko primjera mije¹anih komentara, koje ne
+biste smjeli slijediti:
+
+     (* This ... }
+     { ... and that. *)
+
+   Takoðer, nastojte izbjegavati ugnije¾ðene (engl. nested) komentare,
+kao `{ { Ovaj ovdje } }'. Ovi su u redu ako ¾elite staviti ne¹to TeX
+naredbi u komentar ili ne¹to vi¹e egzotièno. Koji god razlog imate za
+kori¹tenje ugnije¾ðenih komentara, potrebno je da ih omoguæite
+direktivom prevodiocu, `{$nested-comments}'. Ne koristite
+`--nested-comments' opciju naredbene linije. Stavite sve takve opcije u
+izvorni kod, tako da netko poku¹avajuæi prevesti ga ne mora ispitivati
+koje su opcije naredbene linije potrebne, te zato jer bi opcije
+komandne linije pogodile _sve_ izvorne datoteke, npr. kad se prevodi
+projekt sa vi¹e jedinica/modula.
+
+   Molimo pi¹ite va¹e komentare na engleskom, jer je engleski jedini
+jezik kojeg gotovo svi programeri u svim zemljama mogu èitati. Ako ne
+pi¹ete dobro engleski, molimo pi¹ite komentare na engleskom najbolje
+¹to mo¾ete, pa onda tra¾ite druge ljude da vam pomognu preformulirati
+ih. Ako ne mo¾ete pisati komentare na engleskom, molimo pronaðite
+nekoga da radi s vama i prevede va¹e komentare na engleski.
+
+   trebali biste usvojiti "French Spacing", tj. samo jedan razmak na
+kraju reèenice. Tako ne mo¾ete koristiti GNU Emacs `M-a' i `M-e'
+kombinacije tipki za kretanje izmeðu reèenica. Nadamo se da mo¾ete
+¾ivjeti bez toga. Takoðer, molimo stavite samo jedan razmak nakon
+vitièaste zagrade koja otvara komentar i prije zatvarajuæe zagrade.
+
+   Ako se komentar odnosi samo na jednu liniju koda, napi¹ite ga ako je
+moguæe nakon linije koda, u istom retku, odvojenog od koda s dva
+razmaka.  Ovo je takoðer dozvoljeno za `interface' odsjeèak jedinice
+(`unit') i za globalne varijable. Èesto je vjerojatno da æete pisati
+ovu vrstu komentara uz `record' i `object' polja.  U ostalim
+sluèajevima, komentari idu u jedan ili vi¹e vlastitih redaka, ako npr.:
+
+     { foo bar baz }
+
+   Ili du¾e:
+
+     { foo bar
+        baz }
+
+   Ili s paragrafima:
+
+     { foo bar
+        baz
+     
+        qux }
+
+   Komentari trebaju biti smje¹teni prije koda koji opisuju, i trebaju
+imati isti nivo uvlaèenja retka. Slijedeæi primjer bi to trebao
+pojasniti:
+
+     { Moji tipovi. }
+     type
+       ...
+     
+     type
+       { Moji prvi tipovi. }
+       Foo = Integer;
+       ...
+     
+     begin
+       { Moja prva naredba. }
+       Bla;
+       { Poèetak petlje. }
+       repeat
+         { Tijelo petlje. }
+         ...
+       { Zavr¹i kad se Nesto desi }
+       until Nesto
+     end;
+
+   Primijeti poziciju komentara uz `until'.
+
+   Komentari koji opisuju globalnu deklaraciju bi trebali biti u jednoj
+ili vi¹e vlastitih linija, neposredno prije deklaracije. Na primjer:
+
+     { Ovo je Foo. Radi ovo i ono. }
+     procedure Foo;
+
+   Ne pi¹ite "trivijalne" komentare, poput onih u gornjim primjerima.
+Trebali biste izbjegavati komentare pi¹uæi jasan kod. Linus Torvalds
+istièe ovo sna¾no u 'Kernel Coding Style':
+
+     Comments are good, but there is also a danger of over-commenting.
+     *Never* try to explain *how* your code works in a comment: it's
+     much better to write the code so that the _working_ is obvious,
+     and it's a waste of time to explain badly written code.
+     Generally, you want your comments to tell *what* your code does,
+     not *how*.
+
+   Prijevod:
+
+     Komentari su dobri, ali postoji takoðer opasnost od prekomjernog
+     komentiranja. *Nikad* ne poku¹avajte objasniti *kako* va¹ kod radi
+     u komentaru: mnogo je bolje napisati kod tako da je njegovo
+     `funkcioniranje' oèito, i gubitak je vremena komentiranje lo¹e
+     napisanog koda. Opæenito, mo¾ete ¾eljeti za va¹e komentare da ka¾u
+     *¹to* va¹ kod radi, ne *kako*.
+
+   (Primijetite da mi inaèe poprilièno odstupamo od Linusovog stila
+kodiranja.)
+
+   "Tricky" kod je vrijedan komentiranja. "Tricky" kod definiramo kao
+kod koji radi ne tako oèite stvari, podrazumijeva pretpostavke koje
+nisu oèigledne, postoji ne¹to o èemu se mora voditi raèuna prilikom
+njegovog mijenjanja, nije ono ¹to izgleda na prvi pogled, postoje
+nuspojave (_side-effect_) ili zahtijeva druge dijelove koda da budu
+promijenjeni simultano s njim. Tricky kod bi se trebao koristiti vrlo
+¹tedljivo.
+
+   U sluèaju da se komentar odnosi na neko drugo mjesto u kodu, bilo u
+istoj ili u drugoj datoteci, molimo referirajte na to mjesto ne s
+brojem retka (ovaj æe se previ¹e èesto mijenjati), nego pomoæu imena
+potprograma ili pomoæu konteksta. Takoðer, razmislite da je korisno
+staviti komentar na to drugo mjesto koji pokazuje natrag. (Ne uvijek,
+ali ponekad se to pokazalo korisnim za nas.)
+
+   Da se zakomentira dio koda, koji se ne bi trebao prevesti, trebate ga
+omeðiti sa `{$if False} ... {$endif}' radije nego da koristite komentar.
+
+   Da se razdvoje logièni dijelovi unutar velikih modula ili jedinica,
+mo¾ete koristiti specijalni komentar - mi predla¾emo fiksan uzorak jer
+ga je lako pronaæi:
+
+     {@section Ime odsjeèka}
+     {@subsection Ime pododsjeèka}
+
+   Primijeti da nema razmaka iza otvorene vitièaste zagrade, niti
+ispred zatvorene u ovom sluèaju.
+
+   Modul ili jedinica (`unit') treba imati komentar za svaku od svojih
+'interface' deklaracija, tako da je 'interface' dio datoteke sa
+izvornim kodom pouzdan izvor dokumentacije. Ovo je opcionalno za bilo
+koju deklaraciju koja se pojavljuje samo u 'implementation' dijelu ili
+u `program'ima. Naravno, nekoliko srodnih deklaracija (npr. grupe
+konstanti) mogu dijeliti komentar.
+
+   Utility nazvan `pas2texi' æe biti napisan da omoguæi izgradnju
+Texinfo datoteka iz Pascal komentara. Ovo æe omoguæiti pojedine vrste
+formatiranja i nagla¹avanja unutar komentara. Oni æe biti opisani u
+dokumentaciji `pas2texi' programa i/ili u buduæim verzijama ovog
+dokumenta.
+
+   Mo¾ete koristiti "fixme" komentare, da biste ukazali na stvari koje
+treba ispraviti u kodu, ili u biblioteci (ili modulu, ili jedinici, ili
+kori¹tenom prevodiocu) koje direktno pogaðaju kod, zahtijevajuæi
+zaobilazni pristup (engl. work-around). Ovi komentari trebaju imati na
+poèetku barem dva `@' - dodajte toliko `@' koliko je urgentno pitanje
+koje opisuju.
+
+   Ovi komentari mogu sadr¾avati manje ili vi¹e opskurne detalje o
+problemu, naroèito ako je korijen problema negdje drugdje. Na primjer,
+komentar `{ @@fjf226 }' deklarira prateæi kod kao zaobilaznicu za
+problem koji je demonstriran u GNU Pascal prevodioèevom test programu
+`fjf226.pas'. (To je datoteka koju mo¾ete pronaæi u source distribuciji
+GNU Pascal prevodioca.)
+
+   "Fixme" komentare ne bi se smjelo mije¹ati s obiènim komentarima.
+Ako trebate obje vrste, koristite ih odvojeno, èak i ako direktno
+slijede jedan drugoga. Oni se mogu koristiti bilo gdje, èak i unutar
+naredbi, jer su privremeni po naravi. Veæina normalno pada u podruèje
+tijela, osim ako utjeèu na suèelja (`interface'). Specijalno suèelja za
+koja je vjerojatno da æe biti promijenjena trebaju imati `@@' komentar
+neposredno prije njihovog opisnog (deskripcijskog) komentara.
+
+
+File: gpcs-hr.info,  Node: Redoslijed,  Next: Velika i mala slova,  Prev: Komentari,  Up: Programiranje u Pascalu
+
+Redoslijed blokova koda
+=======================
+
+Molimo zapoènite svaku datoteku sa komentarom koji sadr¾i, u slijedeæem
+redoslijedu:
+
+   * kratki opis koji govori ¹to kod u source datoteci radi
+
+   * du¾i opis koji ide u detalje o kodu i specificira izvore
+     informacija i koda
+
+   * copyright obavijest o pravima koja pridr¾avaju autori koda
+
+   * licenca - naravno, mo¾ete po¾eljeti koristiti GNU General Public
+     License ili Lesser General Public License za va¹e programe i
+     jedinice, zar ne?
+
+   Opæenito, mogli biste pratiti slijedeæi redoslijed deklaracijskih
+blokova:
+
+   * `const' deklaracije
+
+   * `type' deklaracije
+
+   * `var' deklaracije
+
+   * `label' deklaracije
+
+   * potprogrami
+
+   Mo¾ete odstupiti od ovog poretka kad je neophodno ili to èini kod
+vi¹e èitljivim. Ovo je jedan primjer gdje poredak ne mo¾e biti po¹tovan:
+
+     type
+       TNesto = record
+         Ovo, ono: Integer
+       end;
+     
+     const
+       NekaKonstanta = SizeOf (TNesto);
+
+   Gornja pravila se primjenjuju na deklaracijske blokove i u
+potprogramima.
+
+   Kad postoji nekoliko vi¹e ili manje neovisnih dijelova, posebno u
+velikim jedinicama ili modulima, mo¾ete primijeniti ovaj redoslijed
+unutar svakog dijela. Ne stavljajte, na primjer, konstante svih dijelova
+zajedno. Morate odr¾ati kod èitljivim.
+
+   Varijable koje se koriste samo u glavnim programima moraju biti
+deklarirane globalnim u Pascalu, iako GNU Pascal nudi ekstenziju koja
+dozvoljava deklariranje varijabli na proizvoljnim mjestima u kodu
+(*note var: (gpc)var.). U ovom sluèaju, kao kontrast prethodnom opæem
+pravilu, èesto je bolje staviti njihovu deklaraciju upravo prije
+`begin' glavnog programa, nakon svih potprograma itd., naroèito kad je
+vi¹e nego nekoliko takvih varijabli i velièina izvorne datoteke nije
+malena. Tako, blok deklaracije varijabli je lak¹e uoèljiv i lak¹e se
+mijenja od strane programera dok se ureðuje glavni program, i tako
+èinite sigurnim da ih potprogrami sluèajno ne bi upotrijebili.
+
+   Kada definirate tip zajedno s njegovim pokazivaèkim tipom, najprije
+deklarirajte pokazivaè. Lak¹e ih je prepoznati osobito ako je tip
+dugaèki `record' ili `object'. Takoðer, time postaje moguæe kori¹tenje
+rekurzivnih struktura (npr., kori¹tenje pokazivaèa na tip unutar tog
+istog tipa). Trebali biste staviti predmetak `T' imenu tipa i `P'
+asociranom imenu tipa pokazivaèa. Pogledajmo primjer:
+
+     type
+       PMojInt = ^TMojInt;
+       TMojInt = Integer;
+     
+       PListaNizova = ^TListaNizova;
+       TListaNizova = record
+         Next: PListaNizova;
+         s: TNiz
+       end;
+
+   Primijetite da je `Next' polje specificirano prvo. Sugeriramo da ga
+uvijek stavljate kao prvo polje kod rekurzivnih tipova, buduæi da to
+dozvoljava nekim generièkim potprogramima za rad s listama da budu
+ne¹to malo efikasniji dok 'putuju' listom, tj. nema offseta.
+
+   Sugeriramo stavljanje svih pokazivaèkih tipova unutar svake `type'
+deklaracije na prvo mjesto, iako to ne smatramo obaveznim. Ovo je
+primjer:
+
+     type
+       { Pokazivaèki tipovi }
+       PFoo = ^TFoo;
+       PBar = ^TBar;
+       PBaz = ^TBaz;
+     
+       { Neki vlastiti cjelobrojni tipovi }
+       TFoo = Integer attribute (Size = 16);
+       TBar = Cardinal attribute (Size = 16);
+       TBaz = Cardinal attribute (Size = 32);
+
+   Unutar objektnih tipova mo¾ete imati tri deklaracijska podruèja.
+Postoje tri rezervirane rijeèi za zapoèinjanje takvih podruèja:
+`public', `protected', `private'. Unutar svakog od tih podruèja
+slijedite slijedeæi redoslijed:
+
+   * polja
+
+   * konstruktori
+
+   * destruktori (trebao bi biti samo jedan)
+
+   * metode
+
+   U `implemetation' dijelu objekta, stavite tijela potprograma u istom
+redoslijedu u kojem se pojavljuju u deklaraciji u `interface' dijelu.
+Ovo se takoðer odnosi na jedinice i module, u kojima implementacija
+treba odra¾avati `interface' deklaracije.
+
+   Nemojte koristiti zavr¹ni `;' na kraju bloka, tj. ispred `end',
+`until', itd. osim `case' - zadnja grana prije `else' grane bi
+_trebala_ imati `;', da se izbjegnu problemi poput:
+
+     case ...
+       Foo:
+         if Bar then  { naknadno umetnuti }
+           begin
+             ...
+           end  { ako ovdje nema `;' ... }
+       else  { ... ovo æe biti pogre¹no uzeto kao `then'-ov `else' }
+         ...
+
+   (Isto ako je `if' bio tamo du¾e i `else' grana od `case' je kasnije
+umetnuta.)
+
+   U objektu, mo¾e izgledati èudno da se izostavi `;' nakon zadnjeg
+èlana koji je najèe¹æe metoda. Stoga ga dozvoljavamo, a radi
+konzistentnosti takoðer i u `record'-ima.
+
+
+File: gpcs-hr.info,  Node: Velika i mala slova,  Next: Direktive prevodiocu,  Prev: Redoslijed,  Up: Programiranje u Pascalu
+
+Velika i mala slova u imenima
+=============================
+
+Rezervirane rijeèi bi trebale biti kompletno u malim slovima, ukljuèivo
+direktive, tj. rijeèi koje su rezervirane samo u nekim kontekstima, kao
+`protected'. Ako koristite direktive kao identifikatore (za ¹to je
+vjerojatno da æe vam nanijeti bol) izvan njihovog konteksta, pi¹ite ih
+kao identifikatore.
+
+   Kao specijalnu iznimku, mo¾ete koristiti `File' pisan velikim
+poèetim slovom kad je kori¹ten kao tip sam po sebi tj. netipizirana
+datoteka, za razliku od `file of Char'. Isto se ne mo¾e reæi za
+`procedure' kao tip (u stilu Borland Pascala), buduæi da `File' mo¾e
+biti valjan tip, dok je `procedure' konstruktor tipa, tj.:
+
+     procedure Foo (var a: File);  { Ovo radi. }
+     procedure Foo (var a: procedure);  { Ovo ba¹ i ne. }
+
+   Slijedeæi problem su velika i mala slova u identifikatorima. Nema
+razlike izmeðu ugraðenih (built-in) i korisnièki definiranih
+(user-defined) identifikatora. Samo prvo slovo bi trebalo biti veliko,
+ili ako se sastoji od vi¹e spojenih rijeèi ili kratica, poèetno slovo
+svake od rijeèi bi trebalo biti veliko - ne koristite znak za
+podvlaèenje (underscore). Kratice koje su postale dio govornog jezika
+mogu biti pisane kao takve. Na primjer, `Dos' ili `DOS'; ali uvijek
+`GPC', ne `Gpc'. Ovdje su neki primjeri identifikatora: `Copy',
+`SubStr', `BlockRead', `IOResult', `WriteLn', `Sqr', `SqRt', `EOF',
+`EOLn'.
+
+   Ova se pravila primjenjuju i na identifikatore konstanti, takoðer -
+za razliku od C makroa.
+
+   Takoðer primijetite da se vrlo mali identifikatori mogu pisati u
+cijelosti malim slovima, kao `i' ili `s1' ili `xx'. Takve kratke
+identifikatore bi trebalo koristiti samo lokalno. Mogu biti kori¹teni
+kao parametri globalnih potprograma, jer je podruèje valjanosti (engl.
+scope) takvih identifikatora takoðer lokalno, i njihova imena zapravo
+nisu od nikakva znaèaja pozivanom potprogramu. Kori¹tenje ovakvih
+identifikatora u globalnom kontekstu bi svakako trebalo izbjeæi,
+posebno u jedinicama (unit), modulima ili bibliotekama (jer autor ne
+zna u kojem æe se kontekstu koristiti).
+
+   Molimo budite konzistentni sa va¹im izborom velikih i malih slova.
+Znate da vas Pascal neæe ozlijediti ako mijenjate taj izbor kroz kod,
+ali molimo vas dr¾ite se istog izbora.
+
+   Za identifikatore za vrijednosti pobrojanih (`enum') tipova i za
+blokove konstanti, tj. mjesta gdje uvodite mnogo identifikatora mo¾e
+biti korisno koristiti dvoslovni prefiks malim slovima i `_', kao
+kontrast prethodnim pravilima:
+
+     type
+       TFooBar = (fb_Foo, fb_Bar, fb_Baz, fb_Qux);
+
+     { Moji Foo-ovi }
+     const
+       mf_Foo = 1;
+       mf_Bar = 3;
+       mf_Baz = 42;
+
+   U objektno-orijentiranom kodu (posebno u konstruktorima), èesto
+postoji potreba da parametar korespondira polju objekta (npr., da se
+proslijedi vrijednost kojom se inicijalizira polje). Buduæi da se oba
+ne mogu zvati istim imenom, polje bi trebalo imati "prirodno" ime
+buduæi da se obièno koristi u vi¹e rutina, a ime parametra bi trebalo
+biti promijenjeno (engl. "mangled") FIXME: Jo¹ nismo prona¹li zaista
+zadovoljavajuæe pravilo za ovu modifikaciju (neki koriste `a' kao
+prefiks), i ako imate bilo kakvu dobru ideju, javite nam.
+
+   ©to se makroa tièe, izrièito preporuèujemo da ih uopæe ne koristite.
+Molimo, ne koristite makroe u svojih programima. Poku¹ajte izbjeæi
+makroe u svojim programima, jer su oni zli. Vjerujemo da ne smijete
+koristiti makroe u svojem kodu. Nakon svega reèenog, ako se i dalje
+usudite koristiti makro, pi¹ite ih potpuno velikim slovima i razdvojite
+rijeèi znakom za podvlaèenje, `_'. Kako makroi ne po¹tuju Pascalove
+domene deklarirarnosti (engl. scope), ima smisla pisati ih drugaèije.
+Ovo se odnosi na uvjetne direktive, takoðer.
+
+
+File: gpcs-hr.info,  Node: Direktive prevodiocu,  Next: Razmaci,  Prev: Velika i mala slova,  Up: Programiranje u Pascalu
+
+Kori¹tenje naredbi prevodiocu
+=============================
+
+Opæenito sugeriramo kori¹tenje direktiva prevodiocu toliko malo dok je
+to jo¹ moguæe i razumno, jer one èine kod te¾im za razumijevanje (npr.
+kad provjeravate nuspojave (side-effects)) i modificiranje (npr. kad se
+pomièu dijelovi koda iz ili u podruèje djelovanja direktiva
+prevodiocu). Direktive bi trebalo pozivati kao u primjeru:
+
+     {$va¹a-direktiva-prevodiocu}
+
+   Definitivno ne ovako (*note Komentari::):
+
+     (*$nemoj-koristiti-ovakvu-direktivu*)
+
+   Takoðer, definitivno ne na ovaj naèin, koji ovisi o lomljenju linija,
+¹to sa Pascalom normalno nije sluèaj:
+
+     #va¹a-direktiva-prevodiocu
+
+   Slièno vrijedi za makro definicije:
+
+     {$define ...}
+
+   Ovo takoðer u¹teðuje pisanje obrnute kose crte prije prekidanja
+linija, kao kontrast prema `#define'. Ali vi ionako neæete koristiti
+makroe, zar ne?  (*note Velika i mala slova::)
+
+   ©to se razmaka tièe, ne tipkajte razmak ispred zatvarajuæe vitice,
+kako ne mo¾e biti jednoga niti poslije otvarajuæe vitice. Ako spajate
+mnogo direktiva zajedno, ne stavljajte razmake izmeðu svake, jedan
+zarez je dovoljan.
+
+   Unutar direktiva ne bi trebalo biti komentara. Pi¹ite ih odvojeno
+umjesto toga, kao ovdje:
+
+     {$X+}  { Trebamo extended sintaksu. }
+
+   Borland Pascal dozvoljava mije¹anje komentara s direktivama, no
+realno gledano to je pogre¹no kori¹tenje.
+
+   Kratke forme pozivanja direktiva su u redu, no duge forme su barem
+jednako dobre, ako veæ neæemo reæi preferirane. Kratke forme se moraju
+pisati velikim slovima, a du¾e malim (osim za argumente osjetljive na
+'velièinu' slova (engl. case-sensitive), kao ¹to su poruke i imena
+datoteka - naravno, imena datoteka moraju uvijek biti tretirana kao
+case-sensitive, èak i na DOSu, da se saèuva prenosivost koda).
+
+   Mo¾ete kombinirati nekoliko direktiva, takoðer i mije¹ati duge i
+kratke, u jednom jedinom pozivu, na primjer kao u slijedeæem:
+
+     {$gnu-pascal,I-,X+}
+
+   Svaka jedinica ili modul bi trebala imati `{$gnu-pascal,I-}' ili
+`{$gnu-pascal,I+}' blizu poèetka (nakon komentara u zaglavlju s opisom
+i licencom). `{$gnu-pascal}'  omoguæuje jedinici da bude prevedena bez
+opcija za dijalekte èak i ako je glavni program preveden s nekima od
+njih. `{$I-}' ili `{$I+}' govori korisniku (iako je jedno od ovog
+podrazumno stanje) da li jedinica obraðuje sama ulazno/izlazne pogre¹ke
+ili im dozvoljava da one izazovu pogre¹ke u vremenu izvoðenja (`runtime
+error'). Prvi pristup je po¾eljniji za veæinu jedinica. Za programe,
+ova stavka je opcionalna.  Rutine koji vraæaju ulazno/izlazne pogre¹ke
+bi trebale imati atribut `iocritical' (*note attribute:
+(gpc)attribute.):
+
+     procedure CriticalRoutine; attribute (iocritical);
+
+   `{$W-}' (no warnings - bez upozorenja) smije se koristiti samo
+lokalno, i mora imati "fixme" (popravi me) komentar (*note Komentari::),
+jer situacija indicira problem s kodom ili s prevodiocem.
+
+   Molimo, nemojte onemoguæivati upozorenja kad ste samo prelijeni da
+napi¹ete kod koji ne proizvodi upozorenja.
+
+   Svaka zastavica prevodioca koja nije postavljena globalno (na
+primjer, zajedno s `{$gnu-pascal}', vidi gore) treba biti postavljena s
+`{$local ...}'. Drugim rijeèima, ne ovako:
+
+     {$I-} Reset (f); {$I+}
+
+   Nego ovako:
+
+     {$local I-} Reset (f); {$endlocal}
+
+   Prvo je pogre¹no ako je `{$I-}' veæ bio postavljen. Èak i ako
+programer mo¾e znati i uzeti u obzir koje je globalno postavljeno
+stanje, ovo se mo¾e u neko vrijeme promijeniti, ili se dio koda mo¾e
+kopirati ili premjestiti. Zadnja forma je sigurnija u ovim sluèajevima.
+
+   Da bi to uèinili jo¹ i jasnijim, iz zadnja dva pravila slijedi:
+
+     {$local W-} Foo; {$endlocal}  { @ GPC proizvodi suvi¹no upozorenje }
+
+   Opet, nastojte izbjegavati lokalne direktive. `{$I-}' je ponekad
+potreban. `{$X+}' mo¾e biti kori¹ten ako je _stvarno_, _stvarno_
+neophodan (¹to je vi¹e moguæe lokalnije): izbjegavajte aritmetiku
+pokazivaèa.
+
+   Ne koristite `{$X+}' da ignorira rezultate funkcija, ne koristite
+`{$ignore-function-results}', takoðer. Previ¹e je lako da se ignorira
+rezultat koji se ne bi trebao. Ponekad, posebno kad se povezuje s
+stranim C bibliotekama, mogli biste se susresti sa funkcijama koje
+imaju suvi¹an rezultat, koji vjerojatno ne biste ¾eljeli provjeravati.
+Mo¾ete deklarirati takve funkcije s `ignorable' specijalnim atributom,
+tako da æe njihove povratne vrijednosti biti tiho ignorirane.
+
+   Koristite dummy varijable ako ¾elite ignorirati rezultat pojedinog
+poziva rekurzivne funkcije èiji rezultat ne bi trebalo ignorirati
+generalno. Ali u takvim sluèajevima provjerite pa¾ljivo da li se
+rezultat mo¾e sigurno ignorirati. Ako bi, meðutim, neoèekivan rezultat
+indicirao "nemoguæu" situaciju, obièno je bolje provjeriti rezultat i
+ispisati upozorenje o neoèekivanom sluèaju, barem ako je `DEBUG'
+definiran (*note Direktive prevodiocu::).
+
+   Direktive povezivaèu (engl. linker) tj. `{$L}' za biblioteke i C
+(ili drugi jezik) izvorne datoteke bi trebalo staviti blizu poèetka i
+brzo nakon `implementation' retka u jedinicama i modulima. Nekoliko
+biblioteka i C datoteka u jednoj direktivi su moguæi ako logièki
+pripadaju zajedno (na primjer, biblioteka i njezini C wrapperi), ali ne
+za odvojene stvari. Ovu se direktivu ne bi smjelo mije¹ati s drugim
+direktivama (¹to èak niti ne funkcionira ako `L' dolazi prvi - suprotno
+bi moglo raditi, ali se ne bi trebalo koristiti). Eksterne deklaracije
+biblioteke ili C rutina bi trebale neposredno slijediti direktivu (osim
+u jedinici ili modulu za one koje ulaze u suèelje - interface).
+Kori¹tenje `{$L}' u programima èesto nije dobra ideja, pisanje jedinice
+(`unit') je èesto dobro za apstrakciju i moguænost ponovnog kori¹tenja
+koda.
+
+   Uvjetno prevoðenje bi ponekad moglo biti korisno, ali biste trebali
+koristiti toliko malo `{$ifdef}'-ova koliko je to moguæe, buduæi da oni
+smanjuju èitljivost. Kad se kondicionali koriste zbog razlika meðu
+sistemima, provjerite znaèajke (na primjer, `__BYTES_LITTLE_ENDIAN__')
+ili grupe sistema (na primjer, `__OS_DOS__') radije nego pojedine
+sisteme, da biste bolje providjeli za sisteme koje ne poznajete ili
+koji mo¾da jo¹ i ne postoje.
+
+   Ako je moguæe (ovo mo¾da jo¹ nije na raspolaganju), koristite
+predefinirane konstante (na primjer, `BytesBigEndian', `OSDosFlag')
+radije nego `define' konstrukte za kod gdje je to moguæe - ("uvijek
+netoène" grane æe biti dokinute u optimizatoru, ali æete jo¹ uvijek
+dobiti provjeru sintakse kao dodatnu dobrobit pored èinjenice da niste
+koristili preprocesor); za deklaracije tipova ovo obièno nije moguæe i
+morat æete koristiti `define' konstrukcije. Dobar primjer je deklaracija
+tipa `TWindowXY' u CRT jedinici. Pogledajte:
+
+     TWindowXYInternalCard8 = Cardinal attribute (Size = 8);
+     TWindowXYInternalFill = Integer attribute (Size = BitSizeOf (Word) - 16);
+     TWindowXY = packed record
+       {$ifdef __BYTES_BIG_ENDIAN__}
+       Fill: TWindowXYInternalFill;
+       Y, X: TWindowXYInternalCard8
+       {$elif defined (__BYTES_LITTLE_ENDIAN__)}
+       X, Y: TWindowXYInternalCard8;
+       Fill: TWindowXYInternalFill
+       {$else}
+       {$error Endianness is not defined!}
+       {$endif}
+     end;
+
+   `DEBUG' zastavica bi se trebala koristiti samo (i ba¹ samo) za kod
+koji poma¾e uklanjanju bugova, tj. kod koji ne mijenja realnu
+funkcionalnost. Programi se moraju moæi uspje¹no prevesti sa
+postavljanjem `DEBUG' i bez njega. Prvo se mo¾e izvr¹avati sporije i
+mo¾e pru¾iti korisne dodatne poruke u pogodnom obliku, tj. jasno
+oznaèene kao debug poruke, na primjer prefiksom `DEBUG: ', i _mogu_
+prekinuti program kad detektiraju pogre¹na ili dubiozna stanja.
+
+   Kondicionali se mogu takoðer koristiti da se naprave razlièite
+verzije nekog koda, npr. koristeæi GMP brojeve ako je uvjet zadovoljen
+odnosno normalne cijele ili realne brojeve u drugom sluèaju (GMP je
+biblioteka za rad s proizvoljno velikim brojevima). U ovom sluèaju, ime
+i znaèenje svih takvih define konstrukcija mora biti obja¹njeno pri
+vrhu.  (Na primjer, vidi `__BP_TYPE_SIZES__', `__BP_RANDOM__' i
+`__BP_PARAMSTR_0__' u System jedinici.) Kod se mora ispravno prevesti s
+bilo kojom kombinacijom postavljenih kondicionala, ¹to znaèi da morate
+testirati eksponencijalno rastuæi broj sluèajeva - ovdje le¾i dobar
+razlog da se njihov broj dr¾i toliko malim koliko je to moguæe.
+
+   Druga slièna upotreba kondicionala je da se izabere izmeðu razlièitih
+implementacija. Ovu biste strategiju smjeli koristiti _samo_ ako su sve
+implementacije podr¾ane ili ih planirate podr¾ati.  U drugim
+sluèajevima, bolje je premjestiti staru implementaciju u "muzej" i
+dr¾ati kod èistim. Sve primjedbe o prevoðenju koda iz prethodnog
+pravila se takoðer primjenjuju i ovdje.
+
+   Kad trebate koristiti komplicirane kondicionale, koristite Pascal
+sintaksu, tj. formatirajte kondicionale u skladu s pravilima Pascal
+koda, radije nego prema C sintaksi. Ovo je smije¹an primjer:
+
+     {$if defined (Foo) or False}
+
+   Namjesto toga, ovo je primjer koji ne slijediti:
+
+     {$if defined (Foo) || 0}
+
+   Ili jo¹ gore:
+
+     #if defined (Foo) || 0
+
+   Specijalni kondicional se treba koristiti da se privremeno
+'zakomentira' kod. Ovdje je prikladna sintaksa:
+
+     {$if False} ... {$endif}
+
+   Standardno bi se uvjetna naredba trebala koristiti u programima ili
+jedinicama ili modulima koje distribuirate kako biste uèinili sigurnim
+da je kori¹tena ispravna verzija GNU Pascal prevodioca. Mo¾ete slijediti
+ovaj obrazac:
+
+     {$if __GPC_RELEASE__ < 20020510}
+     {$error This unit requires GPC release 20020510 or newer.}
+     {$endif}
+
+
+File: gpcs-hr.info,  Node: Razmaci,  Next: Lomljenje redaka,  Prev: Direktive prevodiocu,  Up: Programiranje u Pascalu
+
+Kako koristiti razmake u kodu
+=============================
+
+Opæenito, nikakvi se vi¹estruki razmaci ne bi trebali koristiti osim za
+uvlaèenje redaka (indentation) i osim sluèajeva opisanih ni¾e.
+
+   Jedan razmak ide prije i poslije operatora, poslije `:=' i `..', kao
+i `:' u `Write', `WriteLn' i `WriteStr'; nakon zareza i drugih upotreba
+`:'. Slijedeæi primjer bi to trebao pojasniti:
+
+     var
+       Foo: Integer;
+       ...
+     begin
+       Foo := 42;
+       WriteLn (Foo + 3 : 5, ' bar')
+     end;
+
+   Ne bi trebalo stavljati razmak prije unarnog `-'. U stvari, ove su
+forme korektne: `x - 1', `-x', `-1'.
+
+   Razmak mora iæi prije otvorene zagrade (`(') i nakon zatvarajuæe
+zagrade (`)'), osim ako nije susjedna drugoj zagradi, uglatoj zagradi,
+`^', `;', ili `,'. Drugim rijeèima, razmak ide izmeðu identifikatora
+ili kljuènih rijeèi i otvorene zagrade (`('). (Svi ostali razmaci u
+ovom primjeru se podrazumijevaju po prethodnom pravilu.) Pogledaj:
+
+     Foo (Bar^(Baz[Qux * (i + 2)]), Fred (i) + 3);
+
+   Za indeksiranje polja zapravo nemojte koristiti razmak prije otvorene
+uglaste zagrade, tj. `Foo[42]' radije nego `Foo [42]'.  Meðutim,
+umetnite razmak prije otvorene uglaste zagrade u deklaracijama polja,
+kao ovdje:
+
+     Foo: array [1 .. 42] of Integer;
+
+   Razmak dolazi prije otvorene uglaste zagrade konstruktora skupa
+(`set') u nekim situacijama - ove zagrade bi trebalo tretirati kao
+okrugle, za razliku od uglatih zagrada u indeksiranju polja.
+
+   Na primjer:
+
+     x := [0, 2 .. n];
+
+   Ali:
+
+     Foo ([1, 2, 3]);
+
+   Nema razmaka uz `.' i `^':
+
+     Rec.List^.Next^.Field := Foo
+
+   Kao ¹to smo veæ istaknuli, jedan razmak ide nakon otvorene vitice i
+nakon zatvarajuæe vitice u komentarima, ali ne i u direktivama
+prevodiocu. Takoðer, i rekli smo to veæ negdje u priruèniku, dva
+razmaka idu prije komentara nakon retka koda. Na primjer:
+
+     Inc (x);  { Increment x. }
+
+   Opcionalno mo¾ete koristiti dodatne razmake da uèinite kod
+"tabularnim".  Na¹e je mi¹ljenje da ovo jako poveæava èitljivost koda
+jer su ljudsko oko i mozak trenirani da prepoznaju takve strukture, te
+se sliènosti i razlike izmeðu redaka lak¹e uoèavaju. Takoðer, kad se
+kod mijenja, lak¹e se pronalaze povezana mjesta. Primjena ovog principa
+mo¾e se vidjeti u deklaracijama suèelja (engl. interface) (ne toliko
+primjenljivo kad su razdvojeni komentarima, ali, na primjer, kad su
+opisani zajednièkim komentarom iznad svih metoda):
+
+     function Pos             (const SubString, s: String): Integer;
+     function LastPos         (const SubString, s: String): Integer;
+     function PosCase         (const SubString, s: String): Integer;
+     function LastPosCase     (const SubString, s: String): Integer;
+     function CharPos         (const Chars: CharSet; const s: String): Integer;
+     function LastCharPos     (const Chars: CharSet; const s: String): Integer;
+     function PosFrom         (const SubString, s: String; From: Integer): Integer;
+     function LastPosTill     (const SubString, s: String; Till: Integer): Integer;
+     function PosFromCase     (const SubString, s: String; From: Integer): Integer;
+     function LastPosTillCase (const SubString, s: String; Till: Integer): Integer;
+
+   Takoðer je moguæe:
+
+     procedure Foo;
+     function  Bar ...;
+     procedure Baz;
+
+   I, naravno:
+
+     const
+       FooBar = 1;
+       Baz    = 2;
+       Quux   = 3;
+
+   Ista "tabularna" strategija kori¹tena u deklaracijama suèelja i
+konstanti mo¾e se koristiti i u inicijalizatorima:
+
+     const
+       Foo: TBarArray =
+         (('Foo'    ,  3),
+          ('Bar baz', 42),
+          (''       , -1));
+
+   I u `case' naredbama:
+
+     case ReadKeyWord of
+       kbLeft    : if s[n] > l    then Dec (s[n]) else s[n] := m[n];
+       kbRight   : if s[n] < m[n] then Inc (s[n]) else s[n] := l;
+       kbUp      : if n > 1 then Dec (n) else n := 5;
+       kbDown    : if n < 5 then Inc (n) else n := 1;
+       kbHome    : s[n] := l;
+       kbEnd     : s[n] := m[n];
+       kbPgUp,
+       kbCtrlPgUp: n := 1;
+       kbPgDn,
+       kbCtrlPgDn: n := 5;
+       kbCR      : Done := True;
+     end
+
+   I opcionalno u drugom kodu:
+
+     WriteCharAt (1, 1, 1,     Frame[1], TextAttr);
+     WriteCharAt (2, 1, w - 2, Frame[2], TextAttr);
+     WriteCharAt (w, 1, 1,     Frame[3], TextAttr);
+
+
+File: gpcs-hr.info,  Node: Lomljenje redaka,  Next: Znakovni nizovi,  Prev: Razmaci,  Up: Programiranje u Pascalu
+
+Gdje prelamati retke koda
+=========================
+
+Prijelom retka je opcionalan nakon _lokalnih_ `const', `type', `var'
+deklaracija ako one sadr¾e jedinu deklaraciju (ali je moguæe imati
+vi¹estruke identifikatore u jednom retku).
+
+     procedure Baz;
+     var Foo, Bar: Integer;
+     begin
+       ...
+     end;
+
+   Naravno, slijedeæe je takoðer prihvatljivo:
+
+     procedure Baz;
+     var
+       Foo, Bar: Integer;
+     begin
+       ...
+     end;
+
+   Ali nemojte slijediti ovaj primjer:
+
+     procedure Baz;
+     var Foo, Bar: Integer;
+         Qux: Real;
+     begin
+       ...
+     end;
+
+   Ako imate mnogo deklaracija mo¾ete prelomiti linije na nekoliko
+naèina.  Slijedi preferirani oblik za `var' deklaracije:
+
+     var
+       Foo, Bar, Baz, Qux, Quux, Corge, Grault, Garply, Waldo, Fred,
+         Plugh, Xyzzy, Thud: Integer;
+
+   ili:
+
+     var
+       Foo, Bar, Baz, Qux, Quux, Corge, Grault, Garply, Waldo: Integer;
+       Fred, Plugh, Xyzzy, Thud: Integer;
+
+   Slijedeæa je, meðutim, pogodnija za polja `record'a i javnih
+`object' polja, posebno ako uz mnoge od njih ili sve stoji komentar.
+of them:
+
+     var
+       Foo,
+       Bar,
+       Baz,
+       Qux: Integer;
+
+   Ne bi trebalo biti lomljenja linija nakon `var' deklaracija u bloku
+naredbi, jer oni dozvoljavaju samo jednu deklaraciju, a prekidanje
+retka bi izgledalo kao da su daljnje deklaracije dozvoljene.
+
+     Foo := Bar;
+     var Baz: array [1 .. Foo] of Integer;
+
+   Buduæi da su to GNU Pascal ekstenzije, koristite ovakve deklaracije
+¹tedljivo, na primjer za varijable èija velièina ovisi o vrijednostima
+izraèunatim unutar potprograma, ili za varijable unutar inicijalizatora
+jedinica (unit) ili modula, iako biste mogli po¾eljeti koristiti
+potprogram.
+
+   Ne umeæite prijelom retka nakon `label'. Pogledajte kako bi trebali
+deklarirati labele:
+
+     label Foo, Bar, Baz;
+
+   I, radi kompletnosti, ovdje je kako to _ne_ èiniti:
+
+     label
+       Foo,
+       Bar,
+       Baz;
+
+   Nekoliko deklaracija u razlièitim linijama ponekad èak i ne
+funkcioniraju:
+
+     label
+       Foo;
+       Bar;
+       Baz;
+
+   Slijedi primjer kako koristiti prijelome redaka unutar `case'
+naredbe.
+
+     case
+       foo:
+         begin
+           ...
+         end;
+       bar,
+       baz .. qux:
+         ...
+       else
+         ...
+     end;
+
+   Ili ("tabularno"):
+
+     case
+       foo:        begin
+                     ...
+                   end;
+       bar,
+       baz .. qux: ...
+       else        ...
+     end;
+
+   Duge naredbe ili deklaracije bi trebale biti prelomljene ili uvijek
+prije operatora ili uvijek poslije njih (gdje je podruèje tog 'uvijek'
+barem jedan potprogram) ili nakon zareza, s uvlaèenjem redaka takvim da
+se znaèenje uèini jasnim:
+
+     if (x = y)
+        and (foo
+             or (bar
+                 and (baz or qux))
+             or fred) then
+
+   ili:
+
+     if (x = y) and
+        (foo or
+         (bar and
+          (baz or qux)) or
+         fred) then
+
+   Ovdje je kako koristiti lomljenje redaka u if-then-else naredbama.
+Drugo kori¹tenje za njih je gdje bi koristili `case' naredbu da je
+moguæe, ali to nije sluèaj (na primjer jer tipovi nisu cjelobrojni
+(ordinal), ili jer vrijednosti koje treba usporediti nisu konstantne,
+ali ako usporedba ukljuèuje funkciju (`StrEqualCase'), ili postoje
+dodatne usporedbe).
+
+     if ... then
+       a
+     else if ... then
+       b
+     else
+       c
+
+   Ako su `a' i ne-`a' glavni sluèajevi, a `b' i `c' pod-sluèajevi od
+ne-`a', koristite slijedeæe (iako razlika mo¾e ponekada biti stvar
+ukusa):
+
+     if ... then
+       a
+     else
+       if ... then
+         b
+       else
+         c
+
+   Slijedeæi (biologijski prilièno nepotpun) primjer sadr¾i mje¹avinu
+obaju formi koju smatramo razumnom:
+
+     if Staniste = 'Voda' then
+       { ®ivotinje koje ¾ive u vodi }
+       WriteLn ('Da li je to riba?')
+     else if Staniste = 'Zrak' then
+       { ®ivotinje koje ¾ive u zraku }
+       WriteLn ('Da li je to ptica?')
+     else
+       { ®ivotinje koje ¾ive na kopnu }
+       if BrojNogu = 8 then
+         WriteLn ('Da li je to pauk?')
+       else
+         WriteLn ('Da li je to gnu?')
+
+   Glavni sluèajevi su odreðeni stani¹tem, a broj nogu razdvaja neke
+pod-sluèajeve.
+
+   Za normalne kontrolne petlje ovdje je kratka lista moguænosti:
+
+     for ... do
+       ...
+
+     while ... do
+       ...
+
+     repeat
+       ...
+     until ...
+
+   Ako je samo jedna naredba nakon `if', ili u `for' ili u `while'
+petlji, ili izmeðu `repeat' i `until', te ako je ta naredba dovoljno
+kratka, mo¾ete staviti naredbu u samo jedan redak, ovako:
+
+     if ... then ...
+
+     for ... do ...
+
+     while ... do ...
+
+     repeat ... until ...
+
+   Ovdje je kako se pona¹ati ako su umije¹ani `begin' i `end'.
+
+     if ... then
+       begin
+         ...
+       end
+
+     for ... do
+       begin
+         ...
+       end
+
+     while ... do
+       begin
+         ...
+       end
+
+   Indentacija (uvlaèenje redaka) je 2 znaka ¹iroka, za svako od
+`begin', `then', `else', `case', `do' (`for', `while', `with', `to
+begin', `to end'), `repeat', `record', `object', `type', `const',
+`var', `label'.
+
+   Tijela i lokalne varijable i sl. globalnih potprograma se ne smiju
+uvlaèiti, kao niti globalne deklaracije. Svaki ugnije¾ðeni potprogram
+(zaglavlje i tijelo) i njegove deklaracije, nasuprot tome, moraju biti
+uvuèeni.
+
+     program Prog;
+     
+     var
+       GlobalVar: Integer;
+     
+     procedure GlobalProc;
+     var LocalVar: Integer;
+     
+       procedure LocalProc;
+       var LocalLocalVar: Integer;
+       begin
+         WriteLn ('This is a local procedure.')
+       end;
+     
+     begin
+       WriteLn ('This is a global procedure.')
+     end;
+     
+     begin
+       WriteLn ('This is the main program.')
+     end.
+
+   Zapisi s promjenljivim tipom (variant record) bi trebali biti uvuèeni
+kao ¹to slijedi:
+
+     type
+       Foo = record
+         NonVariant: Foo;
+       case Discriminant: Bar of
+         Val1: (Variant1: Baz;
+                Variant2: Qux);
+         Val2: (Variant3: Fred)
+       end;
+     
+     var
+       Foo: record
+         [ kao iznad ]
+       end = [ inicijalizirajuæi dio ]
+
+   Veæa indentacija, tj. vi¹e od 2 znaka ¹iroka, mo¾e se koristiti da
+se prelamaju naredbe ili deklaracije ili da se postigne "tabularnost"
+koda.
+
+   Kondicionali (`{$ifdef}') trebaju biti na istom nivou indentacije
+kao i kod na koji utjeèu:
+
+     begin
+       {$ifdef DEBUG}
+       WriteLn ('Debugging verzija');
+       {$endif}
+       ...
+     end;
+
+   Kratki kondicionali koji pogaðaju samo jedan izraz mogu se napisati
+unutar jednog retka:
+
+     Foo := {$ifdef DEBUG} 'debug' {$else} 'release verzija' {$endif};
+
+   Ako ih se namjerno koristi na naèin protivan normalnim sintaksnim
+pravilima, stavite ih tamo gdje izgleda da najbolje pristaju i napi¹ite
+komentar:
+
+     begin
+       { Izvr¹i kod bezuvjetno ako je debugging verzija }
+       {$ifndef DEBUG}
+       if NekiUvjet then
+       {$endif}
+         begin
+           ...
+         end
+     end;
+
+   U veæini æete situacija pronaæi ljep¹i i ne manje efikasan naèin
+pisanja istih naredbi. U ovom sluèaju, to se mo¾e uèiniti na ovaj naèin:
+
+     begin
+       if {$ifdef DEBUG} True {$else} NekiUvjet {$endif} then
+         begin
+           ...
+         end
+     end;
+
+   Ili jo¹ bolje:
+
+     { globally }
+     const
+       DebugFlag = {$ifdef DEBUG} True {$else} False {$endif};
+     
+     begin
+       if DebugFlag or NekiUvjet then
+         begin
+           ...
+         end
+     end;
+
+
+File: gpcs-hr.info,  Node: Znakovni nizovi,  Next: Internacionalizacija,  Prev: Lomljenje redaka,  Up: Programiranje u Pascalu
+
+Znakovni nizovi
+===============
+
+Veæina pravila koja smo pokrili dosad ne djeluju unutar znakovnih
+nizova. Opæenito, poruke sadr¾ane u nizovima trebaju slijediti pravila
+iz teksta GNU Coding standards, na primjer, stavite citirana imena
+unutar ``' i `'', iako to znaèi da æete morati podvostruèiti `'' u
+Pascal nizovima. *Note Errors: (standards)Errors, za vi¹e informacija.
+
+   Normalno biste trebali koristiti nizove omeðene jednostrukim
+navodnicima, kao `'ovo je lijep niz kojeg èitate''. Koristite nizove u
+dvostrukim navodnicima kad trebate escape sekvence u C stilu kao npr.
+`"\t"'. Primijetite da je `NewLine' (`"\n"') predefiniran, tako da je
+preporuèljivo koristiti `NewLine' osim ako ne morate koristiti niz u C
+stilu za druge svrhe.
+
+   Niz koji zauzima vi¹e redaka mo¾ete koristiti ovako:
+
+     WriteLn ('Bok
+     svijete')
+
+   ili (mo¾da bolje, posebno ako tekst u nizu sadr¾i paragrafe i/ili
+uvlaèenje redaka sam po sebi):
+
+     WriteLn (
+     'Bok
+     svijete')
+
+   Meðutim, takoðer je moguæe koristiti:
+
+     WriteLn ('Pozdrav' + NewLine + 'svijete')
+
+   (Primijetite da se gornji primjer neæe prevesti bez kori¹tenja `GPC'
+jedinice (unit)).
+
+   Ili, naravno:
+
+     WriteLn ('Pozdrav');
+     WriteLn ('svijete')
+
+   Ako ¾elite provjeriti da li je niz prazan, koristite slijedeæu
+sintaksu:
+
+     if s = '' then
+       ...
+
+   GNU Pascal prevodilac æe ovo optimizirati u slijedeæi vi¹e efikasan
+test, stoga mo¾ete koristiti prethodni, kraæi, bez kajanja:
+
+     if Length (s) = 0 then
+       ...
+
+   Ovo se odnosi i na `<>', naravno, èak i za pridru¾ivanja gdje je `s
+:= ''' preporuèeni oblik i biti æe optimiran od strane GPC-a u
+`SetLength (s, 0)'.
+
+
+File: gpcs-hr.info,  Node: Internacionalizacija,  Next: MemoryMap,  Prev: Znakovni nizovi,  Up: Programiranje u Pascalu
+
+Tehnike za internacionalizaciju
+===============================
+
+Molimo pogledajte u GPC manualu o tome kako se internacionalizacija
+programa izvodi (*note I18N: (gpc)I18N.).
+
+
+File: gpcs-hr.info,  Node: MemoryMap,  Prev: Internacionalizacija,  Up: Programiranje u Pascalu
+
+MemoryMap
+=========
+
+Ovaj se odsjeèak GNU Coding Standards takoðer odnosi na GNU Pascal.
+Samo se prisjetite da `mmap' zapravo znaèi `MemoryMap' u tom kontekstu.
+*Note Mmap: (standards)Mmap.
+
+
+File: gpcs-hr.info,  Node: Dokumentacija,  Next: Izdanja programa,  Prev: Programiranje u Pascalu,  Up: Top
+
+Dokumentiranje programa
+***********************
+
+Preporuèujemo èitanje odgovarajuæih poglavlja u tekstu GNU Coding
+Standards, kako se ona primjenjuju takoðer i u ovom kontekstu.  *Note
+Documentation: (standards)Documentation. Meðutim, postoje neke primjedbe
+vrijedne spominjanja ovdje.
+
+   ©to se man stranica tièe, bilo bi dobro imati jednu koja ukazuje na
+Info dokumentaciju. Postoji GNU program, zvan `help2man', koji generira
+man stranicu na osnovi `--help' ispisa programa.  Radi dobro, osim ¹to
+uvijek ispisuje `FSF' ¹to nije toèno za sve programe prevedene s GNU
+Pascal prevodiocem, ali se izlaz lako mo¾e promijeniti (na primjer,
+automatski, koristeæi `sed').
+
+   Meðutim, ne ula¾ite previ¹e napora u man stranice. One mogu biti
+rje¹iv problem u poèetku, ali odr¾avati ih konzistentnim s Texinfo
+datotekama znaèi mnogo posla. Povrh svega, ako ih ne dr¾ite a¾urnim
+vjerojatnije je da æe kreirati vi¹e konfuzije nego ¹to æe biti od
+pomoæi.
+
+   S jedne strane, ako su man stranice previ¹e skraæene vjerojatno æe
+im nedostajati va¾ne informacije. S druge strane, ako nisu skraæene,
+postaju te¹ke za navigaciju.
+
+   Drugim rijeèima, posvetite se Info (tj. Texinfo) dokumentaciji.
+
+
+File: gpcs-hr.info,  Node: Izdanja programa,  Next: Rjeènik pojmova,  Prev: Dokumentacija,  Up: Top
+
+Proces izdanja verzija softwarea
+********************************
+
+Molimo proèitajte odgovarajuæe poglavlje u GNU Coding Standards.
+Primijetite da veliki napori sa auto-alatkama C-a nisu neophodni za
+normalne GNU Pascal programe. Makefile datoteke takoðer èesto nisu
+neophodne u GNU Pascalu. *Note Managing Releases: (standards)Managing
+Releases.
+
+* Menu:
+
+* Makefile konvencije::            Konvencije Makefile datoteka
+
+
+File: gpcs-hr.info,  Node: Makefile konvencije,  Up: Izdanja programa
+
+Konvencije Makefile datoteka
+============================
+
+Za va¹ Pascal projekt vjerojatno neæete trebati velike `Makefile'
+datoteke i neæete trebati koristiti `autoconf' ili `automake'.  Mo¾ete
+proslijediti `--automake' GNU Pascal prevodiocu tako da prevodilac vodi
+brigu o meðusobnim zavisnostima za vas. (U vrijeme dok ovo pi¹emo,  GNU
+Pascalov `automake' ima nekih manjih bugova, ali æe oni biti
+ispravljeni. Takoðer, postoji i plan za alatku zvanu `gp', koja je u
+razvoju, koja bi jo¹ uvelike pojednostavnila proces kompilacije.
+Ostanite na vezi. U svakom sluèaju, obièno neæete trebati pisati
+kompleksne `Makefile' datoteke sami.)
+
+   _Jednostavan_ Makefile mo¾e biti u redoslijedu kao:
+
+     GPC_FLAGS=-O2
+     
+     all: foo
+     
+     foo: foo.pas unit1.pas
+     	gpc --automake $(GPC_FLAGS) foo.pas
+     
+     mostlyclean:
+     	-rm -f *.o *.gpi *.gpd core
+     
+     clean: mostlyclean
+     	-rm -f foo
+     
+     distclean: clean
+     
+     extraclean: distclean
+     	-rm -f *~*
+     
+     maintainer-clean: extraclean
+
+   Mogli biste, meðutim, po¾eljeti da stavite druga pravila u `Makefile'
+za izgradnju dokumentacije, podatkovnih datoteka, izradu distribucija i
+slièno. Takve stvari su izvan podruèja ovog teksta. Obièno mo¾ete
+izvesti Pascal kompilacije s jednim jedinim `gpc --automake' pozivom po
+programu.
+
+
+File: gpcs-hr.info,  Node: Rjeènik pojmova,  Next: Indeks,  Prev: Izdanja programa,  Up: Top
+
+Rjeènik pojmova kori¹tenih kroz tekst
+*************************************
+
+Rutine (potprogrami) su ili `procedure', ili funkcije (`function'), ili
+konstruktori (`constructor'), ili destruktori (`destructor'), ili
+korisnièki definirani operatori.
+
+   Deklaracije su oni dijelovi programa koji "najavljuju" postojanje i
+svojstva odreðenih objekata kao ¹to su konstante, tipovi, varijable,
+rutine, jedinice (unit), moduli i sam program.
+
+   Naredbe su dijelovi programa koji zapravo "rade" ne¹to.  Pojedina
+naredba je ili dodjela vrijednosti, ili poziv procedure, ili naredba za
+skok (`goto', `Exit', `Return', `Break', `Continue'), ili asemblerska
+naredba, ili slo¾ena naredba (`begin' ... `end', `if', `case',
+`repeat', `while', `for', `with') koja opet mo¾e sadr¾avati jednu ili
+nekoliko naredbi.
+
+   Identifikatori su takvi jezièni elementi koji daju imena objektima
+kao ¹to su rutine, konstante, tipovi, varijable, jedinice (unit),
+moduli.  Oni mogu biti (lokalno) redefinirani, za razliku od kljuènih
+rijeèi koje su dio fiksnih sintaktièkih konstrukcija (na primjer `if'
+...  `then' ... `else') i ne mogu biti redefinirani. Makro naredbe nisu
+jezièki elementi buduæi da su ekspandirani u preprocesoru i prevodilac
+ih nikada niti ne vidi.
+
+   Endianness znaèi poredak u kojem su bajtovi vrijednosti du¾ih od
+jedne rijeèi smje¹tene u memoriju. Ovo pogaða, npr. cjelobrojne
+vrijednosti i pokazivaèe dok, npr. polja jednobajtnih znakova nisu time
+pogoðena. (*note Endianness: (gpc)Endianness.)
+
+   _Primijeti:_ I druge se stavke mogu dodati ovdje ako vam se to èini
+korisnim. Ako biste ¾eljeli definiciju nekog drugog pojma, dajte nam do
+znanja.
+
+
+File: gpcs-hr.info,  Node: Indeks,  Prev: Rjeènik pojmova,  Up: Top
+
+Indeks
+******
+
+* Menu:
+
+* assert:                                Provjera konzistentnosti.
+* beskonaène petlje:                     Izabrane natuknice.
+* blanks:                                Formatiranje.
+* Booleove varijable:                    Izabrane natuknice.
+* case naredba i lomljenje redaka:       Lomljenje redaka.
+* consistency checking:                  Provjera konzistentnosti.
+* debug zastavica:                       Direktive prevodiocu.
+* declaracijski blokovi:                 Redoslijed.
+* deklaracije unutar object tipova:      Redoslijed.
+* deklaracije unutar type deklaracija:   Redoslijed.
+* deklaracije varijabli:                 Redoslijed.
+* deskripcijski komentari:               Komentari.
+* direktive i komentari:                 Direktive prevodiocu.
+* direktive povezivaèu (linkeru):        Direktive prevodiocu.
+* direktive prevodiocu:                  Direktive prevodiocu.
+* dizajn programa:                       Savjeti glede dizajna.
+* dokumentacija:                         Dokumentacija.
+* download standarda kodiranja:          Uvod.
+* duljina retka:                         Formatiranje.
+* enum tipovi:                           Velika i mala slova.
+* feedback:                              Uvod.
+* fixme komentari:                       Komentari.
+* formatiranje izvornog koda:            Formatiranje.
+* gdje nabaviti GPCS:                    Uvod.
+* globalne varijable:                    Izabrane natuknice.
+* header translator:                     Pascal i C.
+* if then else naredbe i prelamanje redaka: Lomljenje redaka.
+* internacionalizacija:                  Internacionalizacija.
+* izabrane natuknice:                    Izabrane natuknice.
+* izdanja:                               Izdanja programa.
+* izmje¹tanje komentara:                 Komentari.
+* jezik kori¹ten u komentarima:          Komentari.
+* komentari eksternog izvornog koda:     Komentari.
+* komentari o kodu koji nije oèigledan:  Komentari.
+* komentari s formatiranjem:             Komentari.
+* komentari za razdvajanje logiènih dijelova: Komentari.
+* komentiranje:                          Komentari.
+* kompajliranje C koda:                  Pascal i C.
+* kondicionali i GPC verzija:            Direktive prevodiocu.
+* kondicionali i razlièite implementacije: Direktive prevodiocu.
+* kondicionali i razlièite verzije:      Direktive prevodiocu.
+* konstante:                             Velika i mala slova.
+* kontrolne petlje:                      Lomljenje redaka.
+* kontrolni znakovi:                     Formatiranje.
+* lokalne direktive:                     Direktive prevodiocu.
+* lomljenje dugih redaka:                Lomljenje redaka.
+* lomljenje redaka:                      Lomljenje redaka.
+* makefile konvencije:                   Makefile konvencije.
+* MemoryMap:                             MemoryMap.
+* nestandardne ekstenzije:               Kori¹tenje ekstenzija.
+* no-warning direktiva:                  Direktive prevodiocu.
+* OOP:                                   Velika i mala slova.
+* opisni komentari:                      Komentari.
+* Pascal i C:                            Pascal i C.
+* povezivanje s C bibliotekama:          Pascal i C.
+* pravni aspekti:                        Pravne zaèkoljice.
+* prazni retci:                          Formatiranje.
+* prevodilac header datoteka:            Pascal i C.
+* prevoðenje C koda:                     Pascal i C.
+* programski jezici:                     Programski jezik.
+* provjera konzistentnosti:              Provjera konzistentnosti.
+* provjera povratnih vrijednosti funkcija: Direktive prevodiocu.
+* provjere gre¹aka:                      Pona¹anje programa.
+* razmaci i labele:                      Lomljenje redaka.
+* razmaci u direktivama:                 Direktive prevodiocu.
+* razmaci u komentarima:                 Komentari.
+* razmaci, tabularni kod:                Razmaci.
+* redoslijed:                            Redoslijed.
+* redoslijed u implementation dijelu:    Redoslijed.
+* rjeènik pojmova:                       Rjeènik pojmova.
+* signalne funkcije:                     Pona¹anje programa.
+* slo¾eni kondicionali:                  Direktive prevodiocu.
+* smije¹ni komentari:                    Komentari.
+* spaces:                                Formatiranje.
+* standardne direktive:                  Direktive prevodiocu.
+* stringovi:                             Znakovni nizovi.
+* tabularni kod, razmaci:                Razmaci.
+* trivijalni komentari:                  Komentari.
+* ugnije¾ðeni komentari:                 Komentari.
+* uvjetno prevoðenje:                    Direktive prevodiocu.
+* uvlaèenje redaka ili indentacija:      Lomljenje redaka.
+* Va¹ doprinos ovom dokumentu:           Uvod.
+* velika i mala slova:                   Velika i mala slova.
+* velika i mala slova u identifikatorima: Velika i mala slova.
+* velika i mala slova u imenima konstanti: Velika i mala slova.
+* velika i mala slova u imenima makroa:  Velika i mala slova.
+* wrapperi:                              Pascal i C.
+* zakomentiranje:                        Komentari.
+* zakomentiranje dijelova koda:          Direktive prevodiocu.
+* zakuèasti ("tricky") komentari:        Komentari.
+* Znakovni nizovi:                       Znakovni nizovi.
+
+
+
+Tag Table:
+Node: Top972
+Node: Uvod1646
+Node: Pravne zaèkoljice4408
+Node: Savjeti glede dizajna4816
+Node: Programski jezik5297
+Node: Pascal i C5952
+Node: Kori¹tenje ekstenzija8452
+Node: Pona¹anje programa13333
+Node: Programiranje u Pascalu17192
+Node: Izabrane natuknice18641
+Node: Provjera konzistentnosti24614
+Node: Formatiranje27017
+Node: Komentari30431
+Node: Redoslijed38152
+Node: Velika i mala slova42792
+Node: Direktive prevodiocu46647
+Node: Razmaci56298
+Node: Lomljenje redaka60704
+Node: Znakovni nizovi68277
+Node: Internacionalizacija70073
+Node: MemoryMap70372
+Node: Dokumentacija70662
+Node: Izdanja programa71957
+Node: Makefile konvencije72482
+Node: Rjeènik pojmova73883
+Node: Indeks75627
+
+End Tag Table

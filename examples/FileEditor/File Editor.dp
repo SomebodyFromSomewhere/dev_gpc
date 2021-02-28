@@ -1,0 +1,13 @@
+[Project]
+FileName=c:\dev_gpc\Examples\FileEditor\File Editor.dp
+Name=File Editor
+MainUnit=c:\dev_gpc\Examples\FileEditor\Main.pp
+UnitCount=1
+ResFiles=c:\dev_gpc\Examples\FileEditor\rsrc.rc
+NoConsole=0
+IsDll=0
+Icon=c:\dev_gpc\BIN\Mainicon.ico
+
+[Unit1]
+FileName=c:\dev_gpc\Examples\FileEditor\Main.pp
+FileTime=690798376

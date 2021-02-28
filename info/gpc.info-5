@@ -1,0 +1,1066 @@
+This is ../../gcc/p/doc/info/gpc.info, produced by makeinfo version 4.6
+from gpc.texi.
+
+INFO-DIR-SECTION GNU programming tools
+START-INFO-DIR-ENTRY
+* GPC: (gpc).                   The GNU Pascal Compiler.
+END-INFO-DIR-ENTRY
+INFO-DIR-SECTION Individual utilities
+START-INFO-DIR-ENTRY
+* GPC: (gpc)Invoking GPC.       The GNU Pascal Compiler.
+END-INFO-DIR-ENTRY
+
+   This file documents the GNU Pascal Compiler.
+
+   Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+   Copyright (C) 1988-2006 Free Software Foundation, Inc.
+
+   Permission is granted to copy and distribute modified versions of
+this manual under the conditions for verbatim copying, provided also
+that the sections entitled "GNU General Public License", "The GNU
+Project", "The GNU Manifesto" and "Funding for free Software" are
+included exactly as in the original, and provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+   Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for modified
+versions, except that the sections entitled "GNU General Public
+License", "The GNU Project", "The GNU Manifesto" and "Funding for Free
+Software" and this permission notice, may be included in translations
+approved by the Free Software Foundation instead of in the original
+English.
+
+
+File: gpc.info,  Node: Index-GPC,  Prev: GNU,  Up: Top
+
+Index-GPC
+*********
+
+* Menu:
+
+* * <1>:                                 Complex Number Operations.
+* *:                                     Set Operations.
+* **:                                    Complex Number Operations.
+* + <1>:                                 String Operations.
+* + <2>:                                 Set Operations.
+* +:                                     Complex Number Operations.
+* - <1>:                                 Complex Number Operations.
+* -:                                     Set Operations.
+* -A:                                    GPC Command Line Options.
+* -amtmpfile:                            GPC Command Line Options.
+* -assertions:                           GPC Command Line Options.
+* -autobuild:                            GPC Command Line Options.
+* -autolink:                             GPC Command Line Options.
+* -automake:                             GPC Command Line Options.
+* -automake-g++:                         GPC Command Line Options.
+* -automake-gcc:                         GPC Command Line Options.
+* -automake-gpc:                         GPC Command Line Options.
+* -big-endian:                           GPC Command Line Options.
+* -borland-objects:                      GPC Command Line Options.
+* -borland-pascal:                       GPC Command Line Options.
+* -case-value-checking:                  GPC Command Line Options.
+* -cidefine:                             GPC Command Line Options.
+* -classic-pascal:                       GPC Command Line Options.
+* -classic-pascal-level-0:               GPC Command Line Options.
+* -csdefine:                             GPC Command Line Options.
+* -cstrings-as-strings:                  GPC Command Line Options.
+* -debug-automake:                       GPC Command Line Options.
+* -debug-gpi:                            GPC Command Line Options.
+* -debug-source:                         GPC Command Line Options.
+* -debug-tree:                           GPC Command Line Options.
+* -delphi:                               GPC Command Line Options.
+* -delphi-comments:                      GPC Command Line Options.
+* -delphi-method-shadowing:              GPC Command Line Options.
+* -disable-debug-info:                   GPC Command Line Options.
+* -disable-default-paths:                GPC Command Line Options.
+* -disable-keyword:                      GPC Command Line Options.
+* -disable-predefined-identifier:        GPC Command Line Options.
+* -double-quoted-strings:                GPC Command Line Options.
+* -E:                                    GPC Command Line Options.
+* -enable-keyword:                       GPC Command Line Options.
+* -enable-predefined-identifier:         GPC Command Line Options.
+* -exact-compare-strings:                GPC Command Line Options.
+* -executable-file-name:                 GPC Command Line Options.
+* -executable-path:                      GPC Command Line Options.
+* -extended-pascal:                      GPC Command Line Options.
+* -extended-syntax:                      GPC Command Line Options.
+* -field-widths:                         GPC Command Line Options.
+* -gnu-objects:                          GPC Command Line Options.
+* -gnu-pascal:                           GPC Command Line Options.
+* -gpc-main <1>:                         GPC Command Line Options.
+* -gpc-main:                             Importing Libraries from Other Languages.
+* -gpi-destination-path:                 GPC Command Line Options.
+* -H:                                    GPC Command Line Options.
+* -ignore-function-results:              GPC Command Line Options.
+* -ignore-garbage-after-dot:             GPC Command Line Options.
+* -ignore-packed:                        GPC Command Line Options.
+* -implementation-only:                  GPC Command Line Options.
+* -implicit-result:                      GPC Command Line Options.
+* -init-modules:                         GPC Command Line Options.
+* -interface-only:                       GPC Command Line Options.
+* -io-checking:                          GPC Command Line Options.
+* -iso-goto-restrictions:                GPC Command Line Options.
+* -little-endian:                        GPC Command Line Options.
+* -longjmp-all-nonlocal-labels:          GPC Command Line Options.
+* -mac-objects:                          GPC Command Line Options.
+* -mac-pascal:                           GPC Command Line Options.
+* -macros:                               GPC Command Line Options.
+* -maximum-field-alignment:              GPC Command Line Options.
+* -methods-always-virtual:               GPC Command Line Options.
+* -mixed-comments:                       GPC Command Line Options.
+* -nested-comments:                      GPC Command Line Options.
+* -no-assertions:                        GPC Command Line Options.
+* -no-autobuild:                         GPC Command Line Options.
+* -no-autolink:                          GPC Command Line Options.
+* -no-automake:                          GPC Command Line Options.
+* -no-case-value-checking:               GPC Command Line Options.
+* -no-cstrings-as-strings:               GPC Command Line Options.
+* -no-debug-source:                      GPC Command Line Options.
+* -no-delphi-comments:                   GPC Command Line Options.
+* -no-delphi-method-shadowing:           GPC Command Line Options.
+* -no-double-quoted-strings:             GPC Command Line Options.
+* -no-exact-compare-strings:             GPC Command Line Options.
+* -no-executable-path:                   GPC Command Line Options.
+* -no-extended-syntax:                   GPC Command Line Options.
+* -no-field-widths:                      GPC Command Line Options.
+* -no-ignore-function-results:           GPC Command Line Options.
+* -no-ignore-garbage-after-dot:          GPC Command Line Options.
+* -no-ignore-packed:                     GPC Command Line Options.
+* -no-implicit-result:                   GPC Command Line Options.
+* -no-io-checking:                       GPC Command Line Options.
+* -no-iso-goto-restrictions:             GPC Command Line Options.
+* -no-longjmp-all-nonlocal-labels:       GPC Command Line Options.
+* -no-macros:                            GPC Command Line Options.
+* -no-methods-always-virtual:            GPC Command Line Options.
+* -no-mixed-comments:                    GPC Command Line Options.
+* -no-nested-comments:                   GPC Command Line Options.
+* -no-nonlocal-exit:                     GPC Command Line Options.
+* -no-object-checking:                   GPC Command Line Options.
+* -no-object-destination-path:           GPC Command Line Options.
+* -no-object-path:                       GPC Command Line Options.
+* -no-objects-are-references:            GPC Command Line Options.
+* -no-objects-require-override:          GPC Command Line Options.
+* -no-pedantic:                          GPC Command Line Options.
+* -no-pointer-arithmetic:                GPC Command Line Options.
+* -no-pointer-checking:                  GPC Command Line Options.
+* -no-pointer-checking-user-defined:     GPC Command Line Options.
+* -no-progress-bar:                      GPC Command Line Options.
+* -no-progress-messages:                 GPC Command Line Options.
+* -no-propagate-units:                   GPC Command Line Options.
+* -no-range-and-object-checking:         GPC Command Line Options.
+* -no-range-checking:                    GPC Command Line Options.
+* -no-read-base-specifier:               GPC Command Line Options.
+* -no-read-hex:                          GPC Command Line Options.
+* -no-read-white-space:                  GPC Command Line Options.
+* -no-short-circuit:                     GPC Command Line Options.
+* -no-stack-checking:                    GPC Command Line Options.
+* -no-transparent-file-names:            GPC Command Line Options.
+* -no-truncate-strings:                  GPC Command Line Options.
+* -no-typed-address:                     GPC Command Line Options.
+* -no-unit-destination-path:             GPC Command Line Options.
+* -no-unit-path:                         GPC Command Line Options.
+* -no-write-capital-exponent:            GPC Command Line Options.
+* -no-write-clip-strings:                GPC Command Line Options.
+* -no-write-real-blank:                  GPC Command Line Options.
+* -nonlocal-exit:                        GPC Command Line Options.
+* -nostdinc:                             GPC Command Line Options.
+* -object-checking:                      GPC Command Line Options.
+* -object-destination-path:              GPC Command Line Options.
+* -object-pascal:                        GPC Command Line Options.
+* -object-path:                          GPC Command Line Options.
+* -objects-are-references:               GPC Command Line Options.
+* -objects-require-override:             GPC Command Line Options.
+* -ooe-objects:                          GPC Command Line Options.
+* -P:                                    GPC Command Line Options.
+* -pascal-sc:                            GPC Command Line Options.
+* -pedantic:                             GPC Command Line Options.
+* -pointer-arithmetic:                   GPC Command Line Options.
+* -pointer-checking:                     GPC Command Line Options.
+* -pointer-checking-user-defined:        GPC Command Line Options.
+* -preprocessed:                         GPC Command Line Options.
+* -print-needed-options:                 GPC Command Line Options.
+* -progress-bar:                         GPC Command Line Options.
+* -progress-messages:                    GPC Command Line Options.
+* -propagate-units:                      GPC Command Line Options.
+* -range-and-object-checking:            GPC Command Line Options.
+* -range-checking:                       GPC Command Line Options.
+* -read-base-specifier:                  GPC Command Line Options.
+* -read-hex:                             GPC Command Line Options.
+* -read-white-space:                     GPC Command Line Options.
+* -remap:                                GPC Command Line Options.
+* -setlimit:                             GPC Command Line Options.
+* -short-circuit:                        GPC Command Line Options.
+* -stack-checking:                       GPC Command Line Options.
+* -standard-pascal:                      GPC Command Line Options.
+* -standard-pascal-level-0:              GPC Command Line Options.
+* -sun-pascal:                           GPC Command Line Options.
+* -transparent-file-names:               GPC Command Line Options.
+* -truncate-strings:                     GPC Command Line Options.
+* -typed-address:                        GPC Command Line Options.
+* -ucsd-pascal:                          GPC Command Line Options.
+* -unit-destination-path:                GPC Command Line Options.
+* -unit-path:                            GPC Command Line Options.
+* -uses:                                 GPC Command Line Options.
+* -vax-pascal:                           GPC Command Line Options.
+* -Wabsolute:                            GPC Command Line Options.
+* -Wdynamic-arrays:                      GPC Command Line Options.
+* -Wfloat-equal:                         GPC Command Line Options.
+* -Widentifier-case:                     GPC Command Line Options.
+* -Widentifier-case-local:               GPC Command Line Options.
+* -Wimplicit-abstract:                   GPC Command Line Options.
+* -Wimplicit-io:                         GPC Command Line Options.
+* -Winherited-abstract:                  GPC Command Line Options.
+* -Winterface-file-name:                 GPC Command Line Options.
+* -Wlocal-external:                      GPC Command Line Options.
+* -Wmixed-comments:                      GPC Command Line Options.
+* -Wnear-far:                            GPC Command Line Options.
+* -Wnested-comments:                     GPC Command Line Options.
+* -Wno-absolute:                         GPC Command Line Options.
+* -Wno-dynamic-arrays:                   GPC Command Line Options.
+* -Wno-float-equal:                      GPC Command Line Options.
+* -Wno-identifier-case:                  GPC Command Line Options.
+* -Wno-identifier-case-local:            GPC Command Line Options.
+* -Wno-implicit-abstract:                GPC Command Line Options.
+* -Wno-implicit-io:                      GPC Command Line Options.
+* -Wno-inherited-abstract:               GPC Command Line Options.
+* -Wno-interface-file-name:              GPC Command Line Options.
+* -Wno-local-external:                   GPC Command Line Options.
+* -Wno-mixed-comments:                   GPC Command Line Options.
+* -Wno-near-far:                         GPC Command Line Options.
+* -Wno-nested-comments:                  GPC Command Line Options.
+* -Wno-object-assignment:                GPC Command Line Options.
+* -Wno-semicolon:                        GPC Command Line Options.
+* -Wno-typed-const:                      GPC Command Line Options.
+* -Wno-underscore:                       GPC Command Line Options.
+* -Wno-warnings:                         GPC Command Line Options.
+* -Wobject-assignment:                   GPC Command Line Options.
+* -write-capital-exponent:               GPC Command Line Options.
+* -write-clip-strings:                   GPC Command Line Options.
+* -write-real-blank:                     GPC Command Line Options.
+* -Wsemicolon:                           GPC Command Line Options.
+* -Wtyped-const:                         GPC Command Line Options.
+* -Wunderscore:                          GPC Command Line Options.
+* -Wwarnings:                            GPC Command Line Options.
+* /:                                     Complex Number Operations.
+* <:                                     Set Operations.
+* <=:                                    Set Operations.
+* <>:                                    Set Operations.
+* =:                                     Set Operations.
+* >:                                     Set Operations.
+* ><:                                    Set Operations.
+* >=:                                    Set Operations.
+* Abs:                                   Abs.
+* absolute <1>:                          Keywords.
+* absolute:                              absolute.
+* abstract <1>:                          abstract.
+* abstract:                              Keywords.
+* Acknowledgments:                       Acknowledgments.
+* Addr:                                  Addr.
+* alignment:                             AlignOf.
+* Alignment, Type Implementation:        Alignment.
+* AlignOf:                               AlignOf.
+* all <1>:                               all.
+* all <2>:                               export.
+* all:                                   Keywords.
+* and <1>:                               Operations for Integer and Ordinal Types.
+* and <2>:                               Keywords.
+* and:                                   and.
+* and then:                              and then.
+* and_then <1>:                          Keywords.
+* and_then:                              and_then.
+* ANSI:                                  Resources.
+* AnsiChar:                              AnsiChar.
+* AnyFile:                               AnyFile.
+* Append:                                Append.
+* ArcCos <1>:                            Complex Number Operations.
+* ArcCos:                                ArcCos.
+* Archives, mailing list:                Mailing List Archives.
+* ArcSin <1>:                            Complex Number Operations.
+* ArcSin:                                ArcSin.
+* ArcTan <1>:                            Complex Number Operations.
+* ArcTan:                                ArcTan.
+* Arg <1>:                               Arg.
+* Arg:                                   Complex Number Operations.
+* arguments, command line:               Accessing Command Line Arguments.
+* array <1>:                             Keywords.
+* array:                                 array.
+* Array Types, Data Types:               Array Types.
+* array, conformant:                     Conformant Arrays.
+* array, open:                           Open Arrays.
+* array, slice access:                   String Slice Access.
+* as <1>:                                as.
+* as:                                    Keywords.
+* asm <1>:                               Keywords.
+* asm:                                   asm.
+* asm, Statements, Source Structure:     asm Inline.
+* asmname <1>:                           Keywords.
+* asmname:                               asmname.
+* Assert:                                Assert.
+* Assign:                                Assign.
+* Assigned:                              Assigned.
+* Assignment, Statements, Source Structure: Assignment.
+* attribute <1>:                         attribute.
+* attribute:                             Keywords.
+* authors:                               Acknowledgments.
+* Automake, internals:                   Automake.
+* begin <1>:                             Keywords.
+* begin:                                 begin.
+* begin end, Statements, Source Structure: begin end Compound Statement.
+* binary distributions, installing:      Binary Distributions.
+* Bind <1>:                              File Routines.
+* Bind:                                  Bind.
+* bindable <1>:                          bindable.
+* bindable:                              Keywords.
+* Binding <1>:                           File Routines.
+* Binding:                               Binding.
+* BindingType:                           BindingType.
+* bits:                                  BitSizeOf.
+* BitSizeOf:                             BitSizeOf.
+* Blaise Pascal:                         Resources.
+* BlockRead:                             BlockRead.
+* BlockWrite:                            BlockWrite.
+* book:                                  Resources.
+* Boolean:                               Boolean.
+* Boolean, Intrinsic, Data Types:        Boolean (Intrinsic).
+* BP character constants, internals <1>: BP character constants.
+* BP character constants, internals:     Compiler directives internally.
+* Break:                                 Break.
+* bugs:                                  Support.
+* Bugs, reporting:                       Reporting Bugs.
+* Built-in:                              Library Routines.
+* Byte:                                  Byte.
+* ByteBool:                              ByteBool.
+* ByteCard:                              ByteCard.
+* ByteInt:                               ByteInt.
+* c <1>:                                 Keywords.
+* c:                                     c.
+* C:                                     Other Languages.
+* c_language <1>:                        c_language.
+* c_language:                            Keywords.
+* Card <1>:                              Card.
+* Card:                                  Set Operations.
+* Cardinal:                              Cardinal.
+* case <1>:                              Keywords.
+* case:                                  case.
+* case, Statements, Source Structure:    case Statement.
+* CBoolean:                              CBoolean.
+* CCardinal:                             CCardinal.
+* Char:                                  Char.
+* Char, Intrinsic, Data Types:           Character Types.
+* character constants, internals <1>:    Compiler directives internally.
+* character constants, internals:        BP character constants.
+* ChDir:                                 ChDir.
+* Chr:                                   Chr.
+* CInteger:                              CInteger.
+* class <1>:                             Keywords.
+* class:                                 class.
+* Classic Pascal:                        Resources.
+* Close:                                 Close.
+* Cmplx <1>:                             Complex Number Operations.
+* Cmplx:                                 Cmplx.
+* command line arguments:                Accessing Command Line Arguments.
+* command line options:                  Invoking GPC.
+* Commercial Support:                    Professional Support.
+* Comp:                                  Comp.
+* Compilation notes for specific platforms: Compilation Notes.
+* Compiler Crashes:                      Compiler Crashes.
+* compiler directives:                   Compiler Directives.
+* Compiler directives, internals:        Compiler directives internally.
+* CompilerAssert:                        CompilerAssert.
+* Complex:                               Complex.
+* complex numbers, operations:           Complex Number Operations.
+* Concat <1>:                            Concat.
+* Concat:                                String Operations.
+* conformant arrays, internals:          Parameter passing.
+* Conjugate:                             Conjugate.
+* const <1>:                             Keywords.
+* const:                                 const.
+* const parameters, internals:           Parameter passing.
+* Constant Declaration, Source Structures: Constant Declaration.
+* constructor <1>:                       Keywords.
+* constructor:                           constructor.
+* Continue:                              Continue.
+* contributed units:                     Contributed units.
+* Contributions:                         Resources.
+* contributors:                          Acknowledgments.
+* Copy:                                  Copy.
+* Copying <1>:                           Library Copying.
+* Copying:                               Copying.
+* Cos <1>:                               Complex Number Operations.
+* Cos:                                   Cos.
+* Crash, of the compiler:                Compiler Crashes.
+* cross-compilers:                       Cross-Compilers.
+* crossbuilding:                         Crossbuilding.
+* CRT:                                   CRT.
+* Crystal:                               Resources.
+* CString:                               CString.
+* CString2String:                        CString2String.
+* CStringCopyString:                     CStringCopyString.
+* CurrentRoutineName:                    CurrentRoutineName.
+* curses:                                CRT.
+* CWord:                                 CWord.
+* Cycle:                                 Cycle.
+* Data Types:                            Enumerated Types.
+* Data Types, Definition:                Type Definition.
+* Database:                              Resources.
+* Date <1>:                              Date.
+* Date:                                  Date And Time Routines.
+* DBM:                                   Resources.
+* debugging:                             Notes for Debugging.
+* Dec <1>:                               Operations for Integer and Ordinal Types.
+* Dec:                                   Dec.
+* DefineSize:                            DefineSize.
+* Delete:                                Delete.
+* destructor <1>:                        destructor.
+* destructor:                            Keywords.
+* DevPascal <1>:                         Resources.
+* DevPascal:                             IDE.
+* Discard:                               Discard.
+* Dispose <1>:                           Memory Management Routines.
+* Dispose:                               Dispose.
+* distribution, minimal:                 Compiling GPC.
+* div <1>:                               Keywords.
+* div:                                   div.
+* djgpp:                                 MS-DOS with DJGPP.
+* do <1>:                                Keywords.
+* do:                                    do.
+* documentation:                         Resources.
+* Dos:                                   Dos.
+* DOS, MS- <1>:                          MS-DOS or OS/2 with EMX.
+* DOS, MS-:                              MS-DOS with DJGPP.
+* DosUnix:                               DosUnix.
+* Double <1>:                            Double.
+* Double:                                Real Types.
+* download:                              Download.
+* downto <1>:                            downto.
+* downto:                                Keywords.
+* Drawing:                               Resources.
+* Editor:                                Resources.
+* efence:                                Libraries.
+* ElectricFence:                         Libraries.
+* else <1>:                              Keywords.
+* else:                                  else.
+* emacs:                                 IDE.
+* Empty:                                 Empty.
+* EMX:                                   MS-DOS or OS/2 with EMX.
+* end <1>:                               Keywords.
+* end:                                   end.
+* endianness:                            Endianness.
+* EOF:                                   EOF.
+* EOLn:                                  EOLn.
+* EpsReal:                               EpsReal.
+* EQ:                                    EQ.
+* EQPad:                                 EQPad.
+* Erase:                                 Erase.
+* except <1>:                            Keywords.
+* except:                                except.
+* Exclude:                               Exclude.
+* Exit:                                  Exit.
+* Exp <1>:                               Complex Number Operations.
+* Exp:                                   Exp.
+* export <1>:                            Keywords.
+* export:                                export.
+* exports <1>:                           exports.
+* exports:                               Keywords.
+* Extend:                                Extend.
+* Extended <1>:                          Real Types.
+* Extended:                              Extended.
+* Extended Pascal:                       Resources.
+* external <1>:                          Importing Libraries from Other Languages.
+* external <2>:                          Keywords.
+* external:                              external.
+* Fail:                                  Fail.
+* False:                                 False.
+* FAQ:                                   FAQ.
+* far <1>:                               Keywords.
+* far:                                   far.
+* far, internals:                        forward near far.
+* file <1>:                              Keywords.
+* file:                                  file.
+* File layout, internals:                File Layout.
+* File Types, Intrinsic, Data Types:     File Types.
+* FilePos:                               FilePos.
+* files, operations:                     File Routines.
+* FileSize:                              FileSize.
+* FileUtils:                             FileUtils.
+* FillChar:                              FillChar.
+* finalization <1>:                      finalization.
+* finalization:                          Keywords.
+* Finalize:                              Finalize.
+* finally <1>:                           Keywords.
+* finally:                               finally.
+* Flush:                                 Flush.
+* for <1>:                               Keywords.
+* for:                                   for.
+* for, Statements, Source Structure:     for Statement.
+* FormatString <1>:                      FormatString.
+* FormatString:                          I18N.
+* forward <1>:                           Keywords.
+* forward:                               forward.
+* forward, internals:                    forward near far.
+* Frac:                                  Frac.
+* FrameAddress:                          FrameAddress.
+* Free Software:                         GNU.
+* Freedom <1>:                           Library Copying.
+* Freedom <2>:                           Copying.
+* Freedom:                               Resources.
+* FreeMem <1>:                           FreeMem.
+* FreeMem:                               Memory Management Routines.
+* Frequently Asked Questions:            FAQ.
+* front-end, internals <1>:              Tree nodes.
+* front-end, internals:                  Syntax parsing.
+* function <1>:                          Keywords.
+* function:                              function.
+* function, Subroutine Declaration, Source Structure: The Function.
+* functional type:                       Procedural Types.
+* functions as parameters, internals:    Parameter passing.
+* functions, predefined:                 Library Routines.
+* GDBM:                                  Resources.
+* GE:                                    GE.
+* General Public License:                Copying.
+* GEPad:                                 GEPad.
+* German:                                Resources.
+* Get <1>:                               Get.
+* Get:                                   File Routines.
+* GetMem <1>:                            GetMem.
+* GetMem:                                Memory Management Routines.
+* GetText:                               I18N.
+* gettext:                               Resources.
+* GetTimeStamp <1>:                      GetTimeStamp.
+* GetTimeStamp:                          Date And Time Routines.
+* GMP:                                   GMP.
+* gmp:                                   Libraries.
+* GNU DBM:                               Resources.
+* GNU General Public License:            Copying.
+* GNU Lesser General Public License:     Library Copying.
+* GNU Library General Public License:    Library Copying.
+* GNU Pascal command line options:       Invoking GPC.
+* GNU, project:                          GNU.
+* goto <1>:                              Keywords.
+* goto:                                  goto.
+* goto, Statements, Source Structure:    goto Statement.
+* GPC and other languages:               Other Languages.
+* GPC source, internals:                 Internals.
+* GPC, internals:                        Internals.
+* GPCUtil:                               GPCUtil.
+* GPI files, internals:                  GPI files.
+* GPL:                                   Copying.
+* grammar, internals:                    Syntax parsing.
+* Graphics:                              Resources.
+* GRX:                                   Resources.
+* GT:                                    GT.
+* GTK:                                   Resources.
+* GTPad:                                 GTPad.
+* GUI:                                   Resources.
+* Halt:                                  Halt.
+* HeapMon:                               HeapMon.
+* help:                                  Support.
+* High:                                  High.
+* highlights:                            Highlights.
+* HTTP:                                  Download.
+* I18N:                                  I18N.
+* IDE <1>:                               Resources.
+* IDE:                                   IDE.
+* if <1>:                                Keywords.
+* if:                                    if.
+* if, Statements, Source Structure:      if Statement.
+* Im <1>:                                Complex Number Operations.
+* Im:                                    Im.
+* implementation <1>:                    implementation.
+* implementation:                        Keywords.
+* import <1>:                            import.
+* import:                                Keywords.
+* import part <1>:                       Units.
+* import part:                           Modules.
+* Import Part, Source Structures:        Modules and Units.
+* in <1>:                                Set Operations.
+* in <2>:                                Keywords.
+* in:                                    in.
+* Inc <1>:                               Operations for Integer and Ordinal Types.
+* Inc:                                   Inc.
+* Include:                               Include.
+* Index:                                 Index.
+* inherited <1>:                         OOP.
+* inherited <2>:                         inherited.
+* inherited:                             Keywords.
+* initialization <1>:                    Keywords.
+* initialization:                        initialization.
+* Initialize:                            Initialize.
+* InOutRes:                              InOutRes.
+* Input:                                 Input.
+* Insert:                                Insert.
+* installing binary distributions:       Binary Distributions.
+* installing GNU Pascal:                 Installation.
+* installing source distributions:       Compiling GPC.
+* Int:                                   Int.
+* Integer:                               Integer.
+* Integer types:                         Integer Types.
+* integer types, compatibility:          Integer Types and Compatibility.
+* integer types, main branch:            Main Branch Integer Types.
+* integer types, natural:                Natural Integer Types.
+* integer types, specified size:         Integer Types with Specified Size.
+* integer types, summary:                Summary of Integer Types.
+* integer, operations:                   Operations for Integer and Ordinal Types.
+* interface <1>:                         Keywords.
+* interface:                             interface.
+* interfaces, internals:                 GPI files.
+* intermediate code, internals:          Tree nodes.
+* Internals:                             Internals.
+* Internationalization <1>:              Resources.
+* Internationalization:                  I18N.
+* interrupt <1>:                         Keywords.
+* interrupt:                             interrupt.
+* Intl:                                  Intl.
+* IOResult:                              IOResult.
+* is <1>:                                is.
+* is:                                    Keywords.
+* ISO 10206:                             Resources.
+* ISO 7185:                              Resources.
+* keywords, internals:                   Parsing keywords.
+* label <1>:                             label.
+* label:                                 Keywords.
+* Label Declaration, Source Structures:  Label Declaration.
+* language definition, internals:        Syntax parsing.
+* LastPosition <1>:                      LastPosition.
+* LastPosition:                          File Routines.
+* LE:                                    LE.
+* Leave:                                 Leave.
+* Length:                                Length.
+* LEPad:                                 LEPad.
+* Lesser General Public License:         Library Copying.
+* Lexer problems, internals:             Lexer problems.
+* lexical analyzer, internals:           Lexical analyzer.
+* LGPL:                                  Library Copying.
+* Libraries:                             GPC Options.
+* libraries:                             Libraries.
+* library <1>:                           Keywords.
+* library:                               library.
+* Library General Public License:        Library Copying.
+* linking:                               Importing Libraries from Other Languages.
+* Ln <1>:                                Ln.
+* Ln:                                    Complex Number Operations.
+* LoCase:                                LoCase.
+* LongBool:                              LongBool.
+* LongCard:                              LongCard.
+* LongestBool:                           LongestBool.
+* LongestCard:                           LongestCard.
+* LongestInt:                            LongestInt.
+* LongestReal:                           LongestReal.
+* LongestWord:                           LongestWord.
+* LongInt:                               LongInt.
+* LongReal <1>:                          LongReal.
+* LongReal:                              Real Types.
+* LongWord:                              LongWord.
+* Loops, Loop Control Statements:        Loop Control Statements.
+* Low:                                   Low.
+* LT:                                    LT.
+* LTPad:                                 LTPad.
+* Machine-dependencies in Types:         Machine-dependencies in Types.
+* magic, internals:                      Tree nodes.
+* Mailing List:                          Mailing List.
+* Mailing List Archives <1>:             Mailing List Archives.
+* Mailing List Archives:                 Resources.
+* main program:                          Importing Libraries from Other Languages.
+* Mark:                                  Mark.
+* Max <1>:                               Operations for Integer and Ordinal Types.
+* Max:                                   Max.
+* MaxChar:                               MaxChar.
+* MaxInt:                                MaxInt.
+* MaxReal:                               MaxReal.
+* MD5:                                   MD5.
+* MedBool:                               MedBool.
+* MedCard:                               MedCard.
+* MedInt:                                MedInt.
+* MedReal:                               MedReal.
+* MedWord:                               MedWord.
+* memory management:                     Memory Management Routines.
+* Min <1>:                               Operations for Integer and Ordinal Types.
+* Min:                                   Min.
+* MinReal:                               MinReal.
+* MkDir:                                 MkDir.
+* mod <1>:                               Keywords.
+* mod:                                   mod.
+* module <1>:                            module.
+* module:                                Keywords.
+* modules, internals:                    GPI files.
+* Modules, source structure:             Modules.
+* Move:                                  Move.
+* MoveLeft:                              MoveLeft.
+* MoveRight:                             MoveRight.
+* MS Windows 95/98/NT <1>:               Download.
+* MS Windows 95/98/NT:                   MS Windows 95/98/NT.
+* MS-DOS <1>:                            MS-DOS or OS/2 with EMX.
+* MS-DOS:                                MS-DOS with DJGPP.
+* MySQL:                                 Resources.
+* name <1>:                              Keywords.
+* name <2>:                              Importing Libraries from Other Languages.
+* name:                                  name.
+* ncurses <1>:                           Libraries.
+* ncurses:                               CRT.
+* NE:                                    NE.
+* near <1>:                              Keywords.
+* near:                                  near.
+* near, internals:                       forward near far.
+* NEPad:                                 NEPad.
+* New <1>:                               OOP.
+* New <2>:                               New.
+* New:                                   Memory Management Routines.
+* NewCString:                            NewCString.
+* news:                                  News.
+* Newsgroups:                            Newsgroups.
+* nil <1>:                               Keywords.
+* nil:                                   nil.
+* not <1>:                               not.
+* not <2>:                               Operations for Integer and Ordinal Types.
+* not:                                   Keywords.
+* Null:                                  Null.
+* object <1>:                            Keywords.
+* object:                                object.
+* Object Types, Data Types:              Object Types.
+* object-oriented programming:           OOP.
+* Objects:                               Exporting GPC Libraries to Other Languages.
+* Odd:                                   Odd.
+* of <1>:                                Keywords.
+* of:                                    of.
+* on <1>:                                Keywords.
+* on:                                    on.
+* only <1>:                              only.
+* only:                                  Keywords.
+* OOP:                                   OOP.
+* operations, complex numbers:           Complex Number Operations.
+* operations, files:                     File Routines.
+* operations, integer and ordinal:       Operations for Integer and Ordinal Types.
+* operations, sets:                      Set Operations.
+* operations, string:                    String Operations.
+* operator <1>:                          operator.
+* operator:                              Keywords.
+* operator, Subroutine Declaration, Source Structure: The Operator.
+* Operators:                             Operators.
+* operators, built-in:                   Built-in Operators.
+* operators, user-defined:               User-defined Operators.
+* options, command line:                 Invoking GPC.
+* or <1>:                                Keywords.
+* or <2>:                                or.
+* or:                                    Operations for Integer and Ordinal Types.
+* or else:                               or else.
+* or_else <1>:                           or_else.
+* or_else:                               Keywords.
+* Ord:                                   Ord.
+* Ordinal Types, Intrinsic, Data Types:  Ordinal Types.
+* ordinal, operations:                   Operations for Integer and Ordinal Types.
+* OS/2:                                  MS-DOS or OS/2 with EMX.
+* otherwise <1>:                         Keywords.
+* otherwise:                             otherwise.
+* Output:                                Output.
+* output file option:                    GPC Options.
+* Overlay:                               Overlay.
+* overload <1>:                          overload.
+* overload:                              Keywords.
+* override <1>:                          override.
+* override:                              Keywords.
+* Pack:                                  Pack.
+* packed <1>:                            Keywords.
+* packed:                                packed.
+* Page:                                  Page.
+* PAnsiChar:                             PAnsiChar.
+* ParamCount <1>:                        ParamCount.
+* ParamCount:                            Accessing Command Line Arguments.
+* Parameter List, Subroutine Declaration, Source Structure: Subroutine Parameter List Declaration.
+* parameter passing, internals:          Parameter passing.
+* parameter, protected:                  Protected Parameters.
+* ParamStr <1>:                          Accessing Command Line Arguments.
+* ParamStr:                              ParamStr.
+* parser, internals:                     Syntax parsing.
+* parsing, internals:                    Parsing keywords.
+* Pascal standards:                      Resources.
+* Pascal, Blaise:                        Resources.
+* Patents:                               Resources.
+* PChar:                                 PChar.
+* PDCurses <1>:                          CRT.
+* PDCurses:                              Libraries.
+* PENG <1>:                              Resources.
+* PENG:                                  IDE.
+* Pi:                                    Pi.
+* Pipes:                                 Pipes.
+* Planned features, internals:           Planned.
+* PObjectType:                           PObjectType.
+* Pointer:                               Pointer.
+* pointer arithmetics:                   Pointer Arithmetics.
+* pointer types:                         Pointer Types.
+* Pointer, Intrinsic, Data Types:        Pointer (Intrinsic).
+* Polar <1>:                             Complex Number Operations.
+* Polar:                                 Polar.
+* Ports:                                 Ports.
+* Pos:                                   Pos.
+* Position <1>:                          Position.
+* Position:                              File Routines.
+* PostgreSQL:                            Resources.
+* pow <1>:                               Complex Number Operations.
+* pow <2>:                               pow.
+* pow:                                   Keywords.
+* Pred <1>:                              Operations for Integer and Ordinal Types.
+* Pred:                                  Pred.
+* preprocessor:                          Compiler Directives.
+* preprocessor, internals:               Preprocessor.
+* Printer:                               Printer.
+* private <1>:                           private.
+* private:                               Keywords.
+* procedural parameters, internals:      Parameter passing.
+* procedural type:                       Procedural Types.
+* procedure <1>:                         Keywords.
+* procedure:                             procedure.
+* Procedure Call, Statements, Source Structure: Procedure Call.
+* procedure, Subroutine Declaration, Source Structure: The Procedure.
+* procedures, predefined:                Library Routines.
+* Professional Support:                  Professional Support.
+* program <1>:                           Keywords.
+* program:                               program.
+* programming in GPC:                    Programming.
+* Programs, source structure:            The Program.
+* property <1>:                          property.
+* property:                              Keywords.
+* protected <1>:                         Keywords.
+* protected <2>:                         Importing Libraries from Other Languages.
+* protected:                             protected.
+* protected, parameter:                  Protected Parameters.
+* PtrCard:                               PtrCard.
+* PtrDiffType:                           PtrDiffType.
+* PtrInt:                                PtrInt.
+* PtrWord:                               PtrWord.
+* public <1>:                            public.
+* public:                                Keywords.
+* published <1>:                         Keywords.
+* published:                             published.
+* Put <1>:                               File Routines.
+* Put:                                   Put.
+* qualified <1>:                         qualified.
+* qualified:                             Keywords.
+* Questions, Frequently Asked:           FAQ.
+* raise <1>:                             Keywords.
+* raise:                                 raise.
+* Random:                                Random.
+* Randomize:                             Randomize.
+* Re <1>:                                Complex Number Operations.
+* Re:                                    Re.
+* Read:                                  Read.
+* ReadLn:                                ReadLn.
+* ReadStr:                               ReadStr.
+* ReadString:                            ReadString.
+* Real <1>:                              Real Types.
+* Real:                                  Real.
+* record <1>:                            record.
+* record:                                Keywords.
+* Record Types, Data Types:              Record Types.
+* record, variant:                       Variant Records.
+* Redistribution <1>:                    Library Copying.
+* Redistribution:                        Copying.
+* RegEx:                                 RegEx.
+* Release:                               Release.
+* Rename:                                Rename.
+* repeat <1>:                            Keywords.
+* repeat:                                repeat.
+* repeat, Statements, Source Structure:  repeat Statement.
+* Reporting Bugs:                        Reporting Bugs.
+* Reset:                                 Reset.
+* resident <1>:                          Keywords.
+* resident:                              resident.
+* Resources:                             Resources.
+* restricted <1>:                        Keywords.
+* restricted:                            restricted.
+* Result:                                Result.
+* Return:                                Return.
+* ReturnAddress:                         ReturnAddress.
+* Rewrite:                               Rewrite.
+* RHIDE <1>:                             IDE.
+* RHIDE:                                 Resources.
+* RmDir:                                 RmDir.
+* Round:                                 Round.
+* routines, predefined:                  Library Routines.
+* Run Time Library <1>:                  Run Time System.
+* Run Time Library:                      Library Routines.
+* Run Time System <1>:                   Library Routines.
+* Run Time System:                       Run Time System.
+* RunError:                              RunError.
+* rx <1>:                                RegEx.
+* rx:                                    Libraries.
+* schema parameters, internals:          Parameter passing.
+* schemata:                              Schema Types.
+* Seek:                                  Seek.
+* SeekEOF:                               SeekEOF.
+* SeekEOLn:                              SeekEOLn.
+* SeekRead <1>:                          SeekRead.
+* SeekRead:                              File Routines.
+* SeekUpdate <1>:                        SeekUpdate.
+* SeekUpdate:                            File Routines.
+* SeekWrite <1>:                         File Routines.
+* SeekWrite:                             SeekWrite.
+* segment <1>:                           Keywords.
+* segment:                               segment.
+* Self:                                  Self.
+* set <1>:                               set.
+* set:                                   Keywords.
+* Set Types, Data Types:                 Set Types.
+* SetFileTime:                           SetFileTime.
+* SetLength:                             SetLength.
+* sets, operations:                      Set Operations.
+* SetType:                               SetType.
+* shl <1>:                               shl.
+* shl <2>:                               Operations for Integer and Ordinal Types.
+* shl:                                   Keywords.
+* ShortBool:                             ShortBool.
+* ShortCard:                             ShortCard.
+* ShortInt:                              ShortInt.
+* ShortReal <1>:                         ShortReal.
+* ShortReal:                             Real Types.
+* ShortWord:                             ShortWord.
+* shr <1>:                               Operations for Integer and Ordinal Types.
+* shr <2>:                               Keywords.
+* shr:                                   shr.
+* Sin <1>:                               Sin.
+* Sin:                                   Complex Number Operations.
+* Single <1>:                            Real Types.
+* Single:                                Single.
+* SizeOf:                                SizeOf.
+* SizeType:                              SizeType.
+* Slice access:                          String Slice Access.
+* SmallInt:                              SmallInt.
+* Software patents:                      Resources.
+* source distributions, installing:      Compiling GPC.
+* source structures:                     Source Structures.
+* source, internals:                     Internals.
+* Sqr <1>:                               Complex Number Operations.
+* Sqr:                                   Sqr.
+* SqRt <1>:                              Complex Number Operations.
+* SqRt:                                  SqRt.
+* Standard Pascal:                       Resources.
+* standard units:                        GPC Units.
+* StandardError:                         StandardError.
+* StandardInput:                         StandardInput.
+* StandardOutput:                        StandardOutput.
+* Standards:                             Resources.
+* Statements, Source Structures:         Statements.
+* StdErr:                                StdErr.
+* Str:                                   Str.
+* String:                                String.
+* string parameters, internals:          Parameter passing.
+* String, Intrinsic, Data Types:         String Types.
+* string, slice access:                  String Slice Access.
+* String2CString:                        String2CString.
+* StringOf:                              StringOf.
+* Strings:                               Strings.
+* strings, operations:                   String Operations.
+* StringUtils:                           StringUtils.
+* subrange types:                        Subrange Types.
+* Subroutine Declaration, Source Structures: Subroutine Declaration.
+* SubStr:                                SubStr.
+* Succ <1>:                              Operations for Integer and Ordinal Types.
+* Succ:                                  Succ.
+* support:                               Support.
+* Support, professional:                 Professional Support.
+* syntax conflicts, internals:           Parsing conflicts.
+* Syntax parsing, internals:             Syntax parsing.
+* System:                                System.
+* SysUtils:                              Resources.
+* team:                                  Acknowledgments.
+* Test Suite, Running:                   Testing.
+* Test Suite, writing tests:             Reporting Bugs.
+* Text <1>:                              File Types.
+* Text:                                  Text.
+* Text editor:                           Resources.
+* TFDD <1>:                              TFDDs.
+* TFDD:                                  TFDD.
+* then <1>:                              then.
+* then:                                  Keywords.
+* Time <1>:                              Date And Time Routines.
+* Time:                                  Time.
+* TimeStamp:                             TimeStamp.
+* to <1>:                                to.
+* to:                                    Keywords.
+* to begin do:                           to begin do.
+* to end do:                             to end do.
+* Trap:                                  Trap.
+* tree nodes, internals:                 Tree nodes.
+* Trim:                                  Trim.
+* True:                                  True.
+* Trunc:                                 Trunc.
+* Truncate:                              Truncate.
+* try <1>:                               Keywords.
+* try:                                   try.
+* Turbo3:                                Turbo3.
+* type <1>:                              type.
+* type:                                  Keywords.
+* type casts:                            Type Casts.
+* Type Declaration, Source Structures:   Type Declaration.
+* Type Definition Possibilities:         Type Definition Possibilities.
+* type of:                               type of.
+* typeless parameters, internals:        Parameter passing.
+* TypeOf:                                TypeOf.
+* types, functional:                     Procedural Types.
+* types, initializers:                   Type Initializers.
+* types, Integer:                        Integer Types.
+* types, pointer:                        Pointer Types.
+* types, procedural:                     Procedural Types.
+* types, real:                           Real Types.
+* types, restricted:                     Restricted Types.
+* types, schema:                         Schema Types.
+* types, schemata:                       Schema Types.
+* types, subrange:                       Subrange Types.
+* types, variant records:                Variant Records.
+* Unbind <1>:                            Unbind.
+* Unbind:                                File Routines.
+* unit <1>:                              Keywords.
+* unit:                                  unit.
+* units, contributed:                    Contributed units.
+* units, included with GPC:              GPC Units.
+* units, internals:                      GPI files.
+* Units, source structure:               Units.
+* Unpack:                                Unpack.
+* until <1>:                             until.
+* until:                                 Keywords.
+* untyped files:                         File Types.
+* untyped parameters, internals:         Parameter passing.
+* UpCase:                                UpCase.
+* Update <1>:                            Update.
+* Update:                                File Routines.
+* uses <1>:                              Keywords.
+* uses:                                  uses.
+* Val:                                   Val.
+* value <1>:                             value.
+* value:                                 Keywords.
+* var <1>:                               var.
+* var:                                   Keywords.
+* var, Statements, Source Structure:     The Declaring Statement.
+* Variable Declaration, Source Structures: Variable Declaration.
+* view <1>:                              Keywords.
+* view:                                  view.
+* virtual <1>:                           Keywords.
+* virtual:                               virtual.
+* VMT:                                   Exporting GPC Libraries to Other Languages.
+* Void:                                  Void.
+* web site:                              Download.
+* while <1>:                             Keywords.
+* while:                                 while.
+* while, Statements, Source Structure:   while Statement.
+* WinDos:                                WinDos.
+* Windows 95/98/NT, MS <1>:              MS Windows 95/98/NT.
+* Windows 95/98/NT, MS:                  Download.
+* with <1>:                              Keywords.
+* with:                                  with.
+* with, Statements, Source Structure:    with Statement.
+* Word:                                  Word.
+* WordBool:                              WordBool.
+* Write:                                 Write.
+* WriteLn:                               WriteLn.
+* WriteStr:                              WriteStr.
+* WWW:                                   Download.
+* xemacs:                                IDE.
+* xor <1>:                               xor.
+* xor <2>:                               Operations for Integer and Ordinal Types.
+* xor:                                   Keywords.
+* xwpe:                                  IDE.
+
+

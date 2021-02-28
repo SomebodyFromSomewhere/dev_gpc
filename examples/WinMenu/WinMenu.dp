@@ -1,0 +1,16 @@
+[Project]
+FileName=c:\dev_gpc\Examples\WinMenu\WinMenu.dp
+Name=WinMenu
+MainUnit=c:\dev_gpc\Examples\WinMenu\Menu.pp
+UnitCount=1
+ResFiles=c:\dev_gpc\Examples\WinMenu\rsrc.rc
+NoConsole=1
+IsDll=0
+Icon=c:\dev_gpc\BIN\Mainicon.ico
+CompilerOptions=
+IncludeDirs=
+ObjFile=
+
+[Unit1]
+FileName=c:\dev_gpc\Examples\WinMenu\Menu.pp
+

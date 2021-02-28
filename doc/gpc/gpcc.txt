@@ -1,0 +1,152 @@
+Short documentation for GPCC
+----------------------------
+
+GPCC ("GNU Pascal Compatibility Compiler") is a command line shell for the
+GNU Pascal (GPC) compiler. This program attempts to mimic some of the
+features of Borland's Pascal command line compilers (tpc, bpc, and dcc32),
+by;
+
+  [a] supporting some of the Borland compiler options and switches
+  [b] supporting options and switches from a configuration text file
+      (named by default in the Borland style with a ".cfg" extension)
+  [c] attempting to identify from a basic parsing of the first few lines
+      of a source file whether the source file is a UNIT/MODULE or
+      PROGRAM/UNIT, and supplying appropriate parameters to the linker
+  [d] looking (if no extension is supplied for a filename) for the file,
+      with the following extensions, and in the following order;
+      		[a] ".pas"
+      		[b] ".p"
+      		[c] ".pp"
+      		[d] ".dpr"
+
+*** Please read the "disclaimer" section below before attempting to run
+    GPCC.
+
+Building GPCC
+--------------
+The source code for GPCC can be made available for those who are
+interested. GPCC was written in portable Pascal.
+
+GPCC will compile with GPC v2.1 on all platforms supported by GPC, 
+Borland/Turbo Pascal, Delphi 2.0 and higher, and Virtual Pascal 2.x. 
+
+With respect to the latter, you must have TurboPower's "Turbo
+Professional" library (or translations of its routines). It is 
+recommended that the program be compiled with GPC. However, one 
+goal is that the program should be compilable both under GPC and other
+popular Pascal compilers. For this reason, I have stuck to some lowest 
+common denominators in the coding. For example, I could have used 
+TCollections under BP/TP or Virtual Pascal - but the OBJECTS unit for 
+GPC is not yet finalised, so I have used simple string arrays in the 
+meantime.
+
+To build the program under GPC, use something like:
+  "gpc --automake -s -O2 --executable-file-name gpcc.pas"
+
+To build it under other compilers, just compile it normally.
+
+Invoking GPCC
+-------------
+If you run the program with no parameters, you will see a list of the
+available switches or options. The ones marked "*" are not implemented
+and are there for future reference.
+
+All of the switches and options can be supplied at the command line. Most
+can be put in a configuration text file (default: gpcc.cfg).
+
+
+The configuration file (GPCC.CFG)
+---------------------------------
+This is the default name (lower case under Linux/unix) for the
+configuration text file that GPCC attempts to read everytime it is run.
+The configuration file (the name of the running program, but with the
+extension ".cfg") is searched for in the following places, and in the
+following order;
+	[a] the current directory
+	[b] the directory where the GPCC executable is
+	[c] the "PATH"
+	[d] "gpcc.cfg" (hard coded) in the directory where the GPCC
+	    executable is
+	[e] a default name (.xxxrc under Linux/unix, and gpcc.cfg elsewhere)
+	
+This configuration file mimics the Borland equivalent. Each option or
+switch must be on a separate line by itself. Several samples are supplied
+for possible amendment and use. Most (but not all) of the switches recognised
+by the BP compilers are supported. GPC's own native switches can also be used -
+but only where they do not conflict with the BP switches. For example,
+"-B" means "build all" under BP and GPCC - but it means something different
+to the GNU tools. So, if passed to GPCC, it will always be translated to
+"--autobuild" (unless you use "-B=") before being passed on to the GPC compiler.
+
+Options and Switches
+--------------------
+Below is a list of the current options and switches supported by GPCC;
+
+Syntax: GPCC <filename> [options] 
+  -B       = Build all units          -N<path> = UNIT output directory
+  -CG      = GUI (Windows) target     -O<path> = Object directories
+  -D<syms> = Define conditionals      -R<res>  = Link resource(s)
+  -E<path> = EXE output Directory     -T<file> = Use this CFG file
+  -I<path> = Include directories      -U<path> = Unit directories
+  -M       = Make modified units      -V       = Debug information in EXE
+  --V      = Verbose mode             -W       = Output warning messages
+  --DLL    = Create DLL from Unit     --MDEF   = Manual DLL .DEF file 
+  --L<lib> = Link library             -$<dir>  = Compiler directive
+
+Compiler switches: -$<letter><state>  (defaults are shown below)
+  A- Align "doubles"      I+ I/O error checking   C<n> Code for CPU (see below)
+  B- Full boolean eval    L+ Local debug symbols  S- Stack checking
+  D+ Debug information    N- FPU instructions     T+ Typed pointers
+  E- FPU emulation        O- Optimization         X- Extended syntax
+  J- Writeable consts     V- Strict var-strings   Oi<num>- Optimize for CPU
+  Stack size: -$M<StackSize>
+
+Intel optimization options
+    -$G+ optimize for Pentium 4 (will still run on a 386)  
+
+Intel code generation options  (generates cpu-specific code)
+    -$C4 (486 code); -$C5 (Pentium code); -$C6 (Pentium 2 code); 
+    -$C7 (Pentium 3 code); -$C8 (Pentium 4 code)
+
+Others:
+    -$C9 (Athlon code); K6 processors=  -$Ck6; -$Ck6-2; -$Ck6-3
+    -$Cathlon-xp; -$Cathlon-mp; -$Cathlon-4; -$Cathlon-tbird 
+
+ These options can be put in gpcc.cfg
+
+Other (platform-specific) features
+----------------------------------
+At the moment, GPCC supports the directives "{#APPTYPE GUI}" or "{#CGUI}"
+in source files compiled for Win32 (Cygwin or Mingw). These directives
+(you can use one or the other) instruct GPCC to produce a GUI (as opposed 
+to console) program. The only effect of this is that GPCC passes '-mwindows'
+to the GPC compiler for you. If used, the directive should appear *before*
+the "Program xxx" line.
+
+
+Licence
+-------
+This program is a free program; you can redistribute and/or modify
+it under the terms of the GNU Lesser General Public License,
+as published by the Free Software Foundation.
+
+
+Future development
+------------------
+If you develop this program further, or if you fix any bugs in it,
+please send me a copy so that I can merge it with the main distribution.
+
+
+DISCLAIMER
+----------
+The program GPCC is supplied with no warranties whatsoever. I do not
+accept responsibility for any loss or damage, caused by the use or the
+purported use of GPCC for any purpose whatsoever. You use GPCC ENTIRELY
+AT YOUR OWN RISK. If these terms are not acceptable to you, then you have
+NO LICENCE to use GPCC for any purpose whatsoever, and you should delete
+the program from all your disks.
+
+-----------------
+May 2002
+Prof. Abimbola A Olowofoyeku (The African Chief)
+E-mail: African_Chief[at]bigfoot.com

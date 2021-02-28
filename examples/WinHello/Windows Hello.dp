@@ -1,0 +1,13 @@
+[Project]
+FileName=c:\dev_gpc\Examples\WinHello\Windows Hello.dp
+Name=Windows Hello
+MainUnit=c:\dev_gpc\Examples\WinHello\winhello.pp
+UnitCount=1
+ResFiles=c:\dev_gpc\Examples\WinHello\rsrc.rc
+NoConsole=0
+IsDll=0
+Icon=c:\dev_gpc\Bin\Mainicon.ico
+
+[Unit1]
+FileName=c:\dev_gpc\Examples\WinHello\winhello.pp
+

@@ -1,0 +1,15 @@
+** Using your own Free Pascal compiler system with Dev-Pascal **
+
+If you already have a Free Pascal compiler system and have installed the executable version of Dev-Pascal, you can configure Dev-Pascal to work with it. Please follow the instructions below :
+
+1. Open Dev-Pascal, and go to the Options menu, then Compiler options
+
+2. In the Directories sheet page, type in the Bin field the directory that contains the Free Pascal executables (example : c:\pp\bin\win32\)
+
+3. Type in the Units field a list of directories to your Free Pascal unit files. Separate paths by semicolon (;). Example : c:\pp\units\win32\;c:\pp\units\win32\rtl\;c:\pp\units\win32\fcl\;c:\pp\units\win32\api\
+
+4. Type in the Lib field the directory to your Free Pascal library files (example : c:\pp\lib\win32\)
+
+5. Select "Freepascal" in the "Pascal compiler" tab.
+
+6. Click OK in the Compiler Options dialog. Your Free Pascal compiler system should be now configured to work with Dev-Pascal.

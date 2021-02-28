@@ -1,0 +1,18 @@
+:Base devpas_gpc.hlp>main
+:Title Dev+GNU Pascal
+1 Welcome !=Welcome
+1 About Dev+GNU Pascal and registering information=1_YJHKY
+1 System requirements=Systemrequirements
+1 FAQ (common problems)=FAQcommonproblems
+1 Compiling, running and debugging=Compilingaproject
+1 Compiler options=Compileroptions
+1 Environment options=Environmentoptions
+1 Contacting the authors=Contactingtheauthor
+1 Creating a project=Creatingaproject
+1 Mailing list=Mailinglist
+1 Help files=Helpfiles
+1 Dev+GNU Pascal license agreements=1PAHWUT
+1 Authors=Authors
+1 Contributing to the development=Contributingtothedevelopment
+1 Using your own GNU Pascal compiler=12YB7QW
+1 Using Templates=UsingTemplates

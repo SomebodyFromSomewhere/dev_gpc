@@ -1,0 +1,17 @@
+[Project]
+FileName=c:\dev_gpc\examples\Projects\Project1.dp
+Name=Project1
+MainUnit=c:\dev_gpc\examples\Projects\Project1.pas
+UnitCount=3
+ResFiles=
+NoConsole=1
+IsDll=0
+Icon=c:\dev_gpc\Icon\Mainicon.ico
+[Unit1]
+FileName=c:\dev_gpc\examples\Projects\Project1.pas
+[Unit2]
+FileName=c:\dev_gpc\examples\Projects\Unit1.pas
+[Unit3]
+FileName=c:\dev_gpc\examples\Projects\Unit2.pas
+FileTime=814003820
+

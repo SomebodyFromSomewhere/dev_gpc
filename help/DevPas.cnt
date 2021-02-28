@@ -1,0 +1,23 @@
+:Base DevPas.hlp
+:Title Dev-Pascal
+1 Welcome !=Welcome
+1 About Dev-Pascal and registering information=AboutDevcAndRegisteringInformation
+1 Dev-Pascal license agreements=DevcLicenseAgreements
+1 Getting Started
+2 System requirements=SystemRequirements
+2 FAQ (common problems)=FaqcommonProblems
+1 Creating, Managing and compiling a project
+2 Creating a project=CreatingAProject
+2 Making and using Templates=UsingTemplates
+2 Managing a project=ManagingAProject
+2 Compiling, running and debugging=CompilingAProject
+1 Using Options
+2 Compiler options=CompilerOptions
+2 Environment options=EnvironmentOptions
+2 Using your own FreePascal compiler system=UsingCygwin
+1 Getting further help
+2 Help files=HelpFiles
+2 Contacting the author=ContactingTheAuthor
+1 Development and authors
+2 Contributing to the development=ContributingToTheDevelopment
+2 Authors=Authors

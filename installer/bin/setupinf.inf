@@ -1,0 +1,19 @@
+;; -------- string table and stuff for the setup loader -------------------;
+
+[SETUP]
+$#1=Setup is preparing the Chief's Installer Lite-32 support files needed for the installation process.\n\nPlease wait ... 
+$#2=Install ERROR
+$#3=I cannot find
+$#4=I cannot initialize the Installer.
+$#5=Insufficent space on TEMP drive
+$#6=$00FFFF00
+$#7=$00000000
+$#8=I cannot run from the TEMP directory!
+$#9=4
+$#10=I can only run under 32-bit Windows!
+$#11=Chief's Installer Lite-32 Setup Wizard
+$#12=You do not have the administrative privileges required for this installation.\n\nPlease log on as Administrator and start again.
+
+; are we required to have administrative privileges?
+; 0="No";  1="Yes"
+$ADMIN-PRIVILEGES=0

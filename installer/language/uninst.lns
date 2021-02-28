@@ -1,0 +1,20 @@
+; string table for UNINSTAL.EXE; to use your own strings, edit the 
+; strings (within the quotation marks), and then rename to: UNINST.LNG
+;
+
+ $#1, "I cannot find "
+ $#2, "I cannot open"
+ $#3, "The "Uninstallation" is now completed.\n Please close all running applications\n and RESTART Windows."
+ $#4, "UNINSTALL"
+ $#5, "Directory for program to Uninstall:"
+ $#6, "Uninstalling ... "
+ $#7, "Error reading "
+ $#8, "I will now Uninstall"
+ $#9, "All the program's files and details will be DELETED. Should I still proceed?"
+ $#10, "Please note that at least one active DLL was deleted. So, you must restart Windows (now!)."
+ $#11, "This file was installed by the program being Uninstalled. But it may be needed by other programs.\n\nShould I still delete it?"
+ $#12, "Invalid  program directory."
+ $#13, "&OK"
+ $#14, "C&ancel"
+ $#15, "&Yes"
+ $#16, "&No"

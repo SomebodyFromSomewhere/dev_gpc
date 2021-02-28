@@ -1,0 +1,44 @@
+     HISTORY FILE FOR CHIEF'S INSTALLER LITE-32
+     -------------------------------------------
+
+******************************************************************
+** Please DO NOT MIX the files in this version with the files of
+** any other version of Chief's Installer Lite-32.
+******************************************************************
+
+Version 5.47 (March 2006)
+--------------------------
+Maintenance release (new message added for users who do not have the administrative
+rights to install into the target directory). Some of the language DLLs have been 
+(German, French, Spanish, Yoruba) updated for this new message. For other languages
+the message will be in English.
+
+Version 5.45 (April 2005)
+--------------------------
+Maintenance bug-fix release
+
+Version 5.44 (October 2004)
+--------------------------
+1. New reserved word: "$UNINSTAL-BANNER-FONT-SIZE"
+   This optionally sets the font size for the uninstaller's banner
+2. Fixed overflow bug in "$ADMIN-PRIVILEGES"
+
+Version 5.43 (August 2004)
+--------------------------
+Maintenance release
+
+Version 5.41 (December 2003)
+----------------------------
+1. Fixed bug relating to icon creation (installer sometimes crashes)
+2. New reserved word: $PROGRAM-INF - this points to the INF file that is
+   being used for the current installation
+
+Version 5.40 (November 2003)
+----------------------------
+1. Fixed problems relating to filenames containing extended characters
+2. Removed winstalz.dll from the distribution
+3. Fixed problem with some stray files being left behind 
+
+Version 5.34 (May 2002)
+-----------------------
+First public release of Chief's Installer Lite-32

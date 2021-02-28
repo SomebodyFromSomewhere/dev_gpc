@@ -1,0 +1,13 @@
+while ()\ndo begin\n\nend;{while}\n
+for (| := | to |)\ndo begin\n\nend;{for}\n
+repeat\n\nuntil ();{repeat}\n
+if ()\nthen begin\nend;{if}\n
+procedure foo;\nbegin\n\nend;{procedure}\n
+function foo : integer;\nbegin\n\nend; {function}\n
+procedure obj.foo;\nbegin\n\nend;{obj.foo}\n
+function obj.foo;\nbegin\n\nend;{obj.foo}\n
+type\npMyobj = ^TMyobj;\nTMyobj = Object ()\n\nend;{TMyobj}\n
+type\nTMyclass = Class ()\n\nend;{TMyclass}\n
+type\npMyrec = ^TMyrec;\nTMyrec = Record\n\nend;{TMyrec}\n
+program foo;\nbegin\n\nend.\n
+\nbegin\n\nend;\n
